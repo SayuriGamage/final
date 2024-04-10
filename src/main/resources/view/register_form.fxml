@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EEF5FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.RegisterFormController">
+   <children>
+      <Label layoutX="86.0" layoutY="22.0" text="Register form">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="400.0" fitWidth="265.0" layoutX="342.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/img_2.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="50.0" layoutY="88.0" text="Name" />
+      <Label layoutX="48.0" layoutY="159.0" text="UserId" />
+      <Label layoutX="48.0" layoutY="240.0" text="Password" />
+      <TextField fx:id="reginametext" layoutX="50.0" layoutY="116.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="egiuseridtext" layoutX="42.0" layoutY="200.0" prefHeight="25.0" prefWidth="265.0" />
+      <TextField fx:id="regipasswordtext" layoutX="42.0" layoutY="276.0" prefHeight="25.0" prefWidth="265.0" />
+      <Button defaultButton="true" layoutX="122.0" layoutY="330.0" mnemonicParsing="false" onAction="#registerOnAction" prefHeight="29.0" prefWidth="84.0" text="Register" />
+   </children>
+</AnchorPane>
