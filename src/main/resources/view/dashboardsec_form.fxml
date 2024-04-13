@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #DBA979;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashboardsecFormController">
+   <children>
+      <Label layoutX="251.0" layoutY="56.0" prefHeight="106.0" prefWidth="232.0" text="dashboard">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
