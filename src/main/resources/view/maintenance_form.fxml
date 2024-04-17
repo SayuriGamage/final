@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MaintenanceFormController">
+   <children>
+      <ImageView fitHeight="361.0" fitWidth="376.0" layoutX="169.0" layoutY="2.0" opacity="0.57" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/img_15.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="14.0" layoutY="14.0" text="MAINTENANCE">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="81.0" text="Maintain ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="124.0" text="Maintain Date">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="143.0" layoutY="83.0" text="Label" />
+      <Label layoutX="161.0" layoutY="125.0" text="Label" />
+      <Label layoutX="27.0" layoutY="173.0" text="Description">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="215.0" text="Cost">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="249.0" text="Employee ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="421.0" layoutY="124.0" text="Equipment ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="421.0" layoutY="182.0" text="Equipment Name">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="179.0" layoutY="170.0" prefHeight="25.0" prefWidth="190.0" />
+      <TextField layoutX="179.0" layoutY="246.0" prefHeight="25.0" prefWidth="190.0" />
+      <TextField layoutX="576.0" layoutY="179.0" prefHeight="25.0" prefWidth="190.0" />
+      <TextField layoutX="179.0" layoutY="212.0" prefHeight="25.0" prefWidth="190.0" />
+      <ComboBox layoutX="564.0" layoutY="121.0" prefWidth="150.0" />
+      <TableView layoutX="-2.0" layoutY="347.0" prefHeight="317.0" prefWidth="781.0">
+        <columns>
+          <TableColumn prefWidth="109.28616535663605" text="Maintain ID" />
+          <TableColumn prefWidth="157.1435775756836" text="Equipment ID" />
+            <TableColumn prefWidth="267.1440124511719" text="Description" />
+            <TableColumn prefWidth="137.14349365234375" text="Cost" />
+            <TableColumn prefWidth="110.71478271484375" text="Action" />
+        </columns>
+      </TableView>
+      <Button layoutX="543.0" layoutY="285.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" style="-fx-background-color: #5356FF;" text="ADD" textFill="WHITE" />
+   </children>
+</AnchorPane>

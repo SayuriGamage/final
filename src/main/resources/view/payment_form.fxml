@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
+   <children>
+      <ImageView fitHeight="514.0" fitWidth="514.0" layoutX="89.0" layoutY="11.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/img_7.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="14.0" layoutY="14.0" text="PAYMENTS">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <TextField layoutX="71.0" layoutY="129.0" prefHeight="25.0" prefWidth="263.0" />
+      <TextField layoutX="71.0" layoutY="191.0" prefHeight="25.0" prefWidth="263.0" />
+      <TextField layoutX="71.0" layoutY="256.0" prefHeight="25.0" prefWidth="263.0" />
+      <TextField layoutX="71.0" layoutY="318.0" prefHeight="25.0" prefWidth="263.0" />
+      <Label layoutX="71.0" layoutY="113.0" text="Payment ID">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="174.0" text="Order ID">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="240.0" text="Date">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="302.0" text="Amount">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button layoutX="508.0" layoutY="119.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="181.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #FFAF45;" text="UPDATE" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="246.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="308.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
+      <TableView layoutX="17.0" layoutY="409.0" prefHeight="264.0" prefWidth="747.0">
+        <columns>
+          <TableColumn prefWidth="181.4293463230133" text="Payment ID" />
+          <TableColumn prefWidth="181.4293212890625" text="Order ID" />
+            <TableColumn prefWidth="209.28671264648438" text="Date" />
+            <TableColumn prefWidth="209.28668212890625" text="Amount" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

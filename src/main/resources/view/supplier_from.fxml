@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFromController">
+   <children>
+      <Label layoutX="14.0" layoutY="7.0" prefHeight="41.0" prefWidth="180.0" text="Supplier">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="592.0" fitWidth="818.0" layoutY="89.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/img_3.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="83.0" layoutY="124.0" prefHeight="25.0" prefWidth="227.0" />
+      <TextField layoutX="83.0" layoutY="202.0" prefHeight="25.0" prefWidth="227.0" />
+      <Label layoutX="83.0" layoutY="108.0" text="SupplierID" />
+      <Label layoutX="83.0" layoutY="186.0" text="Supplier Name" />
+      <TableView layoutX="68.0" layoutY="249.0" prefHeight="424.0" prefWidth="249.0">
+        <columns>
+          <TableColumn prefWidth="129.28624725341797" text="SupplierID" />
+          <TableColumn prefWidth="132.85772705078125" text="Name" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -46,13 +46,33 @@ public class DashboardFormController {
     public void supAction(ActionEvent actionEvent) {
     }
 
-    public void orAction(MouseEvent mouseEvent) {
+
+
+    public void condeminAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/condemned_form.fxml"));
+
+        AnchorPane form =loader.load();
+
+        dashboardpane.getChildren().clear();
+        dashboardpane.getChildren().add(form);
     }
 
-    public void condeminAction(ActionEvent actionEvent) {
+
+    public void dashboardOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/dashboardsec_form.fxml"));
+
+        AnchorPane form =loader.load();
+
+        dashboardpane.getChildren().clear();
+        dashboardpane.getChildren().add(form);
     }
 
-    public void paymentAction(MouseEvent mouseEvent) {
+    public void orOnAction(ActionEvent actionEvent) {
+    }
 
+    public void payonAction(ActionEvent actionEvent) {
+    }
+
+    public void equipAction(ActionEvent actionEvent) {
     }
 }

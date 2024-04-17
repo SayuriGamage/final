@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="674.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SparepartsFormController">
+   <children>
+      <ImageView fitHeight="674.0" fitWidth="781.0" layoutX="7.0" layoutY="5.0" opacity="0.12" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/img_4.png" />
+         </image>
+      </ImageView>
+      <TableView layoutY="473.0" prefHeight="200.0" prefWidth="794.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="120.71483612060547" text="Name" />
+            <TableColumn prefWidth="141.42918395996094" text="Manufacture" />
+            <TableColumn prefWidth="120.71484375" text="Unit Price" />
+            <TableColumn prefWidth="62.857421875" text="QTY" />
+            <TableColumn prefWidth="136.42913818359375" text="Purchase" />
+            <TableColumn prefWidth="138.57208251953125" text="Maintenance ID" />
+        </columns>
+      </TableView>
+      <Label layoutX="14.0" layoutY="8.0" text="SPARE PARTS">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="398.0" layoutY="35.0" text="ID">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <TextField layoutX="398.0" layoutY="51.0" prefHeight="25.0" prefWidth="221.0" />
+      <TextField layoutX="398.0" layoutY="116.0" prefHeight="25.0" prefWidth="221.0" />
+      <TextField layoutX="398.0" layoutY="179.0" prefHeight="25.0" prefWidth="221.0" />
+      <TextField layoutX="398.0" layoutY="245.0" prefHeight="25.0" prefWidth="221.0" />
+      <TextField layoutX="398.0" layoutY="307.0" prefHeight="25.0" prefWidth="221.0" />
+      <TextField layoutX="398.0" layoutY="370.0" prefHeight="25.0" prefWidth="221.0" />
+      <TextField layoutX="398.0" layoutY="430.0" prefHeight="25.0" prefWidth="221.0" />
+      <Label layoutX="398.0" layoutY="99.0" text="Name">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="398.0" layoutY="162.0" text="Manufacture">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="398.0" layoutY="228.0" text="Unit Price">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="398.0" layoutY="290.0" text="QTY">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="398.0" layoutY="353.0" text="Purchase">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="398.0" layoutY="413.0" text="Maintenance ID">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Button layoutX="99.0" layoutY="117.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
+      <Button layoutX="99.0" layoutY="192.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #FFAF45;" text="UPDATE" textFill="WHITE" />
+      <Button layoutX="99.0" layoutY="272.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
+      <Button layoutX="99.0" layoutY="365.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
+   </children>
+</AnchorPane>

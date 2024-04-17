@@ -3,12 +3,16 @@ package lk.ijse.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.model.Employee;
+import lk.ijse.model.tm.EmployeeTm;
 import lk.ijse.repository.EmployeeRepo;
 
 import java.io.IOException;
@@ -22,9 +26,55 @@ public class EmployeeFormController {
     public TextField empnametext;
     public TextField addresemptext;
     public TextField telemptext;
+    public TableView tblEmployee;
+
     private AnchorPane dashboardpane;
+    @FXML
+    private TableColumn<?, ?> colAddress;
 
+    @FXML
+    private TableColumn<?, ?> colId;
 
+    @FXML
+    private TableColumn<?, ?> colName;
+
+    @FXML
+    private TableColumn<?, ?> colTel;
+
+    public void initialize() {
+        setCellValueFactory();
+        loadAllCustomers();
+    }
+
+    private void setCellValueFactory() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colTel.setCellValueFactory(new PropertyValueFactory<>("tel"));
+    }
+
+    private void loadAllCustomers() {
+        ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
+
+        try {
+            List<Employee> employeeList = EmployeeRepo.getAll();
+
+            for (Employee employee : employeeList) {
+                EmployeeTm tm = new EmployeeTm(
+                        employee.getId(),
+                        employee.getName(),
+                        employee.getAddress(),
+                        employee.getTel()
+                );
+
+                obList.add(tm);
+            }
+
+            tblEmployee.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void saveempAction(ActionEvent actionEvent) {
         String id = empidtext.getText();
@@ -84,20 +134,12 @@ public class EmployeeFormController {
     }
 
     public void clearempAction(ActionEvent actionEvent) {
-
-    }
-
-    public void empbackAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/dashboard_form.fxml"));
-
-        AnchorPane form =loader.load();
-
-        dashboardpane.getChildren().clear();
-        dashboardpane.getChildren().add(form);
-    }
-    void btnClearOnAction(ActionEvent event) {
         clearFields();
     }
+
+
+
+
 
     public void textSearchOnAction(ActionEvent actionEvent) throws SQLException {
         String id = empidtext.getText();

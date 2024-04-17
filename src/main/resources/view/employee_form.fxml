@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.EmployeeFormController">
+<AnchorPane fx:id="rootNode" prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.EmployeeFormController">
    <children>
       <ImageView fitHeight="548.0" fitWidth="781.0" layoutX="-2.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/img_11.png" />
          </image>
       </ImageView>
-      <TableView layoutX="21.0" layoutY="419.0" prefHeight="212.0" prefWidth="734.0">
+      <TableView fx:id="tblEmployee" layoutX="21.0" layoutY="419.0" prefHeight="212.0" prefWidth="734.0">
         <columns>
-          <TableColumn prefWidth="114.28619587421417" text="Id" />
-          <TableColumn minWidth="5.714324951171875" prefWidth="177.85791015625" text="Name" />
-            <TableColumn minWidth="0.0" prefWidth="260.00115966796875" text="Address" />
-            <TableColumn minWidth="5.714324951171875" prefWidth="227.143798828125" text="Tel" />
+          <TableColumn fx:id="colId" prefWidth="114.28619587421417" text="Id" />
+          <TableColumn fx:id="colName" minWidth="5.714324951171875" prefWidth="177.85791015625" text="Name" />
+            <TableColumn fx:id="colAddress" minWidth="0.0" prefWidth="260.00115966796875" text="Job Titel" />
+            <TableColumn fx:id="colTel" minWidth="5.714324951171875" prefWidth="227.143798828125" text="Tel" />
         </columns>
       </TableView>
       <Label layoutX="299.0" layoutY="14.0" text="EMPLOYEE FORM" textFill="#333a73">
@@ -44,7 +44,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="249.0" text="Address">
+      <Label layoutX="20.0" layoutY="249.0" text="Job Titel">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -72,11 +72,6 @@
       <Button layoutX="598.0" layoutY="315.0" mnemonicParsing="false" onAction="#clearempAction" prefHeight="44.0" prefWidth="87.0" style="-fx-background-color: #378CE7;" text="CLEAR" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="685.0" layoutY="634.0" mnemonicParsing="false" onAction="#empbackAction" style="-fx-background-color: #008DDA;" text="BACK" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
          </font>
       </Button>
    </children>
