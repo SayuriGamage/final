@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
    <children>
       <ImageView fitHeight="514.0" fitWidth="514.0" layoutX="89.0" layoutY="11.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
@@ -23,10 +22,10 @@
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <TextField layoutX="71.0" layoutY="129.0" prefHeight="25.0" prefWidth="263.0" />
-      <TextField layoutX="71.0" layoutY="191.0" prefHeight="25.0" prefWidth="263.0" />
-      <TextField layoutX="71.0" layoutY="256.0" prefHeight="25.0" prefWidth="263.0" />
-      <TextField layoutX="71.0" layoutY="318.0" prefHeight="25.0" prefWidth="263.0" />
+      <TextField fx:id="paymenttext" layoutX="71.0" layoutY="129.0" onAction="#payonAction" prefHeight="25.0" prefWidth="263.0" />
+      <TextField fx:id="ordertext" layoutX="71.0" layoutY="191.0" prefHeight="25.0" prefWidth="263.0" />
+      <TextField fx:id="datetext" layoutX="71.0" layoutY="256.0" prefHeight="25.0" prefWidth="263.0" />
+      <TextField fx:id="amounttext" layoutX="71.0" layoutY="318.0" prefHeight="25.0" prefWidth="263.0" />
       <Label layoutX="71.0" layoutY="113.0" text="Payment ID">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -47,16 +46,16 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="508.0" layoutY="119.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
-      <Button layoutX="508.0" layoutY="181.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #FFAF45;" text="UPDATE" textFill="WHITE" />
-      <Button layoutX="508.0" layoutY="246.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
-      <Button layoutX="508.0" layoutY="308.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
-      <TableView layoutX="17.0" layoutY="409.0" prefHeight="264.0" prefWidth="747.0">
+      <Button layoutX="508.0" layoutY="119.0" mnemonicParsing="false" onAction="#savepaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="181.0" mnemonicParsing="false" onAction="#updatePaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #FFAF45;" text="UPDATE" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="246.0" mnemonicParsing="false" onAction="#deletepaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="308.0" mnemonicParsing="false" onAction="#clearpaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
+      <TableView fx:id="tblpayment" layoutX="17.0" layoutY="409.0" prefHeight="264.0" prefWidth="747.0">
         <columns>
-          <TableColumn prefWidth="181.4293463230133" text="Payment ID" />
-          <TableColumn prefWidth="181.4293212890625" text="Order ID" />
-            <TableColumn prefWidth="209.28671264648438" text="Date" />
-            <TableColumn prefWidth="209.28668212890625" text="Amount" />
+          <TableColumn fx:id="colpayid" prefWidth="181.4293463230133" text="Payment ID" />
+          <TableColumn fx:id="colorid" prefWidth="181.4293212890625" text="Order ID" />
+            <TableColumn fx:id="colpaydate" prefWidth="209.28671264648438" text="Date" />
+            <TableColumn fx:id="colpayamount" prefWidth="209.28668212890625" text="Amount" />
         </columns>
       </TableView>
    </children>

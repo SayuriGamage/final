@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -9,28 +10,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFromController">
    <children>
+      <ImageView fitHeight="458.0" fitWidth="558.0" layoutX="194.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/img_16.png" />
+         </image>
+      </ImageView>
       <Label layoutX="14.0" layoutY="7.0" prefHeight="41.0" prefWidth="180.0" text="Supplier">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <ImageView fitHeight="592.0" fitWidth="818.0" layoutY="89.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/img_3.png" />
-         </image>
-      </ImageView>
-      <TextField layoutX="83.0" layoutY="124.0" prefHeight="25.0" prefWidth="227.0" />
-      <TextField layoutX="83.0" layoutY="202.0" prefHeight="25.0" prefWidth="227.0" />
+      <TextField fx:id="supidtext" layoutX="83.0" layoutY="124.0" onAction="#supAction" prefHeight="25.0" prefWidth="279.0" />
+      <TextField fx:id="supnametext" layoutX="83.0" layoutY="202.0" prefHeight="25.0" prefWidth="279.0" />
       <Label layoutX="83.0" layoutY="108.0" text="SupplierID" />
       <Label layoutX="83.0" layoutY="186.0" text="Supplier Name" />
-      <TableView layoutX="68.0" layoutY="249.0" prefHeight="424.0" prefWidth="249.0">
+      <TableView fx:id="suppliertbl" layoutX="68.0" layoutY="426.0" prefHeight="238.0" prefWidth="499.0">
         <columns>
-          <TableColumn prefWidth="129.28624725341797" text="SupplierID" />
-          <TableColumn prefWidth="132.85772705078125" text="Name" />
+          <TableColumn fx:id="colsup" prefWidth="129.28624725341797" text="SupplierID" />
+          <TableColumn fx:id="colsupnam" prefWidth="369.28731117419" text="Name" />
         </columns>
       </TableView>
+      <Button layoutX="86.0" layoutY="360.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE">
+      </Button>
+      <Button layoutX="205.0" layoutY="360.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE">
+      </Button>
+      <Button layoutX="326.0" layoutY="360.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE">
+      </Button>
+      <Button layoutX="465.0" layoutY="360.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #378CE7;" text="CLEAR" textFill="WHITE">
+      </Button>
    </children>
 </AnchorPane>

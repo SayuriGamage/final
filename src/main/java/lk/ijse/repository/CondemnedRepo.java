@@ -2,6 +2,7 @@ package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Condemned;
+import lk.ijse.model.Employee;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,112 +13,97 @@ import java.util.List;
 
 public class CondemnedRepo {
 
-    private static final String INSERT_SQL = "INSERT INTO condemn VALUES(?, ?, ?, ?)";
-    private static final String DELETE_SQL = "DELETE FROM condemn WHERE c_id = ?";
-    private static final String UPDATE_SQL = "UPDATE condemn SET details = ?, date = ?, mm_id = ? WHERE c_id = ?";
-    private static final String SELECT_ALL_SQL = "SELECT * FROM condemn";
-    private static final String SELECT_IDS_SQL = "SELECT c_id FROM condemn";
-    private static final String SELECT_BY_ID_SQL = "SELECT * FROM condemn WHERE c_id = ?";
+    public static boolean save(Condemned condemned) throws SQLException {
+        String sql = "INSERT INTO condemn VALUES(?, ?, ?, ?)";
 
-    public static boolean save(Condemned condemned) {
-        try (Connection connection = DbConnection.getInstance().getConnection();
-             PreparedStatement pstm = connection.prepareStatement(INSERT_SQL)) {
 
-            pstm.setObject(1, condemned.getC_id());
-            pstm.setObject(2, condemned.getDetails());
-            pstm.setObject(3, condemned.getDate());
-            pstm.setObject(4, condemned.getMm_id());
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, condemned.getC_id());
+        pstm.setObject(2, condemned.getDetails());
+        pstm.setObject(3,condemned.getDate());
+        pstm.setObject(4, condemned.getMm_id());
 
-            return pstm.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception as needed
-            return false;
-        }
+        return pstm.executeUpdate() > 0;
+    }
+    public static boolean delete(String id) throws SQLException {
+        String sql = "DELETE FROM condemn WHERE c_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, id);
+
+        return pstm.executeUpdate() > 0;
     }
 
-    public static boolean delete(String id) {
-        try (Connection connection = DbConnection.getInstance().getConnection();
-             PreparedStatement pstm = connection.prepareStatement(DELETE_SQL)) {
+    public static boolean update(Condemned condemned) throws SQLException {
+        String sql = "UPDATE condemn SET details = ?, date = ? WHERE c_id = ?";
 
-            pstm.setObject(1, id);
-            return pstm.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception as needed
-            return false;
-        }
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, condemned.getDetails());
+        pstm.setObject(2, condemned.getDate());
+        pstm.setObject(3, condemned.getC_id());
+
+        return pstm.executeUpdate() > 0;
     }
 
-    public static boolean update(Condemned condemned) {
-        try (Connection connection = DbConnection.getInstance().getConnection();
-             PreparedStatement pstm = connection.prepareStatement(UPDATE_SQL)) {
+    public static Condemned searchById(String id) throws SQLException {
+        String sql = "SELECT * FROM condemn WHERE c_id = ?";
 
-            pstm.setObject(1, condemned.getDetails());
-            pstm.setObject(2, condemned.getDate());
-            pstm.setObject(3, condemned.getMm_id());
-            pstm.setObject(4, condemned.getC_id());
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, id);
 
-            return pstm.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception as needed
-            return false;
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String cus_id = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            String tel = resultSet.getString(4);
+
+            Condemned condemned = new Condemned(cus_id, name, address, tel);
+
+            return condemned;
         }
+
+        return null;
     }
 
-    public static List<Condemned> getAll() {
-        List<Condemned> condemnedList = new ArrayList<>();
-        try (Connection connection = DbConnection.getInstance().getConnection();
-             PreparedStatement pstm = connection.prepareStatement(SELECT_ALL_SQL);
-             ResultSet resultSet = pstm.executeQuery()) {
+    public static List<Condemned> getAll() throws SQLException {
+        String sql = "SELECT * FROM condemn";
 
-            while (resultSet.next()) {
-                String id = resultSet.getString(1);
-                String details = resultSet.getString(2);
-String date=resultSet.getString(3);
-                String mm_id = resultSet.getString(4);
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
 
-                Condemned condemned = new Condemned(id, details,date, mm_id);
-                condemnedList.add(condemned);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception as needed
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<Condemned> conList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            String id = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            String tel = resultSet.getString(4);
+
+            Condemned condemned = new Condemned(id, name, address, tel);
+            conList.add(condemned);
         }
-        return condemnedList;
+        return conList;
     }
 
-    public static List<String> getIds() {
+    public static List<String> getIds() throws SQLException {
+        String sql = "SELECT c_id FROM condemn";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
         List<String> idList = new ArrayList<>();
-        try (Connection connection = DbConnection.getInstance().getConnection();
-             PreparedStatement pstm = connection.prepareStatement(SELECT_IDS_SQL);
-             ResultSet resultSet = pstm.executeQuery()) {
 
-            while (resultSet.next()) {
-                String id = resultSet.getString(1);
-                idList.add(id);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception as needed
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()) {
+            String id = resultSet.getString(1);
+            idList.add(id);
         }
         return idList;
-    }
-
-    public static Condemned searchById(String id) {
-        try (Connection connection = DbConnection.getInstance().getConnection();
-             PreparedStatement pstm = connection.prepareStatement(SELECT_BY_ID_SQL)) {
-
-            pstm.setObject(1, id);
-            try (ResultSet resultSet = pstm.executeQuery()) {
-                if (resultSet.next()) {
-                    String cus_id = resultSet.getString(1);
-                    String details = resultSet.getString(2);
-                    String date = resultSet.getString(3);
-                    String mm_id = resultSet.getString(4);
-
-                    return new Condemned(cus_id, details, date, mm_id);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception as needed
-        }
-        return null;
     }
 }

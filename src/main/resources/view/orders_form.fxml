@@ -28,13 +28,13 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="113.0" layoutY="81.0" text="Label" />
+      <Label fx:id="lblorid" layoutX="113.0" layoutY="81.0" prefHeight="16.0" prefWidth="134.0" />
       <Label layoutX="29.0" layoutY="112.0" prefHeight="19.0" prefWidth="64.0" text="Date">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="113.0" layoutY="114.0" text="Label" />
+      <Label fx:id="lblordate" layoutX="113.0" layoutY="114.0" prefHeight="16.0" prefWidth="126.0" />
       <Label layoutX="29.0" layoutY="158.0" text="Supplier ID">
          <font>
             <Font size="15.0" />
@@ -65,19 +65,15 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="391.0" layoutY="155.0" />
-      <TextField layoutX="320.0" layoutY="230.0" prefHeight="25.0" prefWidth="170.0" />
-      <TextField layoutX="575.0" layoutY="230.0" prefHeight="25.0" prefWidth="83.0" />
-      <TextField layoutX="703.0" layoutY="230.0" prefHeight="25.0" prefWidth="56.0" />
-      <Button layoutX="625.0" layoutY="278.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="111.0" style="-fx-background-color: #5356FF;" text="ADD TO CART" textFill="WHITE" />
-      <TableView layoutY="372.0" prefHeight="234.0" prefWidth="781.0">
+      <Button layoutX="625.0" layoutY="278.0" mnemonicParsing="false" onAction="#addcartAction" prefHeight="46.0" prefWidth="111.0" style="-fx-background-color: #5356FF;" text="ADD TO CART" textFill="WHITE" />
+      <TableView fx:id="tblorder" layoutY="372.0" prefHeight="234.0" prefWidth="781.0">
         <columns>
-          <TableColumn prefWidth="131.42917370796204" text="Order ID" />
-          <TableColumn prefWidth="192.85797119140625" text="Name" />
-            <TableColumn prefWidth="136.42916870117188" text="Unit Price" />
-            <TableColumn prefWidth="83.57174682617188" text="Qty" />
-            <TableColumn prefWidth="125.0006103515625" text="Total" />
-            <TableColumn prefWidth="112.85772705078125" text="Action" />
+          <TableColumn fx:id="colorid" prefWidth="131.42917370796204" text="Spare partsID" />
+          <TableColumn fx:id="colorname" prefWidth="192.85797119140625" text="Name" />
+            <TableColumn fx:id="colunitprice" prefWidth="136.42916870117188" text="Unit Price" />
+            <TableColumn fx:id="colorqty" prefWidth="83.57174682617188" text="Qty" />
+            <TableColumn fx:id="coltotal" prefWidth="125.0006103515625" text="Total" />
+            <TableColumn fx:id="colaction" prefWidth="112.85772705078125" text="Action" />
         </columns>
       </TableView>
       <Label layoutX="14.0" layoutY="631.0" text="Total">
@@ -85,9 +81,13 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="75.0" layoutY="635.0" text="Label" />
+      <Label fx:id="lbltotalfinal" layoutX="75.0" layoutY="635.0" prefHeight="16.0" prefWidth="64.0" />
       <Button layoutX="687.0" layoutY="622.0" mnemonicParsing="false" text="PLACE " />
-      <ComboBox layoutX="127.0" layoutY="155.0" prefHeight="25.0" prefWidth="126.0" />
-      <ComboBox layoutX="142.0" layoutY="230.0" prefHeight="25.0" prefWidth="111.0" />
+      <ComboBox fx:id="comsupid" layoutX="127.0" layoutY="155.0" onAction="#comnameAction" prefHeight="25.0" prefWidth="126.0" />
+      <ComboBox fx:id="comspid" layoutX="142.0" layoutY="230.0" onAction="#comspareAction" prefHeight="25.0" prefWidth="111.0" />
+      <Label fx:id="lblsupnam" layoutX="388.0" layoutY="155.0" prefHeight="25.0" prefWidth="228.0" />
+      <Label fx:id="lblsparename" layoutX="332.0" layoutY="230.0" prefHeight="25.0" prefWidth="111.0" />
+      <Label fx:id="lblunitprice" layoutX="575.0" layoutY="230.0" prefHeight="25.0" prefWidth="83.0" />
+      <TextField fx:id="textqty" layoutX="704.0" layoutY="230.0" prefHeight="25.0" prefWidth="64.0" />
    </children>
 </AnchorPane>

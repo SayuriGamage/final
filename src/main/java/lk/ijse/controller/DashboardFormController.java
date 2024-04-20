@@ -2,7 +2,6 @@ package lk.ijse.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -28,7 +27,13 @@ public class DashboardFormController {
     }
 
 
-    public void mainAction(ActionEvent actionEvent) {
+    public void mainAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/maintenance_form.fxml"));
+
+        AnchorPane form =loader.load();
+
+        dashboardpane.getChildren().clear();
+        dashboardpane.getChildren().add(form);
     }
 
     public void empAction(ActionEvent actionEvent) throws IOException {
@@ -40,11 +45,16 @@ public class DashboardFormController {
         dashboardpane.getChildren().add(form);
     }
 
-    public void spareAction(ActionEvent actionEvent) {
+    public void spareAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/spareparts_form.fxml"));
+
+        AnchorPane form =loader.load();
+
+        dashboardpane.getChildren().clear();
+        dashboardpane.getChildren().add(form);
     }
 
-    public void supAction(ActionEvent actionEvent) {
-    }
+
 
 
 
@@ -67,12 +77,43 @@ public class DashboardFormController {
         dashboardpane.getChildren().add(form);
     }
 
-    public void orOnAction(ActionEvent actionEvent) {
+    public void orOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/orders_form.fxml"));
+
+        AnchorPane form =loader.load();
+
+        dashboardpane.getChildren().clear();
+        dashboardpane.getChildren().add(form);
     }
 
-    public void payonAction(ActionEvent actionEvent) {
+    public void payonAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/payment_form.fxml"));
+
+        AnchorPane form =loader.load();
+
+        dashboardpane.getChildren().clear();
+        dashboardpane.getChildren().add(form);
     }
 
-    public void equipAction(ActionEvent actionEvent) {
+    public void equipAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/equipment_form.fxml"));
+
+        AnchorPane form =loader.load();
+
+        dashboardpane.getChildren().clear();
+        dashboardpane.getChildren().add(form);
+    }
+
+    public void suponAction(ActionEvent actionEvent) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supplier_form.fxml"));
+            AnchorPane form = loader.load();
+
+
+            dashboardpane.getChildren().clear();
+            dashboardpane.getChildren().add(form);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

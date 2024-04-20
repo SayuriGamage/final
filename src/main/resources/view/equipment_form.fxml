@@ -17,19 +17,22 @@
             <Image url="@../images/img_12.png" />
          </image>
       </ImageView>
+
       <Label layoutX="21.0" layoutY="14.0" text="EQUIPMENTS">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <TextField layoutX="72.0" layoutY="116.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField layoutX="72.0" layoutY="175.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField layoutX="72.0" layoutY="229.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField layoutX="72.0" layoutY="280.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField layoutX="444.0" layoutY="116.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField layoutX="444.0" layoutY="175.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField layoutX="444.0" layoutY="229.0" prefHeight="25.0" prefWidth="276.0" />
-      <TextField layoutX="444.0" layoutY="280.0" prefHeight="25.0" prefWidth="276.0" />
+
+      <TextField fx:id="eqidtext" layoutX="72.0" layoutY="116.0" onAction="#eqorAction" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="eqnametext" layoutX="72.0" layoutY="175.0" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="eqmodltext" layoutX="72.0" layoutY="229.0" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="eqcosttext" layoutX="72.0" layoutY="280.0" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="eqpurtext" layoutX="444.0" layoutY="116.0" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="eqwartext" layoutX="444.0" layoutY="175.0" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="eqmanutext" layoutX="444.0" layoutY="229.0" prefHeight="25.0" prefWidth="276.0" />
+      <TextField fx:id="equseridtext" layoutX="444.0" layoutY="280.0" prefHeight="25.0" prefWidth="276.0" />
+
       <Label layoutX="72.0" layoutY="101.0" text="ID">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -70,21 +73,23 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TableView layoutX="-1.0" layoutY="386.0" prefHeight="289.0" prefWidth="781.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="161.4292984008789" text="Name" />
-            <TableColumn prefWidth="83.57179260253906" text="Model" />
-            <TableColumn prefWidth="76.42889404296875" text="Cost" />
-            <TableColumn prefWidth="92.8575439453125" text="Purchase" />
-            <TableColumn prefWidth="100.7147216796875" text="Warranty" />
-            <TableColumn prefWidth="107.143310546875" text="Manufacture" />
-            <TableColumn prefWidth="92.143310546875" text="User ID" />
-        </columns>
+
+      <TableView fx:id="tblequipment" layoutX="-1.0" layoutY="386.0" prefHeight="289.0" prefWidth="781.0">
+         <columns>
+            <TableColumn fx:id="coleqid" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="coleqname" prefWidth="161.4292984008789" text="Name" />
+            <TableColumn fx:id="coleqmod" prefWidth="83.57179260253906" text="Model" />
+            <TableColumn fx:id="coleqcost" prefWidth="76.42889404296875" text="Cost" />
+            <TableColumn fx:id="colwqpur" prefWidth="92.8575439453125" text="Purchase" />
+            <TableColumn fx:id="coleqwarr" prefWidth="100.7147216796875" text="Warranty" />
+            <TableColumn fx:id="coleqmanu" prefWidth="107.143310546875" text="Manufacture" />
+            <TableColumn fx:id="colequserid" prefWidth="92.143310546875" text="User ID" />
+         </columns>
       </TableView>
-      <Button layoutX="87.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
-      <Button layoutX="228.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE" />
-      <Button layoutX="373.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
-      <Button layoutX="537.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
+
+      <Button layoutX="87.0" layoutY="338.0" mnemonicParsing="false" onAction="#eqsaveAction" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
+      <Button layoutX="228.0" layoutY="338.0" mnemonicParsing="false" onAction="#equpdateAction" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE" />
+      <Button layoutX="373.0" layoutY="338.0" mnemonicParsing="false" onAction="#eqdeleteAction" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
+      <Button layoutX="537.0" layoutY="338.0" mnemonicParsing="false" onAction="#eqclAction" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
    </children>
 </AnchorPane>

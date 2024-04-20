@@ -54,9 +54,9 @@
       <TextField fx:id="reasontext" layoutX="72.0" layoutY="226.0" prefHeight="25.0" prefWidth="282.0" />
       <TextField fx:id="mainftext" layoutX="462.0" layoutY="126.0" prefHeight="25.0" prefWidth="282.0" />
       <TextField fx:id="datetext" layoutX="462.0" layoutY="226.0" prefHeight="25.0" prefWidth="282.0" />
-      <Button layoutX="106.0" layoutY="324.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
-      <Button layoutX="273.0" layoutY="324.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE" />
-      <Button layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" text="DELET" textFill="WHITE" />
-      <Button layoutX="610.0" layoutY="324.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
+      <Button layoutX="106.0" layoutY="324.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
+      <Button layoutX="273.0" layoutY="324.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE" />
+      <Button layoutX="445.0" layoutY="324.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" text="DELET" textFill="WHITE" />
+      <Button layoutX="610.0" layoutY="324.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
    </children>
 </AnchorPane>

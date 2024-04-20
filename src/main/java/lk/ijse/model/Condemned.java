@@ -1,55 +1,65 @@
 package lk.ijse.model;
 
 
-    import java.time.LocalDate;
-    import java.util.Date;
+
+
 
 public class Condemned {
         private String c_id;
         private String details;
         private String date;
 
-        public String getC_id() {
-            return c_id;
-        }
+private  String mm_id;
 
-        public void setC_id(String c_id) {
-            this.c_id = c_id;
-        }
+    @Override
+    public String toString() {
+        return "Condemned{" +
+                "c_id='" + c_id + '\'' +
+                ", details='" + details + '\'' +
+                ", date='" + date + '\'' +
+                ", mm_id='" + mm_id + '\'' +
+                '}';
+    }
 
-        public String getDetails() {
-            return details;
-        }
+    public String getC_id() {
+        return c_id;
+    }
 
-        public void setDetails(String details) {
-            this.details = details;
-        }
+    public void setC_id(String c_id) {
+        this.c_id = c_id;
+    }
 
-        public String getDate() {
-            return date;
-        }
+    public String getDetails() {
+        return details;
+    }
 
-        public void setDate(String date) {
-            this.date = date;
-        }
+    public void setDetails(String details) {
+        this.details = details;
+    }
 
-        public String getMm_id() {
-            return mm_id;
-        }
+    public String getDate() {
+        return date;
+    }
 
-        public void setMm_id(String mm_id) {
-            this.mm_id = mm_id;
-        }
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-        public Condemned(String c_id, String details, String date, String mm_id) {
-            this.c_id = c_id;
-            this.details = details;
-            this.date = date;
-            this.mm_id = mm_id;
-        }
+    public String getMm_id() {
+        return mm_id;
+    }
 
-        public Condemned() {
-        }
+    public void setMm_id(String mm_id) {
+        this.mm_id = mm_id;
+    }
 
-        private String mm_id;
+    public Condemned(String c_id, String details, String date, String mm_id) {
+        this.c_id = c_id;
+        this.details = details;
+        this.date = date;
+        this.mm_id = mm_id;
+    }
+
+    public Condemned() {
+    }
 }

@@ -13,65 +13,70 @@ import lk.ijse.model.tm.CondemnedTm;
 import lk.ijse.repository.CondemnedRepo;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class CondemnedFormController {
-
-    public TableView<CondemnedTm> tblcondemned;
-    public TextField reasontext;
-    public TextField mainftext;
     public TextField datetext;
-    public TableColumn<CondemnedTm, String> colcon;
-    public TableColumn<CondemnedTm, String> colreason;
-    public TableColumn<CondemnedTm, String> coldate;
+    public TextField mainftext;
+    public TextField reasontext;
     public TableColumn<CondemnedTm, String> colmaintenace;
-
+    public TableColumn<CondemnedTm, String> coldate;
+    public TableColumn<CondemnedTm, String> colreason;
+    public TableColumn<CondemnedTm, String> colcon;
+    public TableView<CondemnedTm> tblcondemned;
     public TextField context;
 
     public void initialize() {
         setCellValueFactory();
-        loadAllCondemned();
+        loadAllCustomers();
+    }
+
+    private void loadAllCustomers() {
+        ObservableList<CondemnedTm> obList = FXCollections.observableArrayList();
+
+        try {
+            List<Condemned> condemnedList = CondemnedRepo.getAll();
+
+            for (Condemned condemned : condemnedList) {
+                CondemnedTm tm = new CondemnedTm(
+                        condemned.getC_id(),
+                        condemned.getDetails(),
+                        condemned.getDate(),
+                        condemned.getMm_id()
+                );
+
+                obList.add(tm);
+            }
+
+            tblcondemned.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
         colcon.setCellValueFactory(new PropertyValueFactory<>("c_id"));
-        colreason.setCellValueFactory(new PropertyValueFactory<>("reason"));
+        colreason.setCellValueFactory(new PropertyValueFactory<>("details"));
         coldate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colmaintenace.setCellValueFactory(new PropertyValueFactory<>("mm_id"));
     }
 
-    private void loadAllCondemned() {
-        ObservableList<CondemnedTm> obList = FXCollections.observableArrayList();
-
-        List<Condemned> condemnedList = CondemnedRepo.getAll();
-
-        for (Condemned condemned : condemnedList) {
-            CondemnedTm tm = new CondemnedTm(
-                    condemned.getC_id(),
-                    condemned.getDetails(),
-                    condemned.getDate(),
-                    condemned.getMm_id()
-            );
-
-            obList.add(tm);
-        }
-
-        tblcondemned.setItems(obList);
-    }
-
-    public void saveOnAction(ActionEvent actionEvent) {
+    public void saveAction(ActionEvent actionEvent) throws RuntimeException {
         String id = context.getText();
-        String details = reasontext.getText();
-        String date = datetext.getText(); // Parse the date string to LocalDate
-        String mid = mainftext.getText();
+        String name = reasontext.getText();
+        String address = datetext.getText();
+        String tel = mainftext.getText();
 
-        Condemned condemned = new Condemned(id, details, date, mid);
+        Condemned condemned = new Condemned(id, name, address, tel);
 
-        boolean isSaved = CondemnedRepo.save(condemned);
-        if (isSaved) {
-            new Alert(Alert.AlertType.CONFIRMATION, "condemn saved!").show();
-            clearFields();
+        try {
+            boolean isSaved = CondemnedRepo.save(condemned);
+            if (isSaved) {
+                new Alert(Alert.AlertType.CONFIRMATION, "condemned saved!").show();
+                clearFields();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -82,43 +87,52 @@ public class CondemnedFormController {
         mainftext.setText("");
     }
 
-    public void updateOnAction(ActionEvent actionEvent) {
+    public void updateAction(ActionEvent actionEvent) {
         String id = context.getText();
-        String reason = reasontext.getText();
-        String date =datetext.getText(); // Parse the date string to LocalDate
-        String mid = mainftext.getText();
+        String name = reasontext.getText();
+        String address = datetext.getText();
+        String tel = mainftext.getText();
 
-        Condemned condemned = new Condemned(id, reason, date, mid);
+        Condemned condemned = new Condemned(id, name, address, tel);
 
-        boolean isUpdated = CondemnedRepo.update(condemned);
-        if (isUpdated) {
-            new Alert(Alert.AlertType.CONFIRMATION, "condemn updated!").show();
+        try {
+            boolean isUpdated = CondemnedRepo.update(condemned);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
-    public void deleteOnAction(ActionEvent actionEvent) {
+    public void deleteAction(ActionEvent actionEvent) {
         String id = context.getText();
 
-        boolean isDeleted = CondemnedRepo.delete(id);
-        if (isDeleted) {
-            new Alert(Alert.AlertType.CONFIRMATION, "condemned deleted!").show();
+        try {
+            boolean isDeleted = CondemnedRepo.delete(id);
+            if (isDeleted) {
+                new Alert(Alert.AlertType.CONFIRMATION, "condemn deleted!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
-    public void clearOnAction(ActionEvent actionEvent) {
+    public void clearAction(ActionEvent actionEvent) {
         clearFields();
     }
 
-    public void conOnActionsearch(ActionEvent actionEvent) {
+    public void conOnActionsearch(ActionEvent actionEvent) throws SQLException {
         String id = context.getText();
 
         Condemned condemned = CondemnedRepo.searchById(id);
         if (condemned != null) {
+            context.setText(condemned.getC_id());
             reasontext.setText(condemned.getDetails());
-            datetext.setText(condemned.getDate().toString());
+            datetext.setText(condemned.getDate());
             mainftext.setText(condemned.getMm_id());
         } else {
-            new Alert(Alert.AlertType.INFORMATION, "condemned not found!").show();
+            new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
         }
     }
 }
