@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,53 +11,60 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
+<AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
    <children>
-      <ImageView fitHeight="514.0" fitWidth="514.0" layoutX="89.0" layoutY="11.0" opacity="0.4" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/img_7.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="14.0" layoutY="14.0" text="PAYMENTS">
-         <font>
-            <Font name="System Bold" size="29.0" />
-         </font>
-      </Label>
-      <TextField fx:id="paymenttext" layoutX="71.0" layoutY="129.0" onAction="#payonAction" prefHeight="25.0" prefWidth="263.0" />
-      <TextField fx:id="ordertext" layoutX="71.0" layoutY="191.0" prefHeight="25.0" prefWidth="263.0" />
-      <TextField fx:id="datetext" layoutX="71.0" layoutY="256.0" prefHeight="25.0" prefWidth="263.0" />
-      <TextField fx:id="amounttext" layoutX="71.0" layoutY="318.0" prefHeight="25.0" prefWidth="263.0" />
-      <Label layoutX="71.0" layoutY="113.0" text="Payment ID">
+      <AnchorPane layoutX="11.0" layoutY="88.0" prefHeight="253.0" prefWidth="971.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;" />
+      <TextField fx:id="paymenttext" layoutX="170.0" layoutY="129.0" onAction="#payonAction" prefHeight="25.0" prefWidth="263.0" />
+      <TextField fx:id="datetext" layoutX="574.0" layoutY="129.0" prefHeight="25.0" prefWidth="263.0" />
+      <TextField fx:id="amounttext" layoutX="574.0" layoutY="177.0" prefHeight="25.0" prefWidth="263.0" />
+      <Label layoutX="71.0" layoutY="133.0" text="Payment ID">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="71.0" layoutY="174.0" text="Order ID">
+      <Label layoutX="89.0" layoutY="181.0" text="Order ID">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="71.0" layoutY="240.0" text="Date">
+      <Label layoutX="530.0" layoutY="133.0" text="Date">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="73.0" layoutY="302.0" text="Amount">
+      <Label layoutX="508.0" layoutY="181.0" text="Amount">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="508.0" layoutY="119.0" mnemonicParsing="false" onAction="#savepaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
-      <Button layoutX="508.0" layoutY="181.0" mnemonicParsing="false" onAction="#updatePaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #FFAF45;" text="UPDATE" textFill="WHITE" />
-      <Button layoutX="508.0" layoutY="246.0" mnemonicParsing="false" onAction="#deletepaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
-      <Button layoutX="508.0" layoutY="308.0" mnemonicParsing="false" onAction="#clearpaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
-      <TableView fx:id="tblpayment" layoutX="17.0" layoutY="409.0" prefHeight="264.0" prefWidth="747.0">
+      <Button layoutX="95.0" layoutY="268.0" mnemonicParsing="false" onAction="#savepaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
+      <Button layoutX="756.0" layoutY="268.0" mnemonicParsing="false" onAction="#updatePaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #FFAF45;" text="UPDATE" textFill="WHITE" />
+      <Button layoutX="323.0" layoutY="268.0" mnemonicParsing="false" onAction="#deletepaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
+      <Button layoutX="548.0" layoutY="268.0" mnemonicParsing="false" onAction="#clearpaymentAction" prefHeight="44.0" prefWidth="94.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
+      <TableView fx:id="tblpayment" layoutX="21.0" layoutY="387.0" prefHeight="286.0" prefWidth="956.0">
         <columns>
-          <TableColumn fx:id="colpayid" prefWidth="181.4293463230133" text="Payment ID" />
-          <TableColumn fx:id="colorid" prefWidth="181.4293212890625" text="Order ID" />
-            <TableColumn fx:id="colpaydate" prefWidth="209.28671264648438" text="Date" />
-            <TableColumn fx:id="colpayamount" prefWidth="209.28668212890625" text="Amount" />
+          <TableColumn fx:id="colpayid" prefWidth="202.8580265045166" text="Payment ID" />
+          <TableColumn fx:id="colorid" prefWidth="220.71514892578125" text="Order ID" />
+            <TableColumn fx:id="colpaydate" prefWidth="292.8584289550781" text="Date" />
+            <TableColumn fx:id="colpayamount" prefWidth="280.7154541015625" text="Amount" />
         </columns>
       </TableView>
+      <ImageView fitHeight="44.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/img_21.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="comorpay" layoutX="170.0" layoutY="177.0" prefHeight="25.0" prefWidth="264.0" />
+      <Label layoutX="35.0" layoutY="22.0" text="EquipCare Pro" textFill="#b4b4b8">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbldatepayments" layoutX="803.0" layoutY="9.0" prefHeight="25.0" prefWidth="176.0" />
+      <Label layoutX="370.0" layoutY="17.0" text="Payments" textFill="#1e0342">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

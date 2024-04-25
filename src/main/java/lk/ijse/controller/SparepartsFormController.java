@@ -1,18 +1,21 @@
 package lk.ijse.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import lk.ijse.model.Spareparts;
 import lk.ijse.model.tm.SparepartsTm;
+import lk.ijse.repository.MaintenanceRepo;
 import lk.ijse.repository.SparepartsRepo;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class SparepartsFormController {
@@ -31,10 +34,46 @@ public class SparepartsFormController {
     public TableColumn<SparepartsTm, Integer> colqtysp;
     public TableColumn<SparepartsTm, String> colpushsp;
     public TableColumn<SparepartsTm, String> colmainsp;
+    public ComboBox comspid;
+    public Label lblspdatetime;
+
 
     public void initialize() {
         setCellValueFactory();
         loadAllSpareparts();
+        getmaintenanceid();
+        setDatetime();
+
+    }
+
+    private void setDatetime() {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String formattedDateTime = now.format(formatter);
+                    lblspdatetime.setText(formattedDateTime);
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    private void getmaintenanceid() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> spList = MaintenanceRepo.getIds();
+
+            for (String id : spList) {
+                obList.add(id);
+            }
+
+           comspid.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -84,7 +123,7 @@ public class SparepartsFormController {
                 sppritext.setText(String.valueOf(spareparts.getCost()));
                 spqtytext.setText(String.valueOf(spareparts.getQty()));
                 sppurtext.setText(spareparts.getPurchase());
-                spmaintext.setText(spareparts.getMm_id());
+                comspid.getSelectionModel().select(spareparts.getMm_id());
             } else {
                 new Alert(Alert.AlertType.INFORMATION, "Spare part not found!").show();
             }
@@ -100,7 +139,7 @@ public class SparepartsFormController {
         double price = Double.parseDouble(sppritext.getText());
         int qty = Integer.parseInt(spqtytext.getText());
         String purch = sppurtext.getText();
-        String main = spmaintext.getText();
+        String main = comspid.getValue().toString();
 
         Spareparts spareparts = new Spareparts(id, name, manu, price, qty, purch, main);
 
@@ -122,7 +161,7 @@ public class SparepartsFormController {
         sppritext.setText("");
         spqtytext.setText("");
         sppurtext.setText("");
-        spmaintext.setText("");
+        comspid.getSelectionModel().clearSelection();
     }
 
     public void upspAction(ActionEvent actionEvent) {
@@ -132,7 +171,7 @@ public class SparepartsFormController {
         double price = Double.parseDouble(sppritext.getText());
         int qty = Integer.parseInt(spqtytext.getText());
         String purch = sppurtext.getText();
-        String main = spmaintext.getText();
+        String main = comspid.getValue().toString();
 
         Spareparts spareparts = new Spareparts(id, name, manu, price, qty, purch, main);
 

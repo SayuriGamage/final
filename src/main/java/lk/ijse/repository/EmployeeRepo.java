@@ -97,13 +97,13 @@ public class EmployeeRepo {
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
 
-        List<String> idList = new ArrayList<>();
+        List<String> eqList = new ArrayList<>();
 
         ResultSet resultSet = pstm.executeQuery();
         while (resultSet.next()) {
             String id = resultSet.getString(1);
-            idList.add(id);
+            eqList.add(id);
         }
-        return idList;
+        return eqList;
     }
 }

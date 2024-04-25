@@ -1,12 +1,17 @@
 package lk.ijse.controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import lk.ijse.model.Spareparts;
 import lk.ijse.model.Supplier;
 import lk.ijse.model.tm.CartTm;
@@ -14,8 +19,12 @@ import lk.ijse.repository.OrdersRepo;
 import lk.ijse.repository.SparepartsRepo;
 import lk.ijse.repository.SupplierRepo;
 
+import java.io.IOException;
+import java.security.cert.PolicyNode;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +44,7 @@ public class OrdersFormController {
     public Label lblsupnam;
     public Label lblsparename;
     public Label lblunitprice;
-
+    private AnchorPane dashboardpane;
     public TextField textqty;
 
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
@@ -115,8 +124,16 @@ public class OrdersFormController {
     }
 
     private void setDate() {
-        LocalDate now = LocalDate.now();
-        lblordate.setText(String.valueOf(now));
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String formattedDateTime = now.format(formatter);
+                    lblordate.setText(formattedDateTime);
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     public void addcartAction(ActionEvent actionEvent) {
@@ -199,4 +216,6 @@ public class OrdersFormController {
             throw new RuntimeException(e);
         }
     }
+
+
 }

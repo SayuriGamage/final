@@ -1,21 +1,21 @@
 package lk.ijse.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import lk.ijse.model.Employee;
 import lk.ijse.model.Payment;
 import lk.ijse.model.tm.PaymentTm;
-import lk.ijse.repository.EmployeeRepo;
-import lk.ijse.repository.PaymentRepo;
-import lk.ijse.repository.SparepartsRepo;
+import lk.ijse.repository.*;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class PaymentFormController {
@@ -29,9 +29,45 @@ public class PaymentFormController {
     public TableColumn colpaydate;
     public TableColumn colpayamount;
     public TableView tblpayment;
+    public ComboBox comorpay;
+    public Label lbldatepayments;
+
+
     public void initialize() {
         setCellValueFactory();
         loadAllPayments();
+        getOrderid();
+        setdate();
+    }
+
+    private void setdate() {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String formattedDateTime = now.format(formatter);
+                   lbldatepayments.setText(formattedDateTime);
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    private void getOrderid() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> orList = OrdersRepo.getIds();
+
+            for (String id : orList) {
+                obList.add(id);
+            }
+
+            comorpay.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -72,7 +108,8 @@ public class PaymentFormController {
         Payment payment = PaymentRepo.searchById(id);
         if (payment != null) {
             paymenttext.setText(payment.getPay_id());
-            ordertext.setText(payment.getOr_id());
+
+            comorpay.getSelectionModel().select(payment.getOr_id());
             datetext.setText(payment.getDate());
             amounttext.setText(Double.toString(payment.getAmount()));
         } else {
@@ -82,7 +119,8 @@ public class PaymentFormController {
 
     public void savepaymentAction(ActionEvent actionEvent) {
         String paymentId = paymenttext.getText();
-        String orderId = ordertext.getText();
+
+        String orderId = comorpay.getValue().toString();
         String date = datetext.getText();
         double amount = Double.parseDouble(amounttext.getText());
         Payment payment = new Payment(paymentId, orderId, date, amount);
@@ -103,14 +141,16 @@ public class PaymentFormController {
 
     private void clearFields() {
         paymenttext.clear();
-        ordertext.clear();
+
+        comorpay.getSelectionModel().clearSelection();
         datetext.clear();
         amounttext.clear();
     }
 
     public void updatePaymentAction(ActionEvent actionEvent) {
         String paymentId = paymenttext.getText();
-        String orderId = ordertext.getText();
+
+        String orderId = comorpay.getValue().toString();
         String date = datetext.getText();
         double amount = Double.parseDouble(amounttext.getText());
 

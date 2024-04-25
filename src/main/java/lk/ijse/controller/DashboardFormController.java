@@ -2,6 +2,7 @@ package lk.ijse.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -10,13 +11,22 @@ public class DashboardFormController {
 
     public AnchorPane dashboardpane;
     public AnchorPane rootNode;
+    public Label lblusernamedashboard;
+    private String loggedInUsername;
+
 
     public void initialize(){
+
         try {
             loadDashboardsec();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+   public void setUsername(String username) {
+        loggedInUsername = username;
+        lblusernamedashboard.setText(loggedInUsername);
     }
 
     private void loadDashboardsec() throws IOException {
@@ -28,9 +38,7 @@ public class DashboardFormController {
 
 
     public void mainAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/maintenance_form.fxml"));
-
-        AnchorPane form =loader.load();
+        AnchorPane form = FXMLLoader.load(getClass().getResource("/view/maintenance_form.fxml"));
 
         dashboardpane.getChildren().clear();
         dashboardpane.getChildren().add(form);
@@ -105,15 +113,11 @@ public class DashboardFormController {
     }
 
     public void suponAction(ActionEvent actionEvent) throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supplier_form.fxml"));
-            AnchorPane form = loader.load();
+
+        AnchorPane supPane = FXMLLoader.load(getClass().getResource("/view/supplier_from.fxml"));
 
 
-            dashboardpane.getChildren().clear();
-            dashboardpane.getChildren().add(form);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        dashboardpane.getChildren().clear();
+        dashboardpane.getChildren().add(supPane);
     }
 }

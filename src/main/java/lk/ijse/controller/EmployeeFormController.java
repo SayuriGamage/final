@@ -1,16 +1,16 @@
 package lk.ijse.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import lk.ijse.model.Employee;
 import lk.ijse.model.tm.EmployeeTm;
 import lk.ijse.repository.EmployeeRepo;
@@ -18,6 +18,9 @@ import lk.ijse.repository.EmployeeRepo;
 import java.io.IOException;
 import java.security.cert.PolicyNode;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class EmployeeFormController {
@@ -27,6 +30,10 @@ public class EmployeeFormController {
     public TextField addresemptext;
     public TextField telemptext;
     public TableView tblEmployee;
+    public Label dateemptext;
+    public Label datelblemp;
+
+
 
     private AnchorPane dashboardpane;
     @FXML
@@ -42,8 +49,25 @@ public class EmployeeFormController {
     private TableColumn<?, ?> colTel;
 
     public void initialize() {
-        setCellValueFactory();
+       setCellValueFactory();
         loadAllCustomers();
+        setDate();
+
+    }
+
+    private void setDate() {
+
+      
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String formattedDateTime = now.format(formatter);
+                    dateemptext.setText(formattedDateTime);
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     private void setCellValueFactory() {

@@ -3,9 +3,7 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
-@ToString
+@Data
 @EqualsAndHashCode
 public class SupplierTm {
     private  String sup_id;

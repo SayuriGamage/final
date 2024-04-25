@@ -10,35 +10,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="674.0" prefWidth="781.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFromController">
+<AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFromController">
    <children>
-      <ImageView fitHeight="458.0" fitWidth="558.0" layoutX="194.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/img_16.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="14.0" layoutY="7.0" prefHeight="41.0" prefWidth="180.0" text="Supplier">
-         <font>
-            <Font name="System Bold" size="29.0" />
-         </font>
-      </Label>
-      <TextField fx:id="supidtext" layoutX="83.0" layoutY="124.0" onAction="#supAction" prefHeight="25.0" prefWidth="279.0" />
-      <TextField fx:id="supnametext" layoutX="83.0" layoutY="202.0" prefHeight="25.0" prefWidth="279.0" />
-      <Label layoutX="83.0" layoutY="108.0" text="SupplierID" />
-      <Label layoutX="83.0" layoutY="186.0" text="Supplier Name" />
-      <TableView fx:id="suppliertbl" layoutX="68.0" layoutY="426.0" prefHeight="238.0" prefWidth="499.0">
+      <AnchorPane layoutX="20.0" layoutY="127.0" prefHeight="251.0" prefWidth="952.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
+         <children>
+            <TextField fx:id="supnametext" layoutX="580.0" layoutY="86.0" prefHeight="25.0" prefWidth="279.0" />
+            <Label layoutX="464.0" layoutY="90.0" text="Supplier Name">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="supidtext" layoutX="162.0" layoutY="85.0" onAction="#supAction" prefHeight="25.0" prefWidth="279.0" />
+            <Label layoutX="75.0" layoutY="90.0" text="SupplierID">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Button layoutX="726.0" layoutY="174.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #378CE7;" text="CLEAR" textFill="WHITE">
+      </Button>
+            <Button layoutX="529.0" layoutY="174.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE">
+      </Button>
+            <Button layoutX="347.0" layoutY="174.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE">
+      </Button>
+            <Button layoutX="135.0" layoutY="174.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE">
+      </Button>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="suppliertbl" layoutX="68.0" layoutY="394.0" prefHeight="271.0" prefWidth="855.0">
         <columns>
-          <TableColumn fx:id="colsup" prefWidth="129.28624725341797" text="SupplierID" />
-          <TableColumn fx:id="colsupnam" prefWidth="369.28731117419" text="Name" />
+          <TableColumn fx:id="colsup" prefWidth="249.2868194580078" text="SupplierID" />
+          <TableColumn fx:id="colsupnam" prefWidth="632.1456298828125" text="Name" />
         </columns>
       </TableView>
-      <Button layoutX="86.0" layoutY="360.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE">
-      </Button>
-      <Button layoutX="205.0" layoutY="360.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE">
-      </Button>
-      <Button layoutX="326.0" layoutY="360.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE">
-      </Button>
-      <Button layoutX="465.0" layoutY="360.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #378CE7;" text="CLEAR" textFill="WHITE">
-      </Button>
+      <ImageView fitHeight="34.0" fitWidth="42.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/img_21.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="34.0" layoutY="30.0" text="EquipCare Pro" textFill="#b4b4b8">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblsupdatetim" layoutX="805.0" layoutY="11.0" prefHeight="25.0" prefWidth="174.0" />
+      <Label layoutX="412.0" layoutY="23.0" text="Suppliers" textFill="#1e0342">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

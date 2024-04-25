@@ -1,63 +1,65 @@
 package lk.ijse.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import lk.ijse.model.Employee;
 import lk.ijse.model.Supplier;
-import lk.ijse.model.tm.EmployeeTm;
 import lk.ijse.model.tm.SupplierTm;
 import lk.ijse.repository.EmployeeRepo;
 import lk.ijse.repository.SupplierRepo;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class SupplierFromController {
 
-    public TextField supidtext;
-    public TextField supnametext;
-    public TableView suppliertbl;
-    public TableColumn colsup;
-    public TableColumn colsupnam;
-    public void initialize() {
-        setCellValueFactory();
-        loadAllSupplier();
+    public Label lblsupdatetim;
+    @FXML
+    private TableColumn<?, ?> colsup;
+
+    @FXML
+    private TableColumn<?, ?> colsupnam;
+
+    @FXML
+    private TextField supidtext;
+
+    @FXML
+    private TextField supnametext;
+
+    @FXML
+    private TableView<SupplierTm> suppliertbl;
+
+    @FXML
+    void clearAction(ActionEvent event) {
+        clearFields();
+
     }
 
-    private void setCellValueFactory() {
-       colsup.setCellValueFactory(new PropertyValueFactory<>("sup_id"));
-        colsupnam.setCellValueFactory(new PropertyValueFactory<>("name"));
-    }
-
-    private void loadAllSupplier() {
-        ObservableList<SupplierTm> obList = FXCollections.observableArrayList();
+    @FXML
+    void deleteAction(ActionEvent event) {
+        String id = supidtext.getText();
 
         try {
-            List<Supplier> supplierList = SupplierRepo.getAll();
-
-            for (Supplier supplier : supplierList) {
-                SupplierTm tm = new SupplierTm(
-                        supplier.getSup_id(),
-                       supplier.getName()
-
-                );
-
-                obList.add(tm);
+            boolean isDeleted = SupplierRepo.delete(id);
+            if(isDeleted) {
+                new Alert(Alert.AlertType.CONFIRMATION, "supplier deleted!").show();
             }
-
-            suppliertbl.setItems(obList);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
-    public void saveAction(ActionEvent actionEvent) {
+    @FXML
+    void saveAction(ActionEvent event) {
         String id = supidtext.getText();
         String name = supnametext.getText();
 
@@ -77,28 +79,30 @@ public class SupplierFromController {
 
     private void clearFields() {
         supidtext.setText("");
-      supnametext.setText("");
+        supnametext.setText("");
     }
 
-    public void deleteAction(ActionEvent actionEvent) {
-        String id = supidtext.getText();
+    @FXML
+    void supAction(ActionEvent event) throws SQLException {
+        String id =supidtext.getText();
 
-        try {
-            boolean isDeleted = SupplierRepo.delete(id);
-            if(isDeleted) {
-                new Alert(Alert.AlertType.CONFIRMATION, "supplier deleted!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        Supplier supplier=SupplierRepo.searchById(id);
+        if (supplier != null) {
+           supidtext.setText(supplier.getSup_id());
+            supnametext.setText(supplier.getName());
+
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "suppliert not found!").show();
         }
     }
 
-    public void updateAction(ActionEvent actionEvent) {
+    @FXML
+    void updateAction(ActionEvent event) {
         String id = supidtext.getText();
         String name = supnametext.getText();
 
 
-       Supplier supplier = new Supplier(id, name);
+        Supplier supplier = new Supplier(id, name);
 
         try {
             boolean isUpdated = SupplierRepo.update(supplier);
@@ -109,8 +113,49 @@ public class SupplierFromController {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
+    public void initialize() {
+        setCellValueFactory();
+        loadAllSupplier();
+        setdate();
+    }
 
-    public void clearAction(ActionEvent actionEvent) {
-clearFields();
+    private void setdate() {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String formattedDateTime = now.format(formatter);
+                    lblsupdatetim.setText(formattedDateTime);
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    private void setCellValueFactory() {
+        colsup.setCellValueFactory(new PropertyValueFactory<>("sup_id"));
+        colsupnam.setCellValueFactory(new PropertyValueFactory<>("name"));
+    }
+
+    private void loadAllSupplier() {
+        ObservableList<SupplierTm> obList = FXCollections.observableArrayList();
+
+        try {
+            List<Supplier> supplierList = SupplierRepo.getAll();
+
+            for (Supplier supplier : supplierList) {
+                SupplierTm tm = new SupplierTm(
+                        supplier.getSup_id(),
+                        supplier.getName()
+
+                );
+
+                obList.add(tm);
+            }
+
+            suppliertbl.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,67 +11,84 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="674.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SparepartsFormController">
+<AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SparepartsFormController">
    <children>
-      <ImageView fitHeight="674.0" fitWidth="781.0" layoutX="7.0" layoutY="5.0" opacity="0.12" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/img_4.png" />
-         </image>
-      </ImageView>
-      <TableView fx:id="tblspareparts" layoutY="473.0" prefHeight="200.0" prefWidth="794.0">
+      <AnchorPane layoutX="7.0" layoutY="104.0" prefHeight="285.0" prefWidth="979.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
+         <children>
+            <ComboBox fx:id="comspid" layoutX="576.0" layoutY="130.0" prefHeight="25.0" prefWidth="249.0" />
+            <TextField fx:id="sppurtext" layoutX="576.0" layoutY="90.0" prefHeight="25.0" prefWidth="249.0" />
+            <TextField fx:id="spqtytext" layoutX="576.0" layoutY="46.0" prefHeight="25.0" prefWidth="249.0" />
+            <Label layoutX="460.0" layoutY="134.0" text="Maintenance ID">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="508.0" layoutY="94.0" text="Purchase">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="542.0" layoutY="51.0" text="QTY">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="sppritext" layoutX="136.0" layoutY="175.0" prefHeight="25.0" prefWidth="259.0" />
+            <Label layoutX="61.0" layoutY="179.0" text="Unit Price">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="spmanutext" layoutX="136.0" layoutY="130.0" prefHeight="25.0" prefWidth="259.0" />
+            <Label layoutX="35.0" layoutY="134.0" text="Manufacture">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="spnametext" layoutX="136.0" layoutY="90.0" prefHeight="25.0" prefWidth="259.0" />
+            <Label layoutX="90.0" layoutY="94.0" text="Name">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="sptext" layoutX="136.0" layoutY="46.0" onAction="#serchspidonAction" prefHeight="25.0" prefWidth="259.0" />
+            <Label layoutX="120.0" layoutY="51.0" text="ID">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Button layoutX="784.0" layoutY="222.0" mnemonicParsing="false" onAction="#savespAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
+            <Button layoutX="572.0" layoutY="222.0" mnemonicParsing="false" onAction="#upspAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #FFAF45;" text="UPDATE" textFill="WHITE" />
+            <Button layoutX="368.0" layoutY="222.0" mnemonicParsing="false" onAction="#delspAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
+            <Button layoutX="144.0" layoutY="222.0" mnemonicParsing="false" onAction="#clespAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tblspareparts" layoutY="414.0" prefHeight="259.0" prefWidth="994.0">
         <columns>
-          <TableColumn fx:id="colids" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="colspname" prefWidth="120.71483612060547" text="Name" />
-            <TableColumn fx:id="colmanusp" prefWidth="141.42918395996094" text="Manufacture" />
-            <TableColumn fx:id="colunisp" prefWidth="120.71484375" text="Unit Price" />
-            <TableColumn fx:id="colqtysp" prefWidth="62.857421875" text="QTY" />
-            <TableColumn fx:id="colpushsp" prefWidth="136.42913818359375" text="Purchase" />
-            <TableColumn fx:id="colmainsp" prefWidth="138.57208251953125" text="Maintenance ID" />
+          <TableColumn fx:id="colids" prefWidth="97.1432820558548" text="ID" />
+          <TableColumn fx:id="colspname" prefWidth="277.1440658569336" text="Name" />
+            <TableColumn fx:id="colmanusp" prefWidth="140.71490478515625" text="Manufacture" />
+            <TableColumn fx:id="colunisp" prefWidth="125.00057983398438" text="Unit Price" />
+            <TableColumn fx:id="colqtysp" prefWidth="87.14324951171875" text="QTY" />
+            <TableColumn fx:id="colpushsp" prefWidth="141.42913818359375" text="Purchase" />
+            <TableColumn fx:id="colmainsp" prefWidth="127.8577880859375" text="Maintenance ID" />
         </columns>
       </TableView>
-      <Label layoutX="14.0" layoutY="8.0" text="SPARE PARTS">
+      <ImageView fitHeight="43.0" fitWidth="51.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/img_21.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="43.0" layoutY="24.0" text="EquipCare Pro" textFill="#b4b4b8">
          <font>
-            <Font name="System Bold" size="29.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="398.0" layoutY="35.0" text="ID">
+      <Label fx:id="lblspdatetime" layoutX="785.0" layoutY="9.0" prefHeight="25.0" prefWidth="194.0" />
+      <Label layoutX="408.0" layoutY="19.0" text="Spare Parts" textFill="#1e0342">
          <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <TextField fx:id="sptext" layoutX="398.0" layoutY="51.0" onAction="#serchspidonAction" prefHeight="25.0" prefWidth="221.0" />
-      <TextField fx:id="spnametext" layoutX="398.0" layoutY="116.0" prefHeight="25.0" prefWidth="221.0" />
-      <TextField fx:id="spmanutext" layoutX="398.0" layoutY="179.0" prefHeight="25.0" prefWidth="221.0" />
-      <TextField fx:id="sppritext" layoutX="398.0" layoutY="245.0" prefHeight="25.0" prefWidth="221.0" />
-      <TextField fx:id="spqtytext" layoutX="398.0" layoutY="307.0" prefHeight="25.0" prefWidth="221.0" />
-      <TextField fx:id="sppurtext" layoutX="398.0" layoutY="370.0" prefHeight="25.0" prefWidth="221.0" />
-      <TextField fx:id="spmaintext" layoutX="398.0" layoutY="430.0" prefHeight="25.0" prefWidth="221.0" />
-      <Label layoutX="398.0" layoutY="99.0" text="Name">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Label layoutX="398.0" layoutY="162.0" text="Manufacture">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Label layoutX="398.0" layoutY="228.0" text="Unit Price">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Label layoutX="398.0" layoutY="290.0" text="QTY">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Label layoutX="398.0" layoutY="353.0" text="Purchase">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Label layoutX="398.0" layoutY="413.0" text="Maintenance ID">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Button layoutX="99.0" layoutY="117.0" mnemonicParsing="false" onAction="#savespAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
-      <Button layoutX="99.0" layoutY="192.0" mnemonicParsing="false" onAction="#upspAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #FFAF45;" text="UPDATE" textFill="WHITE" />
-      <Button layoutX="99.0" layoutY="272.0" mnemonicParsing="false" onAction="#delspAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
-      <Button layoutX="99.0" layoutY="365.0" mnemonicParsing="false" onAction="#clespAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
+            <Font size="26.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

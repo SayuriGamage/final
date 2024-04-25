@@ -1,18 +1,22 @@
 package lk.ijse.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import lk.ijse.model.Condemned;
 import lk.ijse.model.tm.CondemnedTm;
 import lk.ijse.repository.CondemnedRepo;
+import lk.ijse.repository.MaintenanceRepo;
+import lk.ijse.repository.OrdersRepo;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class CondemnedFormController {
@@ -25,10 +29,45 @@ public class CondemnedFormController {
     public TableColumn<CondemnedTm, String> colcon;
     public TableView<CondemnedTm> tblcondemned;
     public TextField context;
+    public ComboBox comconid;
+    public Label lblcondatetime;
+
 
     public void initialize() {
         setCellValueFactory();
         loadAllCustomers();
+        getmaintenanceid();
+        setDatetime();
+    }
+
+    private void setDatetime() {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String formattedDateTime = now.format(formatter);
+                 lblcondatetime.setText(formattedDateTime);
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    private void getmaintenanceid() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> coList = MaintenanceRepo.getIds();
+
+            for (String id : coList) {
+                obList.add(id);
+            }
+
+            comconid.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void loadAllCustomers() {
@@ -65,7 +104,7 @@ public class CondemnedFormController {
         String id = context.getText();
         String name = reasontext.getText();
         String address = datetext.getText();
-        String tel = mainftext.getText();
+        String tel =comconid.getValue().toString();
 
         Condemned condemned = new Condemned(id, name, address, tel);
 
@@ -84,14 +123,14 @@ public class CondemnedFormController {
         context.setText("");
         reasontext.setText("");
         datetext.setText("");
-        mainftext.setText("");
+        comconid.getSelectionModel().clearSelection();
     }
 
     public void updateAction(ActionEvent actionEvent) {
         String id = context.getText();
         String name = reasontext.getText();
         String address = datetext.getText();
-        String tel = mainftext.getText();
+        String tel = comconid.getValue().toString();
 
         Condemned condemned = new Condemned(id, name, address, tel);
 
@@ -130,7 +169,7 @@ public class CondemnedFormController {
             context.setText(condemned.getC_id());
             reasontext.setText(condemned.getDetails());
             datetext.setText(condemned.getDate());
-            mainftext.setText(condemned.getMm_id());
+            comconid.getSelectionModel().select(condemned.getMm_id());
         } else {
             new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
         }
