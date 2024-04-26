@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Orders {
-    private String or_id;
-    private String sup_id;
-    private String order_date;
+public class OrderDetail {
+    private String sp_id;
+    private  String or_id;
+    private  int qty;
+    private  double cost;
 
 }

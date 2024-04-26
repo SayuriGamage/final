@@ -73,7 +73,7 @@
          </font>
       </Label>
       <Label fx:id="lbltotalfinal" layoutX="110.0" layoutY="621.0" prefHeight="25.0" prefWidth="64.0" />
-      <Button layoutX="864.0" layoutY="621.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="111.0" style="-fx-background-color: #1E0342;" text="PLACE " textFill="WHITE" />
+      <Button layoutX="864.0" layoutY="621.0" mnemonicParsing="false" onAction="#placeorderAction" prefHeight="36.0" prefWidth="111.0" style="-fx-background-color: #1E0342;" text="PLACE " textFill="WHITE" />
       <Label fx:id="lblsupnam" layoutX="516.0" layoutY="135.0" prefHeight="25.0" prefWidth="228.0" />
       <Label fx:id="lblsparename" layoutX="519.0" layoutY="188.0" prefHeight="25.0" prefWidth="111.0" />
       <Label fx:id="lblunitprice" layoutX="746.0" layoutY="188.0" prefHeight="25.0" prefWidth="74.0" />

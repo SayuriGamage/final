@@ -4,43 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="917b1985-5e07-462e-b6fc-cdcd5a635f46" name="Changes" comment="orders">
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/maintenance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/tm/AddsTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/tm/maintenanceTm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/MaintenanceRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_18.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_21.png" afterDir="false" />
+    <list default="true" id="917b1985-5e07-462e-b6fc-cdcd5a635f46" name="Changes" comment="tables">
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/OrderDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/PlaceOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/OrderDetailRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/PlaceOrderRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CondemnedFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CondemnedFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EmployeeFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EquipmentFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EquipmentFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/LoginFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/LoginFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/MaintenanceFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/MaintenanceFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/OrdersFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/OrdersFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/PaymentFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/PaymentFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/SparepartsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/SparepartsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/SupplierFromController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/SupplierFromController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/model/tm/SupplierTm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/tm/SupplierTm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/EmployeeRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/EmployeeRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/EquipmentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/EquipmentRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/db/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/db/DbConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/model/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/Orders.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/OrdersRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/OrdersRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/condemned_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/condemned_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/dashboard_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/dashboard_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/dashboardsec_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/dashboardsec_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/equipment_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/equipment_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/login_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/login_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/maintenance_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/maintenance_form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/SparepartsRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/SparepartsRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/orders_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/orders_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/payment_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/payment_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/register_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/register_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/spareparts_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/spareparts_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/supplier_from.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/supplier_from.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +166,10 @@
       <workItem from="1713978949395" duration="2250000" />
       <workItem from="1714021750799" duration="8807000" />
       <workItem from="1714041016261" duration="9664000" />
-      <workItem from="1714053714932" duration="702000" />
+      <workItem from="1714053714932" duration="864000" />
+      <workItem from="1714118489552" duration="8286000" />
+      <workItem from="1714149563395" duration="10000" />
+      <workItem from="1714150078160" duration="2813000" />
     </task>
     <task id="LOCAL-00001" summary="nn">
       <option name="closed" value="true" />
@@ -241,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713642448758</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="tables">
+      <option name="closed" value="true" />
+      <created>1714054440890</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714054440890</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,7 +240,8 @@
     <MESSAGE value="table" />
     <MESSAGE value="ta" />
     <MESSAGE value="orders" />
-    <option name="LAST_COMMIT_MESSAGE" value="orders" />
+    <MESSAGE value="tables" />
+    <option name="LAST_COMMIT_MESSAGE" value="tables" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -263,6 +250,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/lk/ijse/controller/MaintenanceFormController.java</url>
           <line>145</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/lk/ijse/LauncherWrapper.java</url>
+          <line>5</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

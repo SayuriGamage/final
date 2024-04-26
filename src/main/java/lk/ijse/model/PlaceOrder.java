@@ -4,12 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Orders {
-    private String or_id;
-    private String sup_id;
-    private String order_date;
+public class PlaceOrder {
+    private Orders order;
+    private List<OrderDetail> odList;
 
-}
+
+
+    }
+
