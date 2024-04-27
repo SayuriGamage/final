@@ -133,8 +133,8 @@ public class SparepartsRepo {
         }
         return null;
     }
-   public static boolean update(List<OrderDetail> odList) throws SQLException {
-        for (OrderDetail od : odList) {
+    public static boolean update(List<OrderDetail> odList) throws SQLException {
+        for (OrderDetail od: odList) {
             boolean isUpdateQty = updateQty(od.getSp_id(), od.getQty());
             if(!isUpdateQty) {
                 return false;
@@ -143,14 +143,15 @@ public class SparepartsRepo {
         return true;
     }
 
-    private static boolean updateQty(String itemCode, int qty) throws SQLException {
+    private static boolean updateQty(String code, int qty) throws SQLException {
         String sql = "UPDATE spareparts SET qty= qty - ? WHERE sp_id = ?";
 
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
 
         pstm.setInt(1, qty);
-        pstm.setString(2, itemCode);
+        pstm.setString(2,code );
+
 
         return pstm.executeUpdate() > 0;
     }

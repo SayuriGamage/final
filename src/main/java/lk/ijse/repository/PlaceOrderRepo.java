@@ -1,7 +1,9 @@
 package lk.ijse.repository;
 
+import com.mysql.cj.xdevapi.Table;
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.PlaceOrder;
+import lk.ijse.model.Spareparts;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,6 +16,7 @@ public class PlaceOrderRepo {
         try {
             boolean isOrderSaved = OrdersRepo.save(po.getOrder());
             if (isOrderSaved) {
+
                 boolean isQtyUpdated = SparepartsRepo.update(po.getOdList());
                 if (isQtyUpdated) {
                     boolean isOrderDetailSaved = OrderDetailRepo.save(po.getOdList());
