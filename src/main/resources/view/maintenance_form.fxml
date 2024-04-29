@@ -45,12 +45,13 @@
       <TableView fx:id="tblmaintenance" layoutX="4.0" layoutY="367.0" prefHeight="297.0" prefWidth="988.0">
         <columns>
           <TableColumn fx:id="coleqid" prefWidth="109.28616535663605" text="Equipment ID" />
-          <TableColumn fx:id="colmaintaintype" prefWidth="290.00121307373047" text="Maintain Type" />
-            <TableColumn fx:id="coldesmain" prefWidth="446.43060302734375" text="Description" />
-            <TableColumn fx:id="colcostaction" prefWidth="142.1434326171875" text="Cost" />
+          <TableColumn fx:id="colmaintaintype" prefWidth="204.28655242919922" text="Maintain Type" />
+            <TableColumn fx:id="coldesmain" prefWidth="410.0018005371094" text="Description" />
+            <TableColumn fx:id="colcostaction" prefWidth="145.00067138671875" text="Cost" />
+            <TableColumn fx:id="colrem" prefWidth="145.00067138671875" text="Action" />
         </columns>
       </TableView>
-      <Button layoutX="312.0" layoutY="267.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #65B741;" text="ADD" textFill="WHITE" />
+      <Button layoutX="312.0" layoutY="267.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #65B741;" text="ADD TABLE" textFill="WHITE" />
       <ComboBox fx:id="comempid" layoutX="638.0" layoutY="101.0" prefHeight="25.0" prefWidth="231.0" />
       <TextField fx:id="descriptiontext" layoutX="201.0" layoutY="148.0" prefHeight="25.0" prefWidth="244.0" />
       <TextField fx:id="costtext" layoutX="201.0" layoutY="196.0" prefHeight="25.0" prefWidth="244.0" />
@@ -65,7 +66,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Button layoutX="478.0" layoutY="267.0" mnemonicParsing="false" onAction="#removeonAction" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #E72929;" text="REMOVE" textFill="WHITE" />
+      <Button layoutX="478.0" layoutY="267.0" mnemonicParsing="false" onAction="#removeonAction" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #E72929;" text="PLACE" textFill="WHITE" />
       <Label layoutX="323.0" layoutY="18.0" prefHeight="31.0" prefWidth="197.0" text="Maintenance" textFill="#1e0342">
          <font>
             <Font size="26.0" />

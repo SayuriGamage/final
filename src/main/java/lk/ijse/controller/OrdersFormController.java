@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class OrdersFormController {
+public class  OrdersFormController {
     public Label lblorid;
     public Label lblordate;
     public TableView<CartTm> tblorder;
@@ -81,7 +81,6 @@ public class OrdersFormController {
         }
         return "ORD001";
     }
-
 
 
     private void setCellValueFactory() {
@@ -172,7 +171,6 @@ public class OrdersFormController {
         });
 
 
-
         CartTm tm = new CartTm(code, description, qty, unitPrice, total, btnRemove);
         obList.add(tm);
 
@@ -224,16 +222,18 @@ public class OrdersFormController {
         String orderId = lblorid.getText();
         String supId = comsupid.getValue();
 
+
         String date = String.valueOf(Date.valueOf(LocalDate.now()));
 
-        var order = new Orders(orderId, supId, date);
+        var order = new Orders(orderId, date, supId);
 
         List<OrderDetail> odList = new ArrayList<>();
 
         for (int i = 0; i < tblorder.getItems().size(); i++) {
             CartTm tm = obList.get(i);
-
+            //   System.out.println(tm.getSp_id());
             OrderDetail od = new OrderDetail(
+
                     orderId,
                     tm.getSp_id(),
                     tm.getQty(),
@@ -243,12 +243,14 @@ public class OrdersFormController {
             odList.add(od);
         }
 
-        PlaceOrder po = new PlaceOrder(order,odList);
+        PlaceOrder po = new PlaceOrder(order, odList);
         boolean isPlaced = PlaceOrderRepo.placeOrder(po);
-        if(isPlaced) {
+        if (isPlaced) {
             new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
         } else {
             new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
         }
     }
 }
+
+

@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Orders {
-    private String or_id;
-
-    private String order_date;
-    private String sup_id;
-
+public class placeMaintenance {
+    private Maintenance maintenance;
+    private List<equipmentDetails> osList;
 }

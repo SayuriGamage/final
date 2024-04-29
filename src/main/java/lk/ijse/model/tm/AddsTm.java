@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 
-public class AddsTm extends CartTm {
+public class AddsTm extends  CartTm{
     private  String eq_id;
     private  String type;
     private  String description;

@@ -135,8 +135,10 @@ public class SparepartsRepo {
     }
     public static boolean update(List<OrderDetail> odList) throws SQLException {
         for (OrderDetail od: odList) {
+        //   System.out.println(od.getSp_id());
+
             boolean isUpdateQty = updateQty(od.getSp_id(), od.getQty());
-            if(!isUpdateQty) {
+            if(isUpdateQty) {
                 return false;
             }
         }
@@ -148,7 +150,7 @@ public class SparepartsRepo {
 
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
-
+        System.out.println(code);
         pstm.setInt(1, qty);
         pstm.setString(2,code );
 
