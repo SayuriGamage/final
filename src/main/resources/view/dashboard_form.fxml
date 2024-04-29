@@ -12,54 +12,54 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets></AnchorPane>
-      <Button layoutX="36.0" layoutY="175.0" mnemonicParsing="false" onAction="#dashboardOnAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Dashboard" textFill="WHITE">
+      <Button layoutX="36.0" layoutY="155.0" mnemonicParsing="false" onAction="#dashboardOnAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Dashboard" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="224.0" mnemonicParsing="false" onAction="#mainAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Maintenance" textFill="WHITE">
+      <Button layoutX="36.0" layoutY="204.0" mnemonicParsing="false" onAction="#mainAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Maintenance" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="273.0" mnemonicParsing="false" onAction="#empAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Employee" textFill="WHITE">
+      <Button layoutX="36.0" layoutY="253.0" mnemonicParsing="false" onAction="#empAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Employee" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="322.0" mnemonicParsing="false" onAction="#equipAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Equipment" textFill="WHITE">
+      <Button layoutX="36.0" layoutY="302.0" mnemonicParsing="false" onAction="#equipAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Equipment" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="371.0" mnemonicParsing="false" onAction="#spareAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Spareparts" textFill="WHITE">
+      <Button layoutX="36.0" layoutY="351.0" mnemonicParsing="false" onAction="#spareAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Spareparts" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="420.0" mnemonicParsing="false" onAction="#condeminAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Condemned" textFill="WHITE">
+      <Button layoutX="36.0" layoutY="400.0" mnemonicParsing="false" onAction="#condeminAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Condemned" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="469.0" mnemonicParsing="false" onAction="#suponAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Supplier" textFill="WHITE">
+      <Button layoutX="36.0" layoutY="449.0" mnemonicParsing="false" onAction="#suponAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Supplier" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="518.0" mnemonicParsing="false" onAction="#orOnAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Orders" textFill="WHITE">
+      <Button layoutX="36.0" layoutY="498.0" mnemonicParsing="false" onAction="#orOnAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Orders" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="567.0" mnemonicParsing="false" onAction="#payonAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Payments" textFill="WHITE">
+      <Button layoutX="36.0" layoutY="547.0" mnemonicParsing="false" onAction="#payonAction" prefHeight="49.0" prefWidth="171.0" style="-fx-background-color: #0E46A3;" text="Payments" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
       <AnchorPane layoutX="22.0" layoutY="14.0" prefHeight="97.0" prefWidth="228.0" style="-fx-background-color: #1E0342; -fx-background-radius: 20;">
          <children>
-            <Label layoutX="20.0" layoutY="21.0" prefHeight="24.0" prefWidth="106.0" text="HELLO !" textFill="WHITE">
+            <Label layoutX="45.0" layoutY="14.0" prefHeight="34.0" prefWidth="121.0" text="HELLO !" textFill="WHITE">
                <font>
                   <Font size="21.0" />
                </font>
@@ -69,8 +69,8 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="158.0" layoutY="64.0" text="....." textFill="WHITE" />
          </children>
       </AnchorPane>
+      <Button layoutX="59.0" layoutY="610.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="121.0" style="-fx-background-color: #C40C0C;" text="Log Out" textFill="WHITE" />
    </children>
 </AnchorPane>

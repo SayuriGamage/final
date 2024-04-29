@@ -31,11 +31,11 @@ public class EmployeeFormController {
     public TextField telemptext;
     public TableView tblEmployee;
     public Label dateemptext;
-    public Label datelblemp;
 
 
 
-    private AnchorPane dashboardpane;
+
+
     @FXML
     private TableColumn<?, ?> colAddress;
 
@@ -132,7 +132,7 @@ public class EmployeeFormController {
         try {
             boolean isDeleted = EmployeeRepo.delete(id);
             if(isDeleted) {
-                new Alert(Alert.AlertType.CONFIRMATION, "customer deleted!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "employee deleted!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -150,7 +150,7 @@ public class EmployeeFormController {
         try {
             boolean isUpdated = EmployeeRepo.update(employee);
             if(isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "employee updated!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -175,7 +175,7 @@ public class EmployeeFormController {
             addresemptext.setText(employee.getAddress());
             telemptext.setText(employee.getTel());
         } else {
-            new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
+            new Alert(Alert.AlertType.INFORMATION, "employee not found!").show();
         }
     }
 }

@@ -92,7 +92,7 @@ public class SupplierFromController {
             supnametext.setText(supplier.getName());
 
         } else {
-            new Alert(Alert.AlertType.INFORMATION, "suppliert not found!").show();
+            new Alert(Alert.AlertType.INFORMATION, "supplier not found!").show();
         }
     }
 
@@ -107,7 +107,7 @@ public class SupplierFromController {
         try {
             boolean isUpdated = SupplierRepo.update(supplier);
             if(isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "supplier updated!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

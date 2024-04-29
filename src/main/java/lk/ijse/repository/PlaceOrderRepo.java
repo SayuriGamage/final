@@ -20,7 +20,7 @@ public class PlaceOrderRepo {
             if (isOrderSaved) {
 
                 boolean isQtyUpdated = SparepartsRepo.update(po.getOdList());
-                System.out.println("update ekath wada karanawa");
+
                 if (!isQtyUpdated) {
                     boolean isOrderDetailSaved = OrderDetailRepo.save(po.getOdList());
 

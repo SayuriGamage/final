@@ -137,7 +137,7 @@ public class CondemnedFormController {
         try {
             boolean isUpdated = CondemnedRepo.update(condemned);
             if (isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "condemd updated!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -171,7 +171,7 @@ public class CondemnedFormController {
             datetext.setText(condemned.getDate());
             comconid.getSelectionModel().select(condemned.getMm_id());
         } else {
-            new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
+            new Alert(Alert.AlertType.INFORMATION, "cundemd not found!").show();
         }
     }
 }

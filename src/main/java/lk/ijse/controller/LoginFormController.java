@@ -2,6 +2,7 @@ package lk.ijse.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -12,12 +13,14 @@ import javafx.stage.Stage;
 import lk.ijse.db.DbConnection;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class LoginFormController {
+public class LoginFormController implements Initializable {
     public TextField usernametext;
     public TextField passwordtext;
     public AnchorPane rootNode;
@@ -84,4 +87,11 @@ public class LoginFormController {
         stage.setTitle("Registration Form");
         stage.show();
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        useridtext.requestFocus();
+
+    }
+
 }
