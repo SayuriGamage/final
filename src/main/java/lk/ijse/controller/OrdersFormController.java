@@ -247,10 +247,29 @@ public class  OrdersFormController {
         boolean isPlaced = PlaceOrderRepo.placeOrder(po);
         if (isPlaced) {
             new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
+            obList.clear();
+            tblorder.refresh();
+            clearTextFields();
+            String currentOrderId = OrdersRepo.getCurrentId();
+            String nextOrderId = generateNextOrderId(currentOrderId);
+            lblorid.setText(nextOrderId);
+
         } else {
             new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
         }
     }
+    private void clearTextFields() {
+     comsupid.getSelectionModel().clearSelection();
+     comspid.getSelectionModel().clearSelection();
+        textqty.setText("");
+        lblorid.setText("");
+        lblsupnam.setText("");
+        lblsparename.setText("");
+        lblunitprice.setText("");
+
+
+    }
+
 }
 
 

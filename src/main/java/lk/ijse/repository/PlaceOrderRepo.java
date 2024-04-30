@@ -21,7 +21,7 @@ public class PlaceOrderRepo {
 
                 boolean isQtyUpdated = SparepartsRepo.update(po.getOdList());
 
-                if (!isQtyUpdated) {
+                if (isQtyUpdated) {
                     boolean isOrderDetailSaved = OrderDetailRepo.save(po.getOdList());
 
                     if (isOrderDetailSaved) {

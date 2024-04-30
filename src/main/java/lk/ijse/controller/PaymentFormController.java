@@ -34,10 +34,20 @@ public class PaymentFormController {
 
 
     public void initialize() {
-        setCellValueFactory();
         loadAllPayments();
+        setCellValueFactory();
+
         getOrderid();
         setdate();
+        tblpayment.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                PaymentTm selectedPayment = (PaymentTm) newSelection;
+                paymenttext.setText(selectedPayment.getPay_id());
+                ordertext.setText(selectedPayment.getOr_id());
+                datetext.setText(selectedPayment.getDate());
+                amounttext.setText(String.valueOf(selectedPayment.getAmount()));
+            }
+        });
     }
 
     private void setdate() {
@@ -131,6 +141,8 @@ public class PaymentFormController {
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment saved successfully!").show();
                 clearFields();
+                loadAllPayments();
+                setCellValueFactory();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to save payment!").show();
             }
@@ -161,6 +173,8 @@ public class PaymentFormController {
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment updated successfully!").show();
                 clearFields();
+                loadAllPayments();
+                setCellValueFactory();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to update payment!").show();
             }
@@ -177,6 +191,8 @@ public class PaymentFormController {
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment deleted successfully!").show();
                 clearFields();
+                loadAllPayments();
+                setCellValueFactory();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to delete payment!").show();
             }

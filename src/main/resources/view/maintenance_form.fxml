@@ -13,7 +13,10 @@
 
 <AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MaintenanceFormController">
    <children>
-      <AnchorPane layoutX="11.0" layoutY="79.0" prefHeight="251.0" prefWidth="972.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;" />
+      <AnchorPane layoutX="11.0" layoutY="79.0" prefHeight="251.0" prefWidth="972.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
+         <children>
+            <Button layoutX="595.0" layoutY="186.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
+         </children></AnchorPane>
       <Label fx:id="lblmainid" layoutX="201.0" layoutY="106.0" prefHeight="16.0" prefWidth="131.0" />
       <Label fx:id="lblmaidate" layoutX="782.0" layoutY="11.0" prefHeight="19.0" prefWidth="197.0" />
       <Label layoutX="76.0" layoutY="151.0" text="Description">
@@ -46,9 +49,8 @@
         <columns>
           <TableColumn fx:id="coleqid" prefWidth="109.28616535663605" text="Equipment ID" />
           <TableColumn fx:id="colmaintaintype" prefWidth="204.28655242919922" text="Maintain Type" />
-            <TableColumn fx:id="coldesmain" prefWidth="410.0018005371094" text="Description" />
-            <TableColumn fx:id="colcostaction" prefWidth="145.00067138671875" text="Cost" />
-            <TableColumn fx:id="colrem" prefWidth="145.00067138671875" text="Action" />
+            <TableColumn fx:id="coldesmain" prefWidth="522.1451721191406" text="Description" />
+            <TableColumn fx:id="colcostaction" prefWidth="152.1434326171875" text="Cost" />
         </columns>
       </TableView>
       <Button layoutX="312.0" layoutY="267.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #65B741;" text="ADD TABLE" textFill="WHITE" />

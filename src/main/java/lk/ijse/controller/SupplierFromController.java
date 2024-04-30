@@ -42,6 +42,7 @@ public class SupplierFromController {
     void clearAction(ActionEvent event) {
         clearFields();
 
+
     }
 
     @FXML
@@ -52,6 +53,9 @@ public class SupplierFromController {
             boolean isDeleted = SupplierRepo.delete(id);
             if(isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier deleted!").show();
+                clearFields();
+                loadAllSupplier();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -71,6 +75,8 @@ public class SupplierFromController {
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
                 clearFields();
+                loadAllSupplier();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -108,15 +114,27 @@ public class SupplierFromController {
             boolean isUpdated = SupplierRepo.update(supplier);
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier updated!").show();
+                clearFields();
+                loadAllSupplier();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
     public void initialize() {
-        setCellValueFactory();
         loadAllSupplier();
+        setCellValueFactory();
+
         setdate();
+        suppliertbl.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+
+                SupplierTm selectedSupplier = newSelection;
+                supidtext.setText(selectedSupplier.getSup_id());
+                supnametext.setText(selectedSupplier.getName());
+            }
+        });
     }
 
     private void setdate() {

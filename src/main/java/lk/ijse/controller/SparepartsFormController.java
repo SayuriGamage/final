@@ -39,11 +39,24 @@ public class SparepartsFormController {
 
 
     public void initialize() {
-        setCellValueFactory();
         loadAllSpareparts();
+        setCellValueFactory();
+
         getmaintenanceid();
         setDatetime();
+        tblspareparts.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
 
+                SparepartsTm selectedSparepart = newSelection;
+                sptext.setText(selectedSparepart.getSp_id());
+                spnametext.setText(selectedSparepart.getName());
+                spmanutext.setText(selectedSparepart.getManufacture());
+                sppritext.setText(String.valueOf(selectedSparepart.getCost()));
+                spqtytext.setText(String.valueOf(selectedSparepart.getQty()));
+                sppurtext.setText(selectedSparepart.getPurchase());
+                comspid.setValue(selectedSparepart.getMm_id());
+            }
+        });
     }
 
     private void setDatetime() {
@@ -148,6 +161,8 @@ public class SparepartsFormController {
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "spareparts saved!").show();
                 clearFields();
+                loadAllSpareparts();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -180,6 +195,8 @@ public class SparepartsFormController {
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Spare part updated!").show();
                 clearFields();
+                loadAllSpareparts();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -194,6 +211,8 @@ public class SparepartsFormController {
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Spare part deleted!").show();
                 clearFields();
+                loadAllSpareparts();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

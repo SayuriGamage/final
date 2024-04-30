@@ -44,9 +44,24 @@ public class EquipmentFormController {
 
 
     public void initialize() {
-        setCellValueFactory();
+
         loadAllEquipment();
+        setCellValueFactory();
         setDate();
+        tblequipment.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+
+                EquipmentTm selectedEquipment = (EquipmentTm) newSelection;
+                eqidtext.setText(selectedEquipment.getEq_id());
+                eqnametext.setText(selectedEquipment.getName());
+                eqmodltext.setText(selectedEquipment.getModel());
+                eqcosttext.setText(String.valueOf(selectedEquipment.getCost()));
+                eqpurtext.setText(selectedEquipment.getPurchase());
+                eqwartext.setText(selectedEquipment.getWarranty());
+                eqmanutext.setText(selectedEquipment.getManufacture());
+                equseridtext.setText(selectedEquipment.getUser_id());
+            }
+        });
     }
 
     private void setDate() {
@@ -120,6 +135,8 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Equipment saved!").show();
                 clearFields();
+                loadAllEquipment();
+                setCellValueFactory();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to save equipment!").show();
             }
@@ -155,7 +172,10 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
             boolean isUpdated = EquipmentRepo.update(equipment);
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
+
                 clearFields();
+                loadAllEquipment();
+                setCellValueFactory();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to update equipment!").show();
             }
@@ -171,7 +191,10 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
             boolean isDeleted = EquipmentRepo.delete(id);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Equipment deleted!").show();
+
                 clearFields();
+                loadAllEquipment();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Error occurred while deleting equipment: " + e.getMessage()).show();

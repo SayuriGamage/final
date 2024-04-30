@@ -34,10 +34,21 @@ public class CondemnedFormController {
 
 
     public void initialize() {
-        setCellValueFactory();
         loadAllCustomers();
+        setCellValueFactory();
+
         getmaintenanceid();
         setDatetime();
+        tblcondemned.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+
+                CondemnedTm selectedCondemned = newSelection;
+                context.setText(selectedCondemned.getC_id());
+                reasontext.setText(selectedCondemned.getDetails());
+                datetext.setText(selectedCondemned.getDate());
+                comconid.getSelectionModel().select(selectedCondemned.getMm_id());
+            }
+        });
     }
 
     private void setDatetime() {
@@ -113,6 +124,8 @@ public class CondemnedFormController {
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "condemned saved!").show();
                 clearFields();
+                loadAllCustomers();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -138,6 +151,9 @@ public class CondemnedFormController {
             boolean isUpdated = CondemnedRepo.update(condemned);
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "condemd updated!").show();
+                clearFields();
+                loadAllCustomers();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -151,6 +167,9 @@ public class CondemnedFormController {
             boolean isDeleted = CondemnedRepo.delete(id);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "condemn deleted!").show();
+                clearFields();
+                loadAllCustomers();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

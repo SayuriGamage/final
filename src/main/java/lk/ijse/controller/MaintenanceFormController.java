@@ -276,16 +276,14 @@ import java.util.Optional;
 public class MaintenanceFormController {
     @FXML
     private TableColumn<String, String> coleqid;
-    @FXML
-    private TableColumn<String, String> colspid;
+
     @FXML
     private TableColumn<String, String> coldesmain;
     @FXML
     private TableColumn<String, Double> colcostaction;
     @FXML
     private TableColumn<String, String> colmaintaintype;
-    @FXML
-    private TableColumn<String, JFXButton> colrem;
+
 
     @FXML
     private TableView tblmaintenance;
@@ -300,8 +298,7 @@ public class MaintenanceFormController {
     private TextField descriptiontext;
     @FXML
     private TextField maintypetext;
-    @FXML
-    private Label lbleqname;
+
     @FXML
     private Label lblmaidate;
     @FXML
@@ -311,51 +308,32 @@ public class MaintenanceFormController {
 
     @FXML
     void addOnAction(ActionEvent event) {
-        // Retrieve values from UI components
+
         String equipmentid = comeqid.getValue();
         String types = maintypetext.getText();
         String description = descriptiontext.getText();
         double cost = 0.0; //
-        JFXButton btnRemove = new JFXButton("btnremove");
-        btnRemove.setCursor(Cursor.HAND);
-        btnRemove.setOnAction((e) -> {
-            ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
-            ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
 
-            if (type.orElse(no) == yes) {
-                AddsTm selectedCartItem = (AddsTm) tblmaintenance.getSelectionModel().getSelectedItem();
-                if (selectedCartItem != null) {
-                    obList.remove(selectedCartItem);
-                    tblmaintenance.refresh();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Please select an item to remove.").show();
-                }
-            }
-        });
 
-        // Parse cost from costtext TextField
         try {
             cost = Double.parseDouble(costtext.getText());
         } catch (NumberFormatException e) {
             // Handle parsing error
             e.printStackTrace();
-            // You might want to show an error message to the user here
-            return; // Exit the method if parsing fails
+
+            return;
         }
 
-        // Create a new AddsTm object with the retrieved values
+
         AddsTm tms = new AddsTm();
         tms.setEq_id(equipmentid);
         tms.setType(types);
         tms.setDescription(description);
         tms.setCost(cost);
 
-        // Add the AddsTm object to the observable list
         obList.add(tms);
 
-        // Refresh the TableView
         tblmaintenance.setItems(obList);
     }
 
@@ -379,8 +357,6 @@ public class MaintenanceFormController {
         colmaintaintype.setCellValueFactory(new PropertyValueFactory<>("type"));
         coldesmain.setCellValueFactory(new PropertyValueFactory<>("description"));
         colcostaction.setCellValueFactory(new PropertyValueFactory<>("cost"));
-        colrem.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
-
 
     }
 
@@ -459,8 +435,40 @@ public class MaintenanceFormController {
         boolean isPlaced = PlaceMaintenanceRepo.placeMaintenance(po);
         if (isPlaced) {
             new Alert(Alert.AlertType.CONFIRMATION, "Maintenance details Placed!").show();
+            clearTextFields();
+            obList.clear();
+            tblmaintenance.refresh();
+            String currentmainId = MaintenanceRepo.getCurrentId();
+            String nextOrderId = generateNextOrderId(currentmainId);
+            lblmainid.setText(nextOrderId);
+
+
         } else {
             new Alert(Alert.AlertType.WARNING, "Placed Unsuccessfully!").show();
+        }
+    }
+    private void clearTextFields() {
+        comeqid.getSelectionModel().clearSelection();
+        comempid.getSelectionModel().clearSelection();
+        maintypetext.setText("");
+        costtext.setText("");
+        descriptiontext.setText("");
+        lblmainid.setText("");
+
+
+
+    }
+
+    public void deleteAction(ActionEvent actionEvent) {
+
+        CartTm selectedItem = (CartTm) tblmaintenance.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            obList.remove(selectedItem);
+            tblmaintenance.refresh();
+        } else {
+
+            new Alert(Alert.AlertType.WARNING, "Please select an item to delete.").show();
         }
     }
 }

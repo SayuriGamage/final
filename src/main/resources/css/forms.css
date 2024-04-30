@@ -1,0 +1,11 @@
+.nav-btn{
+    -fx-background-color: #121212;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+}
+.nav-btn:hover{
+    -fx-background-color: #e1e9eb;
+    -fx-text-fill: #100f0f;
+}

@@ -52,7 +52,16 @@ public class EmployeeFormController {
        setCellValueFactory();
         loadAllCustomers();
         setDate();
+        tblEmployee.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
 
+                EmployeeTm selectedEmployee = (EmployeeTm) newSelection;
+                empidtext.setText(selectedEmployee.getId());
+                empnametext.setText(selectedEmployee.getName());
+                addresemptext.setText(selectedEmployee.getAddress());
+                telemptext.setText(selectedEmployee.getTel());
+            }
+        });
     }
 
     private void setDate() {
@@ -113,6 +122,8 @@ public class EmployeeFormController {
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "employee saved!").show();
                 clearFields();
+                loadAllCustomers();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -133,11 +144,16 @@ public class EmployeeFormController {
             boolean isDeleted = EmployeeRepo.delete(id);
             if(isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "employee deleted!").show();
+                clearFields();
+                loadAllCustomers();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
+
+
 
     public void updateempAction(ActionEvent actionEvent) {
         String id = empidtext.getText();
@@ -151,6 +167,9 @@ public class EmployeeFormController {
             boolean isUpdated = EmployeeRepo.update(employee);
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "employee updated!").show();
+                clearFields();
+                loadAllCustomers();
+                setCellValueFactory();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
