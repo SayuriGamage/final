@@ -13,11 +13,11 @@
 
 <AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SparepartsFormController">
    <children>
-      <AnchorPane layoutX="7.0" layoutY="104.0" prefHeight="285.0" prefWidth="979.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
+      <AnchorPane layoutX="7.0" layoutY="74.0" prefHeight="301.0" prefWidth="979.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <ComboBox fx:id="comspid" layoutX="576.0" layoutY="130.0" prefHeight="25.0" prefWidth="249.0" />
-            <TextField fx:id="sppurtext" layoutX="576.0" layoutY="90.0" prefHeight="25.0" prefWidth="249.0" />
-            <TextField fx:id="spqtytext" layoutX="576.0" layoutY="46.0" prefHeight="25.0" prefWidth="249.0" />
+            <ComboBox fx:id="comspid" layoutX="576.0" layoutY="130.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="sppurtext" layoutX="576.0" layoutY="90.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="spqtytext" layoutX="576.0" layoutY="46.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="460.0" layoutY="134.0" text="Maintenance ID">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -33,45 +33,57 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="sppritext" layoutX="136.0" layoutY="175.0" prefHeight="25.0" prefWidth="259.0" />
+            <TextField fx:id="sppritext" layoutX="136.0" layoutY="175.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="61.0" layoutY="179.0" text="Unit Price">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="spmanutext" layoutX="136.0" layoutY="130.0" prefHeight="25.0" prefWidth="259.0" />
+            <TextField fx:id="spmanutext" layoutX="136.0" layoutY="130.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="35.0" layoutY="134.0" text="Manufacture">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="spnametext" layoutX="136.0" layoutY="90.0" prefHeight="25.0" prefWidth="259.0" />
+            <TextField fx:id="spnametext" layoutX="136.0" layoutY="90.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="90.0" layoutY="94.0" text="Name">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="sptext" layoutX="136.0" layoutY="46.0" onAction="#serchspidonAction" prefHeight="25.0" prefWidth="259.0" />
+            <TextField fx:id="sptext" layoutX="136.0" layoutY="46.0" onAction="#serchspidonAction" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="120.0" layoutY="51.0" text="ID">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="784.0" layoutY="222.0" mnemonicParsing="false" onAction="#savespAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
-            <Button layoutX="572.0" layoutY="222.0" mnemonicParsing="false" onAction="#upspAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #FFAF45;" text="UPDATE" textFill="WHITE" />
-            <Button layoutX="368.0" layoutY="222.0" mnemonicParsing="false" onAction="#delspAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
-            <Button layoutX="144.0" layoutY="222.0" mnemonicParsing="false" onAction="#clespAction" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
+            <Button layoutX="784.0" layoutY="222.0" mnemonicParsing="false" onAction="#savespAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="SAVE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="572.0" layoutY="222.0" mnemonicParsing="false" onAction="#upspAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="UPDATE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="368.0" layoutY="222.0" mnemonicParsing="false" onAction="#delspAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" styleClass="nav-btn" stylesheets="@../css/another.css" text="DELETE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="144.0" layoutY="222.0" mnemonicParsing="false" onAction="#clespAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" styleClass="nav-btn" stylesheets="@../css/greaybutton.css" text="CLEAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblspareparts" layoutY="414.0" prefHeight="259.0" prefWidth="994.0">
+      <TableView fx:id="tblspareparts" layoutX="7.0" layoutY="397.0" prefHeight="276.0" prefWidth="979.0">
         <columns>
-          <TableColumn fx:id="colids" prefWidth="97.1432820558548" text="ID" />
-          <TableColumn fx:id="colspname" prefWidth="277.1440658569336" text="Name" />
+          <TableColumn fx:id="colids" prefWidth="86.42892646789551" text="ID" />
+          <TableColumn fx:id="colspname" prefWidth="237.14388275146484" text="Name" />
             <TableColumn fx:id="colmanusp" prefWidth="140.71490478515625" text="Manufacture" />
-            <TableColumn fx:id="colunisp" prefWidth="125.00057983398438" text="Unit Price" />
-            <TableColumn fx:id="colqtysp" prefWidth="87.14324951171875" text="QTY" />
-            <TableColumn fx:id="colpushsp" prefWidth="141.42913818359375" text="Purchase" />
-            <TableColumn fx:id="colmainsp" prefWidth="127.8577880859375" text="Maintenance ID" />
+            <TableColumn fx:id="colunisp" prefWidth="122.1434326171875" text="Unit Price" />
+            <TableColumn fx:id="colqtysp" prefWidth="80.7147216796875" text="QTY" />
+            <TableColumn fx:id="colpushsp" prefWidth="150.71490478515625" text="Purchase" />
+            <TableColumn fx:id="colmainsp" prefWidth="184.2864990234375" text="Maintenance ID" />
         </columns>
       </TableView>
       <ImageView fitHeight="43.0" fitWidth="51.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
@@ -85,7 +97,7 @@
          </font>
       </Label>
       <Label fx:id="lblspdatetime" layoutX="785.0" layoutY="9.0" prefHeight="25.0" prefWidth="194.0" />
-      <Label layoutX="408.0" layoutY="19.0" text="Spare Parts" textFill="#1e0342">
+      <Label layoutX="408.0" layoutY="19.0" text="Spare Parts" textFill="#114232">
          <font>
             <Font size="26.0" />
          </font>

@@ -15,9 +15,20 @@
    <children>
       <AnchorPane layoutX="11.0" layoutY="79.0" prefHeight="251.0" prefWidth="972.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <Button layoutX="595.0" layoutY="186.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
+            <Button layoutX="595.0" layoutY="186.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" styleClass="nav-btn" stylesheets="@../css/another.css" text="DELETE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="214.0" layoutY="186.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="ADD" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="402.0" layoutY="186.0" mnemonicParsing="false" onAction="#removeonAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="PLACE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
          </children></AnchorPane>
-      <Label fx:id="lblmainid" layoutX="201.0" layoutY="106.0" prefHeight="16.0" prefWidth="131.0" />
+      <Label fx:id="lblmainid" layoutX="201.0" layoutY="106.0" prefHeight="25.0" prefWidth="282.0" />
       <Label fx:id="lblmaidate" layoutX="782.0" layoutY="11.0" prefHeight="19.0" prefWidth="197.0" />
       <Label layoutX="76.0" layoutY="151.0" text="Description">
          <font>
@@ -44,7 +55,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comeqid" layoutX="638.0" layoutY="148.0" prefHeight="25.0" prefWidth="231.0" />
+      <ComboBox fx:id="comeqid" layoutX="638.0" layoutY="148.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
       <TableView fx:id="tblmaintenance" layoutX="4.0" layoutY="367.0" prefHeight="297.0" prefWidth="988.0">
         <columns>
           <TableColumn fx:id="coleqid" prefWidth="109.28616535663605" text="Equipment ID" />
@@ -53,11 +64,10 @@
             <TableColumn fx:id="colcostaction" prefWidth="152.1434326171875" text="Cost" />
         </columns>
       </TableView>
-      <Button layoutX="312.0" layoutY="267.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #65B741;" text="ADD TABLE" textFill="WHITE" />
-      <ComboBox fx:id="comempid" layoutX="638.0" layoutY="101.0" prefHeight="25.0" prefWidth="231.0" />
-      <TextField fx:id="descriptiontext" layoutX="201.0" layoutY="148.0" prefHeight="25.0" prefWidth="244.0" />
-      <TextField fx:id="costtext" layoutX="201.0" layoutY="196.0" prefHeight="25.0" prefWidth="244.0" />
-      <TextField fx:id="maintypetext" layoutX="638.0" layoutY="196.0" prefHeight="25.0" prefWidth="231.0" />
+      <ComboBox fx:id="comempid" layoutX="638.0" layoutY="101.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+      <TextField fx:id="descriptiontext" layoutX="201.0" layoutY="148.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+      <TextField fx:id="costtext" layoutX="201.0" layoutY="196.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+      <TextField fx:id="maintypetext" layoutX="638.0" layoutY="196.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
       <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/img_21.png" />
@@ -68,8 +78,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Button layoutX="478.0" layoutY="267.0" mnemonicParsing="false" onAction="#removeonAction" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #E72929;" text="PLACE" textFill="WHITE" />
-      <Label layoutX="323.0" layoutY="18.0" prefHeight="31.0" prefWidth="197.0" text="Maintenance" textFill="#1e0342">
+      <Label layoutX="424.0" layoutY="16.0" prefHeight="31.0" prefWidth="197.0" text="Maintenance" textFill="#114232">
          <font>
             <Font size="26.0" />
          </font></Label>

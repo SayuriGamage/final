@@ -120,4 +120,8 @@ public class DashboardFormController {
         dashboardpane.getChildren().clear();
         dashboardpane.getChildren().add(supPane);
     }
+
+    public void logoutAction(ActionEvent actionEvent) {
+
+    }
 }

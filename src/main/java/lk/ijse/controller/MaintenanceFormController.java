@@ -263,6 +263,7 @@ import javafx.util.Duration;
 import lk.ijse.model.*;
 import lk.ijse.model.tm.AddsTm;
 import lk.ijse.model.tm.CartTm;
+import lk.ijse.model.tm.EmployeeTm;
 import lk.ijse.repository.*;
 
 import java.sql.SQLException;
@@ -342,6 +343,7 @@ public class MaintenanceFormController {
         getEmployeeid();
         getEquipmentid();
         setCellValueFactory();
+
         try {
             String currentmainId = MaintenanceRepo.getCurrentId();
             String nextOrderId = generateNextOrderId(currentmainId);
@@ -351,6 +353,9 @@ public class MaintenanceFormController {
             e.printStackTrace();
         }
     }
+
+
+
 
     private void setCellValueFactory() {
         coleqid.setCellValueFactory(new PropertyValueFactory<>("eq_id"));
@@ -437,7 +442,7 @@ public class MaintenanceFormController {
             new Alert(Alert.AlertType.CONFIRMATION, "Maintenance details Placed!").show();
             clearTextFields();
             obList.clear();
-            tblmaintenance.refresh();
+           tblmaintenance.refresh();
             String currentmainId = MaintenanceRepo.getCurrentId();
             String nextOrderId = generateNextOrderId(currentmainId);
             lblmainid.setText(nextOrderId);

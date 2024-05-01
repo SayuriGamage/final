@@ -21,19 +21,19 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginFormController implements Initializable {
-    public TextField usernametext;
-    public TextField passwordtext;
+
+
     public AnchorPane rootNode;
-    public PasswordField useridtext;
+
     public PasswordField uspasstext;
+    public TextField texusen;
+
 
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
 
-       String username = useridtext.getText();
-
-
-        String pw = uspasstext.getText();
+       String username = texusen.getText();
+       String pw = uspasstext.getText();
 
         try {
             checkCredential(username, pw);
@@ -90,7 +90,7 @@ public class LoginFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        useridtext.requestFocus();
+        texusen.requestFocus();
 
     }
 

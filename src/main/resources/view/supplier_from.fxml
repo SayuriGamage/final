@@ -12,31 +12,39 @@
 
 <AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFromController">
    <children>
-      <AnchorPane layoutX="20.0" layoutY="127.0" prefHeight="251.0" prefWidth="952.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
+      <AnchorPane layoutX="19.0" layoutY="85.0" prefHeight="251.0" prefWidth="952.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <TextField fx:id="supnametext" layoutX="580.0" layoutY="86.0" prefHeight="25.0" prefWidth="279.0" />
+            <TextField fx:id="supnametext" layoutX="580.0" layoutY="86.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="464.0" layoutY="90.0" text="Supplier Name">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="supidtext" layoutX="162.0" layoutY="85.0" onAction="#supAction" prefHeight="25.0" prefWidth="279.0" />
+            <TextField fx:id="supidtext" layoutX="162.0" layoutY="85.0" onAction="#supAction" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="75.0" layoutY="90.0" text="SupplierID">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="726.0" layoutY="174.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #378CE7;" text="CLEAR" textFill="WHITE">
-      </Button>
-            <Button layoutX="529.0" layoutY="174.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE">
-      </Button>
-            <Button layoutX="347.0" layoutY="174.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE">
-      </Button>
-            <Button layoutX="135.0" layoutY="174.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE">
-      </Button>
+            <Button layoutX="726.0" layoutY="174.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" styleClass="nav-btn" stylesheets="@../css/greaybutton.css" text="CLEAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="353.0" layoutY="174.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="UPDATE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="535.0" layoutY="174.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" styleClass="nav-btn" stylesheets="@../css/another.css" text="DELETE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="135.0" layoutY="174.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="SAVE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="suppliertbl" layoutX="68.0" layoutY="394.0" prefHeight="271.0" prefWidth="855.0">
+      <TableView fx:id="suppliertbl" layoutX="68.0" layoutY="358.0" prefHeight="307.0" prefWidth="855.0">
         <columns>
           <TableColumn fx:id="colsup" prefWidth="249.2868194580078" text="SupplierID" />
           <TableColumn fx:id="colsupnam" prefWidth="632.1456298828125" text="Name" />
@@ -53,7 +61,7 @@
          </font>
       </Label>
       <Label fx:id="lblsupdatetim" layoutX="805.0" layoutY="11.0" prefHeight="25.0" prefWidth="174.0" />
-      <Label layoutX="412.0" layoutY="23.0" text="Suppliers" textFill="#1e0342">
+      <Label layoutX="412.0" layoutY="23.0" text="Suppliers" textFill="#114232">
          <font>
             <Font size="27.0" />
          </font>

@@ -12,25 +12,25 @@
 
 <AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.EquipmentFormController">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="83.0" prefHeight="271.0" prefWidth="977.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
+      <AnchorPane layoutX="10.0" layoutY="83.0" prefHeight="282.0" prefWidth="977.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <TextField fx:id="eqpurtext" layoutX="586.0" layoutY="29.0" prefHeight="25.0" prefWidth="276.0" />
+            <TextField fx:id="eqpurtext" layoutX="586.0" layoutY="29.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="507.0" layoutY="34.0" text="Purchase">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="eqwartext" layoutX="586.0" layoutY="69.0" prefHeight="25.0" prefWidth="276.0" />
+            <TextField fx:id="eqwartext" layoutX="586.0" layoutY="69.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
       
-            <TextField fx:id="eqidtext" layoutX="144.0" layoutY="29.0" onAction="#eqorAction" prefHeight="25.0" prefWidth="276.0" />
+            <TextField fx:id="eqidtext" layoutX="144.0" layoutY="29.0" onAction="#eqorAction" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
       
             <Label layoutX="113.0" layoutY="34.0" text="ID">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="eqmanutext" layoutX="586.0" layoutY="115.0" prefHeight="25.0" prefWidth="276.0" />
-            <TextField fx:id="equseridtext" layoutX="586.0" layoutY="157.0" prefHeight="25.0" prefWidth="276.0" />
+            <TextField fx:id="eqmanutext" layoutX="586.0" layoutY="115.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="equseridtext" layoutX="586.0" layoutY="157.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="500.0" layoutY="74.0" prefHeight="16.0" prefWidth="89.0" text="Warranty">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -46,9 +46,9 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="eqnametext" layoutX="144.0" layoutY="69.0" prefHeight="25.0" prefWidth="276.0" />
-            <TextField fx:id="eqmodltext" layoutX="144.0" layoutY="113.0" prefHeight="25.0" prefWidth="276.0" />
-            <TextField fx:id="eqcosttext" layoutX="144.0" layoutY="156.0" prefHeight="25.0" prefWidth="276.0" />
+            <TextField fx:id="eqnametext" layoutX="144.0" layoutY="69.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="eqmodltext" layoutX="144.0" layoutY="113.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="eqcosttext" layoutX="144.0" layoutY="156.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="92.0" layoutY="74.0" prefHeight="16.0" prefWidth="57.0" text="Name">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -64,24 +64,36 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="749.0" layoutY="215.0" mnemonicParsing="false" onAction="#eqclAction" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #008DDA;" text="CLEAR" textFill="WHITE" />
-            <Button layoutX="549.0" layoutY="215.0" mnemonicParsing="false" onAction="#eqdeleteAction" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE" />
-            <Button layoutX="333.0" layoutY="215.0" mnemonicParsing="false" onAction="#equpdateAction" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE" />
+            <Button layoutX="749.0" layoutY="215.0" mnemonicParsing="false" onAction="#eqclAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" styleClass="nav-btn" stylesheets="@../css/greaybutton.css" text="CLEAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="549.0" layoutY="215.0" mnemonicParsing="false" onAction="#eqdeleteAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" styleClass="nav-btn" stylesheets="@../css/another.css" text="DELETE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button layoutX="347.0" layoutY="215.0" mnemonicParsing="false" onAction="#equpdateAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="UPDATE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
       
-            <Button layoutX="149.0" layoutY="215.0" mnemonicParsing="false" onAction="#eqsaveAction" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE" />
+            <Button layoutX="149.0" layoutY="215.0" mnemonicParsing="false" onAction="#eqsaveAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="SAVE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
          </children>
       </AnchorPane>
 
-      <TableView fx:id="tblequipment" layoutX="-1.0" layoutY="386.0" prefHeight="289.0" prefWidth="994.0">
+      <TableView fx:id="tblequipment" layoutX="7.0" layoutY="384.0" prefHeight="289.0" prefWidth="977.0">
          <columns>
             <TableColumn fx:id="coleqid" prefWidth="84.28607380390167" text="ID" />
-            <TableColumn fx:id="coleqname" prefWidth="235.00100708007812" text="Name" />
-            <TableColumn fx:id="coleqmod" prefWidth="115.00054931640625" text="Model" />
-            <TableColumn fx:id="coleqcost" prefWidth="98.57186889648438" text="Cost" />
-            <TableColumn fx:id="colwqpur" prefWidth="128.57196044921875" text="Purchase" />
-            <TableColumn fx:id="coleqwarr" prefWidth="123.5718994140625" text="Warranty" />
-            <TableColumn fx:id="coleqmanu" prefWidth="125.71478271484375" text="Manufacture" />
-            <TableColumn fx:id="colequserid" prefWidth="90.714599609375" text="User ID" />
+            <TableColumn fx:id="coleqname" prefWidth="212.85808563232422" text="Name" />
+            <TableColumn fx:id="coleqmod" prefWidth="122.857666015625" text="Model" />
+            <TableColumn fx:id="coleqcost" prefWidth="114.28619384765625" text="Cost" />
+            <TableColumn fx:id="colwqpur" prefWidth="115.71484375" text="Purchase" />
+            <TableColumn fx:id="coleqwarr" prefWidth="127.85772705078125" text="Warranty" />
+            <TableColumn fx:id="coleqmanu" prefWidth="110.7147216796875" text="Manufacture" />
+            <TableColumn fx:id="colequserid" prefWidth="114.28619384765625" text="User ID" />
          </columns>
       </TableView>
       <Label fx:id="lbleqdatetime" layoutX="758.0" layoutY="14.0" prefHeight="25.0" prefWidth="207.0" />
@@ -95,7 +107,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="348.0" layoutY="24.0" text="Equipments" textFill="#1e0342">
+      <Label layoutX="348.0" layoutY="24.0" text="Equipments" textFill="#114232">
          <font>
             <Font size="25.0" />
          </font>

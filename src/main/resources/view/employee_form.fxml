@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="rootNode" prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.EmployeeFormController">
    <children>
-      <TableView fx:id="tblEmployee" layoutX="1.0" layoutY="361.0" prefHeight="315.0" prefWidth="994.0">
+      <TableView fx:id="tblEmployee" layoutX="11.0" layoutY="362.0" prefHeight="314.0" prefWidth="975.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="141.42918920516968" text="Id" />
           <TableColumn fx:id="colName" minWidth="5.714324951171875" prefWidth="336.4300079345703" text="Name" />
@@ -22,8 +22,8 @@
       </TableView>
       <AnchorPane layoutX="6.0" layoutY="80.0" prefHeight="257.0" prefWidth="984.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <TextField fx:id="empnametext" layoutX="564.0" layoutY="45.0" prefHeight="32.0" prefWidth="295.0" />
-            <TextField fx:id="telemptext" layoutX="564.0" layoutY="96.0" prefHeight="32.0" prefWidth="295.0" />
+            <TextField fx:id="empnametext" layoutX="564.0" layoutY="45.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="telemptext" layoutX="564.0" layoutY="96.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="517.0" layoutY="53.0" text="Name">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -34,36 +34,36 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="empidtext" layoutX="142.0" layoutY="45.0" onAction="#textSearchOnAction" prefHeight="32.0" prefWidth="295.0" />
+            <TextField fx:id="empidtext" layoutX="142.0" layoutY="45.0" onAction="#textSearchOnAction" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="76.0" layoutY="53.0" text="ID">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="addresemptext" layoutX="142.0" layoutY="96.0" prefHeight="32.0" prefWidth="295.0" />
+            <TextField fx:id="addresemptext" layoutX="142.0" layoutY="96.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
             <Label layoutX="76.0" layoutY="104.0" text="Job Titel">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="722.0" layoutY="183.0" mnemonicParsing="false" onAction="#clearempAction" prefHeight="44.0" prefWidth="87.0" style="-fx-background-color: #378CE7;" text="CLEAR" textFill="WHITE">
+            <Button layoutX="722.0" layoutY="183.0" mnemonicParsing="false" onAction="#clearempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" styleClass="nav-btn" stylesheets="@../css/greaybutton.css" text="CLEAR" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="538.0" layoutY="183.0" mnemonicParsing="false" onAction="#updateempAction" prefHeight="44.0" prefWidth="87.0" style="-fx-background-color: #FFB534;" text="UPDATE" textFill="WHITE">
+            <Button layoutX="333.0" layoutY="183.0" mnemonicParsing="false" onAction="#updateempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="UPDATE" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="340.0" layoutY="183.0" mnemonicParsing="false" onAction="#deleteempAction" prefHeight="44.0" prefWidth="87.0" style="-fx-background-color: #D71313;" text="DELETE" textFill="WHITE">
+            <Button layoutX="519.0" layoutY="183.0" mnemonicParsing="false" onAction="#deleteempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #D71313;" styleClass="nav-btn" stylesheets="@../css/another.css" text="DELETE" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="137.0" layoutY="183.0" mnemonicParsing="false" onAction="#saveempAction" prefHeight="44.0" prefWidth="87.0" style="-fx-background-color: #65B741;" text="SAVE" textFill="WHITE">
+            <Button layoutX="137.0" layoutY="183.0" mnemonicParsing="false" onAction="#saveempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="SAVE" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Button>
          </children>
@@ -79,7 +79,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="301.0" layoutY="18.0" text="Employee" textFill="#1e0342">
+      <Label layoutX="430.0" layoutY="18.0" text="Employee" textFill="#114232">
          <font>
             <Font size="27.0" />
          </font>
