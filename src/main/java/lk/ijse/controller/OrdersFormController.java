@@ -6,29 +6,29 @@ import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lk.ijse.db.DbConnection;
 import lk.ijse.model.*;
 import lk.ijse.model.tm.CartTm;
 import lk.ijse.repository.OrdersRepo;
 import lk.ijse.repository.PlaceOrderRepo;
 import lk.ijse.repository.SparepartsRepo;
 import lk.ijse.repository.SupplierRepo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
-import java.io.IOException;
-import java.security.cert.PolicyNode;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class  OrdersFormController {
     public Label lblorid;
@@ -46,7 +46,9 @@ public class  OrdersFormController {
     public Label lblsupnam;
     public Label lblsparename;
     public Label lblunitprice;
-    private AnchorPane dashboardpane;
+
+    public Label lblbalance;
+    public TextField lblcash;
     public TextField textqty;
 
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
@@ -177,15 +179,25 @@ public class  OrdersFormController {
         tblorder.setItems(obList);
         calculateNetTotal();
         textqty.setText("");
+
+    }
+
+    private Object calculateBalance() {
+        double totalCost = Double.parseDouble(lbltotalfinal.getText());
+        double cashPaid = Double.parseDouble(lblcash.getText());
+        double balance = cashPaid - totalCost;
+        lblbalance.setText(String.valueOf(balance));
+        return balance;
     }
 
 
-    private void calculateNetTotal() {
+    private Object calculateNetTotal() {
         double netTotal = 0;
         for (CartTm tm : obList) {
             netTotal += tm.getTotal();
         }
         lbltotalfinal.setText(String.valueOf(netTotal));
+        return netTotal;
     }
 
     public void comnameAction(ActionEvent actionEvent) {
@@ -227,11 +239,12 @@ public class  OrdersFormController {
 
         var order = new Orders(orderId, date, supId);
 
+
         List<OrderDetail> odList = new ArrayList<>();
 
         for (int i = 0; i < tblorder.getItems().size(); i++) {
             CartTm tm = obList.get(i);
-            //   System.out.println(tm.getSp_id());
+
             OrderDetail od = new OrderDetail(
 
                     orderId,
@@ -247,12 +260,7 @@ public class  OrdersFormController {
         boolean isPlaced = PlaceOrderRepo.placeOrder(po);
         if (isPlaced) {
             new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
-            obList.clear();
-            tblorder.refresh();
-            clearTextFields();
-            String currentOrderId = OrdersRepo.getCurrentId();
-            String nextOrderId = generateNextOrderId(currentOrderId);
-            lblorid.setText(nextOrderId);
+lblcash.requestFocus();
 
         } else {
             new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
@@ -266,10 +274,42 @@ public class  OrdersFormController {
         lblsupnam.setText("");
         lblsparename.setText("");
         lblunitprice.setText("");
-
+        lbltotalfinal.setText("");
+        lblcash.setText("");
+        lblbalance.setText("");
 
     }
 
+    public void printbillorAction(ActionEvent actionEvent) throws JRException, SQLException {
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/order.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        Map<String,Object> datat = new HashMap<>();
+        String orderId = lblorid.getText();
+        datat.put("ids",orderId);
+        String netTotalString = String.valueOf(calculateNetTotal());
+        datat.put("total", netTotalString);
+        String cash=lblcash.getText();
+        datat.put("cash",cash);
+        String bala=String.valueOf(calculateBalance());
+        datat.put("balance",bala);
+
+
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(jasperReport, datat, DbConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint,false);
+
+       obList.clear();
+        tblorder.refresh();
+        clearTextFields();
+        String currentOrderId = OrdersRepo.getCurrentId();
+        String nextOrderId = generateNextOrderId(currentOrderId);
+        lblorid.setText(nextOrderId);
+    }
+
+    public void calculBalance(ActionEvent actionEvent) {
+        calculateBalance();
+    }
 }
 
 

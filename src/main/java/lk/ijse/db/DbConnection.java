@@ -11,7 +11,7 @@ public class DbConnection {
 
     private DbConnection() throws SQLException {
         connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/MEMS",
+                "jdbc:mysql://localhost:3306/gdse69",
                 "root",
                 "Ijse@123"
         );

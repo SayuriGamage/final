@@ -19,17 +19,20 @@ public class PlaceOrderRepo {
 
             if (isOrderSaved) {
 
-                boolean isQtyUpdated = SparepartsRepo.update(po.getOdList());
 
-                if (isQtyUpdated) {
-                    boolean isOrderDetailSaved = OrderDetailRepo.save(po.getOdList());
 
-                    if (isOrderDetailSaved) {
-                        connection.commit();
-                        return true;
+                    boolean isQtyUpdated = SparepartsRepo.update(po.getOdList());
+
+                    if (isQtyUpdated) {
+                        boolean isOrderDetailSaved = OrderDetailRepo.save(po.getOdList());
+
+                        if (isOrderDetailSaved) {
+                            connection.commit();
+                            return true;
+                        }
                     }
                 }
-            }
+
             connection.rollback();
             return false;
         } catch (Exception e) {

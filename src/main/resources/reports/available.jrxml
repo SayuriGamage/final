@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="available" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9bb156a0-11cf-4f86-814a-2d5c3e6c5786">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (11)"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="192"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="797"/>
+	<parameter name="date" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    DATE_ADD(m.date, INTERVAL 6 MONTH) AS Date,
+    GROUP_CONCAT(ed.eq_id ORDER BY ed.eq_id) AS equipment_ids
+FROM 
+    maintenance m
+JOIN 
+    maintenance_equipment_details ed ON m.mm_id = ed.mm_id
+    WHERE
+        DATE_ADD(m.date, INTERVAL 6 MONTH) = $P{date}
+GROUP BY 
+    DATE_ADD(m.date, INTERVAL 6 MONTH);]]>
+	</queryString>
+	<field name="Date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Date"/>
+		<property name="com.jaspersoft.studio.field.label" value="Date"/>
+	</field>
+	<field name="equipment_ids" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="equipment_ids"/>
+		<property name="com.jaspersoft.studio.field.label" value="equipment_ids"/>
+	</field>
+	<group name="Date">
+		<groupExpression><![CDATA[$F{Date}]]></groupExpression>
+	</group>
+	<group name="equipment_ids">
+		<groupExpression><![CDATA[$F{equipment_ids}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<staticText>
+				<reportElement x="170" y="10" width="192" height="30" uuid="3d17b332-74cb-4f44-9eca-cdcaaf309e11"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Kalubowila S&M]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="40" width="210" height="30" uuid="ca944234-56a6-4d31-8fbf-0bff296b7d37"/>
+				<text><![CDATA[190/5,New Galle Rd,Kollupitiya,Colombo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="84" y="0" width="100" height="30" uuid="3e570e3b-5790-4938-814f-b7406573abd1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8105b181-2397-42fd-aa17-596bd192a4c9"/>
+				</reportElement>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="220" height="30" uuid="26b09b71-9828-4d98-b79f-a96449206506">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc3f6c16-1dfe-4aa4-9f51-9cb8629912d4"/>
+				</reportElement>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Available Equipments]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="65" splitType="Stretch">
+			<textField>
+				<reportElement x="84" y="0" width="100" height="30" uuid="c25f29de-4aed-428e-886e-0fe100e7cc5a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8105b181-2397-42fd-aa17-596bd192a4c9"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="0" width="220" height="30" uuid="ace14f1c-66f7-4774-a63f-892f6e9b3456">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc3f6c16-1dfe-4aa4-9f51-9cb8629912d4"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{equipment_ids}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>

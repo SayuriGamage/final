@@ -24,7 +24,7 @@ public class OrderDetailRepo {
 
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
-      //  System.out.println(od.getSp_id()+" "+od.getOr_id());
+
         pstm.setString(1, od.getOr_id());
         pstm.setString(2, od.getSp_id());
         pstm.setInt(3, od.getQty());

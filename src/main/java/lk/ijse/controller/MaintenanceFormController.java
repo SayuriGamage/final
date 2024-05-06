@@ -346,7 +346,7 @@ public class MaintenanceFormController {
 
         try {
             String currentmainId = MaintenanceRepo.getCurrentId();
-            String nextOrderId = generateNextOrderId(currentmainId);
+            String nextOrderId = generateNextmainId(currentmainId);
             lblmainid.setText(nextOrderId);
         } catch (SQLException e) {
             // Handle SQLException
@@ -392,7 +392,7 @@ public class MaintenanceFormController {
         }
     }
 
-    private String generateNextOrderId(String currentMainId) {
+    private String generateNextmainId(String currentMainId) {
         if (currentMainId != null && currentMainId.matches("^MM\\d{3}$")) {
             try {
                 int mainId = Integer.parseInt(currentMainId.substring(2)) + 1;
@@ -444,7 +444,7 @@ public class MaintenanceFormController {
             obList.clear();
            tblmaintenance.refresh();
             String currentmainId = MaintenanceRepo.getCurrentId();
-            String nextOrderId = generateNextOrderId(currentmainId);
+            String nextOrderId = generateNextmainId(currentmainId);
             lblmainid.setText(nextOrderId);
 
 

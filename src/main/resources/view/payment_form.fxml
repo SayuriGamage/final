@@ -31,9 +31,9 @@
                </font>
             </Button>
          </children></AnchorPane>
-      <TextField fx:id="paymenttext" layoutX="170.0" layoutY="129.0" onAction="#payonAction" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-      <TextField fx:id="datetext" layoutX="574.0" layoutY="129.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-      <TextField fx:id="amounttext" layoutX="574.0" layoutY="177.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+      <TextField fx:id="paymenttext" layoutX="170.0" layoutY="129.0" onAction="#payonAction" prefHeight="25.0" prefWidth="282.0" />
+      <TextField fx:id="datetext" layoutX="574.0" layoutY="129.0" prefHeight="25.0" prefWidth="282.0" />
+      <TextField fx:id="amounttext" layoutX="574.0" layoutY="177.0" prefHeight="25.0" prefWidth="282.0" />
       <Label layoutX="71.0" layoutY="133.0" text="Payment ID">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -71,7 +71,7 @@
             <Image url="@../images/img_21.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="comorpay" layoutX="170.0" layoutY="177.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+      <ComboBox fx:id="comorpay" layoutX="170.0" layoutY="177.0" prefHeight="25.0" prefWidth="282.0" />
       <Label layoutX="35.0" layoutY="22.0" text="EquipCare Pro" textFill="#b4b4b8">
          <font>
             <Font size="17.0" />

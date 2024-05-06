@@ -4,25 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="917b1985-5e07-462e-b6fc-cdcd5a635f46" name="Changes" comment="ALL OK">
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/Adds.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/another.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/face.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/greaybutton.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/greenbutton.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/textfield.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_24.png" afterDir="false" />
+    <list default="true" id="917b1985-5e07-462e-b6fc-cdcd5a635f46" name="Changes" comment="ALL OKs">
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/util/Regex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/util/TextField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/available.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/new.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/order.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/reports/test3.jrxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/LoginFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/LoginFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardsecFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardsecFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EmployeeFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/MaintenanceFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/MaintenanceFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/forms.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/OrdersFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/OrdersFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/db/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/db/DbConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/model/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/OrderDetailRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/OrderDetailRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/PlaceOrderRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/PlaceOrderRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/textfield.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/textfield.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/query/query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/query/query.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/condemned_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/condemned_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/dashboard_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/dashboard_form.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/dashboardsec_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/dashboardsec_form.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_form.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/equipment_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/equipment_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/login_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/login_form.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/maintenance_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/maintenance_form.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/orders_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/orders_form.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/payment_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/payment_form.fxml" afterDir="false" />
@@ -39,8 +44,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -71,7 +76,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/sayuri/IdeaProjects/finalProjectDemo/src/main/resources/icon&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/sayuri/IdeaProjects/try karala balanna asa hithei/src/main/resources/reports&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -95,11 +100,11 @@
       <recent name="lk.ijse.db" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/reports" />
       <recent name="$PROJECT_DIR$/src/main/resources/icon" />
       <recent name="$PROJECT_DIR$/src/main/resources/query" />
       <recent name="$PROJECT_DIR$/src/main/resources/images" />
       <recent name="$PROJECT_DIR$/src/main/resources/view" />
-      <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="lk.ijse.model" />
@@ -108,7 +113,7 @@
   <component name="RunManager">
     <configuration name="LauncherWrapper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lk.ijse.LauncherWrapper" />
-      <module name="finalProjectDemo" />
+      <module name="_05-supermarket-mvc" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="lk.ijse.*" />
@@ -224,7 +229,26 @@
       <workItem from="1714562166066" duration="47000" />
       <workItem from="1714562324455" duration="3788000" />
       <workItem from="1714566178965" duration="3461000" />
-      <workItem from="1714578025605" duration="2052000" />
+      <workItem from="1714578025605" duration="4327000" />
+      <workItem from="1714618769390" duration="581000" />
+      <workItem from="1714620066973" duration="368000" />
+      <workItem from="1714620813363" duration="25000" />
+      <workItem from="1714620851904" duration="6000" />
+      <workItem from="1714625866746" duration="28000" />
+      <workItem from="1714638123722" duration="61000" />
+      <workItem from="1714707640700" duration="523000" />
+      <workItem from="1714726645695" duration="2273000" />
+      <workItem from="1714745326228" duration="74000" />
+      <workItem from="1714796261437" duration="12453000" />
+      <workItem from="1714819329654" duration="4657000" />
+      <workItem from="1714830116801" duration="2306000" />
+      <workItem from="1714877978330" duration="4473000" />
+      <workItem from="1714889288063" duration="9504000" />
+      <workItem from="1714915510404" duration="4696000" />
+      <workItem from="1714972338869" duration="8413000" />
+      <workItem from="1715002871323" duration="6298000" />
+      <workItem from="1715009843112" duration="5000" />
+      <workItem from="1715010340739" duration="3048000" />
     </task>
     <task id="LOCAL-00001" summary="nn">
       <option name="closed" value="true" />
@@ -322,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714489845652</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="ALL OKs">
+      <option name="closed" value="true" />
+      <created>1714580166497</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714580166497</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +372,8 @@
     <MESSAGE value="a" />
     <MESSAGE value="final" />
     <MESSAGE value="ALL OK" />
-    <option name="LAST_COMMIT_MESSAGE" value="ALL OK" />
+    <MESSAGE value="ALL OKs" />
+    <option name="LAST_COMMIT_MESSAGE" value="ALL OKs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

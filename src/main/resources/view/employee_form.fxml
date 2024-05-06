@@ -22,8 +22,8 @@
       </TableView>
       <AnchorPane layoutX="6.0" layoutY="80.0" prefHeight="257.0" prefWidth="984.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <TextField fx:id="empnametext" layoutX="564.0" layoutY="45.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-            <TextField fx:id="telemptext" layoutX="564.0" layoutY="96.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="empnametext" layoutX="564.0" layoutY="45.0" onKeyReleased="#employeenameAction" prefHeight="25.0" prefWidth="282.0" />
+            <TextField fx:id="telemptext" layoutX="564.0" layoutY="96.0" onKeyReleased="#employetelAction" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="517.0" layoutY="53.0" text="Name">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -34,13 +34,13 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="empidtext" layoutX="142.0" layoutY="45.0" onAction="#textSearchOnAction" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="empidtext" layoutX="142.0" layoutY="45.0" onAction="#textSearchOnAction" onKeyReleased="#employeeidAction" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="76.0" layoutY="53.0" text="ID">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="addresemptext" layoutX="142.0" layoutY="96.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="addresemptext" layoutX="142.0" layoutY="96.0" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="76.0" layoutY="104.0" text="Job Titel">
                <font>
                   <Font name="System Bold" size="13.0" />

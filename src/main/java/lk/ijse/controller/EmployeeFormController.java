@@ -6,19 +6,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import lk.ijse.model.Employee;
 import lk.ijse.model.tm.EmployeeTm;
 import lk.ijse.repository.EmployeeRepo;
+import lk.ijse.util.Regex;
 
-import java.io.IOException;
-import java.security.cert.PolicyNode;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -196,5 +193,17 @@ public class EmployeeFormController {
         } else {
             new Alert(Alert.AlertType.INFORMATION, "employee not found!").show();
         }
+    }
+
+   public void employeeidAction(KeyEvent keyEvent) {
+       Regex.setTextColor(lk.ijse.util.TextField.ID,empidtext);
+    }
+
+    public void employeenameAction(KeyEvent keyEvent) {
+       Regex.setTextColor(lk.ijse.util.TextField.NAME, empnametext);
+    }
+
+    public void employetelAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.CONTACT, telemptext);
     }
 }

@@ -15,9 +15,9 @@
    <children>
       <AnchorPane layoutX="7.0" layoutY="74.0" prefHeight="301.0" prefWidth="979.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <ComboBox fx:id="comspid" layoutX="576.0" layoutY="130.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-            <TextField fx:id="sppurtext" layoutX="576.0" layoutY="90.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-            <TextField fx:id="spqtytext" layoutX="576.0" layoutY="46.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <ComboBox fx:id="comspid" layoutX="576.0" layoutY="130.0" prefHeight="25.0" prefWidth="282.0" />
+            <TextField fx:id="sppurtext" layoutX="576.0" layoutY="90.0" prefHeight="25.0" prefWidth="282.0" />
+            <TextField fx:id="spqtytext" layoutX="576.0" layoutY="46.0" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="460.0" layoutY="134.0" text="Maintenance ID">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -33,25 +33,25 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="sppritext" layoutX="136.0" layoutY="175.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="sppritext" layoutX="136.0" layoutY="175.0" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="61.0" layoutY="179.0" text="Unit Price">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="spmanutext" layoutX="136.0" layoutY="130.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="spmanutext" layoutX="136.0" layoutY="130.0" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="35.0" layoutY="134.0" text="Manufacture">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="spnametext" layoutX="136.0" layoutY="90.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="spnametext" layoutX="136.0" layoutY="90.0" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="90.0" layoutY="94.0" text="Name">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="sptext" layoutX="136.0" layoutY="46.0" onAction="#serchspidonAction" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="sptext" layoutX="136.0" layoutY="46.0" onAction="#serchspidonAction" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="120.0" layoutY="51.0" text="ID">
                <font>
                   <Font name="System Bold" size="13.0" />

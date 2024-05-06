@@ -55,7 +55,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comeqid" layoutX="638.0" layoutY="148.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+      <ComboBox fx:id="comeqid" layoutX="638.0" layoutY="148.0" prefHeight="25.0" prefWidth="282.0" />
       <TableView fx:id="tblmaintenance" layoutX="4.0" layoutY="367.0" prefHeight="297.0" prefWidth="988.0">
         <columns>
           <TableColumn fx:id="coleqid" prefWidth="109.28616535663605" text="Equipment ID" />
@@ -64,10 +64,10 @@
             <TableColumn fx:id="colcostaction" prefWidth="152.1434326171875" text="Cost" />
         </columns>
       </TableView>
-      <ComboBox fx:id="comempid" layoutX="638.0" layoutY="101.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-      <TextField fx:id="descriptiontext" layoutX="201.0" layoutY="148.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-      <TextField fx:id="costtext" layoutX="201.0" layoutY="196.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-      <TextField fx:id="maintypetext" layoutX="638.0" layoutY="196.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+      <ComboBox fx:id="comempid" layoutX="638.0" layoutY="101.0" prefHeight="25.0" prefWidth="282.0" />
+      <TextField fx:id="descriptiontext" layoutX="201.0" layoutY="148.0" prefHeight="25.0" prefWidth="282.0" />
+      <TextField fx:id="costtext" layoutX="201.0" layoutY="196.0" prefHeight="25.0" prefWidth="282.0" />
+      <TextField fx:id="maintypetext" layoutX="638.0" layoutY="196.0" prefHeight="25.0" prefWidth="282.0" />
       <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/img_21.png" />

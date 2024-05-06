@@ -14,13 +14,13 @@
    <children>
       <AnchorPane layoutX="19.0" layoutY="85.0" prefHeight="251.0" prefWidth="952.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <TextField fx:id="supnametext" layoutX="580.0" layoutY="86.0" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="supnametext" layoutX="580.0" layoutY="86.0" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="464.0" layoutY="90.0" text="Supplier Name">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="supidtext" layoutX="162.0" layoutY="85.0" onAction="#supAction" prefHeight="25.0" prefWidth="282.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="supidtext" layoutX="162.0" layoutY="85.0" onAction="#supAction" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="75.0" layoutY="90.0" text="SupplierID">
                <font>
                   <Font name="System Bold" size="13.0" />

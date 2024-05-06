@@ -14,23 +14,23 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="83.0" prefHeight="282.0" prefWidth="977.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <TextField fx:id="eqpurtext" layoutX="586.0" layoutY="29.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="eqpurtext" layoutX="586.0" layoutY="29.0" prefHeight="25.0" prefWidth="276.0" />
             <Label layoutX="507.0" layoutY="34.0" text="Purchase">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="eqwartext" layoutX="586.0" layoutY="69.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="eqwartext" layoutX="586.0" layoutY="69.0" prefHeight="25.0" prefWidth="276.0" />
       
-            <TextField fx:id="eqidtext" layoutX="144.0" layoutY="29.0" onAction="#eqorAction" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="eqidtext" layoutX="144.0" layoutY="29.0" onAction="#eqorAction" prefHeight="25.0" prefWidth="276.0" />
       
             <Label layoutX="113.0" layoutY="34.0" text="ID">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="eqmanutext" layoutX="586.0" layoutY="115.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-            <TextField fx:id="equseridtext" layoutX="586.0" layoutY="157.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="eqmanutext" layoutX="586.0" layoutY="115.0" prefHeight="25.0" prefWidth="276.0" />
+            <TextField fx:id="equseridtext" layoutX="586.0" layoutY="157.0" prefHeight="25.0" prefWidth="276.0" />
             <Label layoutX="500.0" layoutY="74.0" prefHeight="16.0" prefWidth="89.0" text="Warranty">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -46,9 +46,9 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="eqnametext" layoutX="144.0" layoutY="69.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-            <TextField fx:id="eqmodltext" layoutX="144.0" layoutY="113.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
-            <TextField fx:id="eqcosttext" layoutX="144.0" layoutY="156.0" prefHeight="25.0" prefWidth="276.0" style="-fx-background-radius: 8;" styleClass="nav-btn" stylesheets="@../css/textfield.css" />
+            <TextField fx:id="eqnametext" layoutX="144.0" layoutY="69.0" prefHeight="25.0" prefWidth="276.0" />
+            <TextField fx:id="eqmodltext" layoutX="144.0" layoutY="113.0" prefHeight="25.0" prefWidth="276.0" />
+            <TextField fx:id="eqcosttext" layoutX="144.0" layoutY="156.0" prefHeight="25.0" prefWidth="276.0" />
             <Label layoutX="92.0" layoutY="74.0" prefHeight="16.0" prefWidth="57.0" text="Name">
                <font>
                   <Font name="System Bold" size="13.0" />

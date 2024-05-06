@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="new" pageWidth="400" pageHeight="500" columnWidth="360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="87d10e12-f435-4343-b80a-d76ea25aa662">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (16)"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="240"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="749"/>
+	<parameter name="date" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT e.name AS equipment_name,
+       med.eq_id,
+       DATE_ADD(m.date, INTERVAL 6 MONTH) AS predicted_maintenance_date
+FROM maintenance_equipment_details AS med
+JOIN maintenance AS m ON med.mm_id = m.mm_id
+JOIN equipment AS e ON med.eq_id = e.eq_id
+WHERE DATE_ADD(m.date, INTERVAL 6 MONTH) = $P{date}
+]]>
+	</queryString>
+	<field name="equipment_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="equipment_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="equipment"/>
+	</field>
+	<field name="eq_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="eq_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="eq_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="maintenance_equipment_details"/>
+	</field>
+	<field name="predicted_maintenance_date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="predicted_maintenance_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="predicted_maintenance_date"/>
+	</field>
+	<group name="equipment_name">
+		<groupExpression><![CDATA[$F{equipment_name}]]></groupExpression>
+	</group>
+	<group name="eq_id">
+		<groupExpression><![CDATA[$F{eq_id}]]></groupExpression>
+	</group>
+	<group name="predicted_maintenance_date">
+		<groupExpression><![CDATA[$F{predicted_maintenance_date}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="91" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="10" width="180" height="30" uuid="29f6090a-b473-45f6-b57f-992310a9c9fb"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[KALUBOWILA S&M]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="40" width="210" height="30" uuid="29561221-4efb-4721-b7c5-e75a686c4a5a"/>
+				<text><![CDATA[190/5,New Galle Rd,Kollupitiya,Colombo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="40" y="10" width="100" height="30" uuid="1a5570d7-64a0-4f85-bd0c-4bb2c57db35f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c47bbbc-165f-4bf9-89d4-39acc2647fbd"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Equip ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="10" width="100" height="30" uuid="d54b0949-a1f1-4dc6-90b9-6b83f83365a5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2661752-edf2-4121-931e-1e5be8d37e84"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Equip Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="10" width="100" height="30" uuid="2dc91d1a-f992-4050-a7a7-966925383f39">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c47bbbc-165f-4bf9-89d4-39acc2647fbd"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{eq_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="10" width="100" height="30" uuid="d19545a9-498e-455b-8c71-2b3de501f0c7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2661752-edf2-4121-931e-1e5be8d37e84"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{equipment_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="250" y="20" width="100" height="30" uuid="58a50e1e-919f-4ffc-ade8-839fc07bdde9"/>
+				<text><![CDATA[EquipCare Pro]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>

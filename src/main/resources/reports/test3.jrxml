@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test3" pageWidth="595" pageHeight="500" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ba35a590-cab2-4c33-889c-2d525b6b2e6c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (15)"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="237"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="752"/>
+	<parameter name="id" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    med.eq_id AS equipment_id,
+    eq.cost AS equipment_cost,
+    eq.name AS equipment_name,
+    subquery.total_maintenance_cost,
+    meq.date AS maintenance_date,
+    DATE_ADD(meq.date, INTERVAL 6 MONTH) AS predicted_maintenance_date,
+    meq.cost AS maintenance_cost,
+    eq.warranty AS warranty
+FROM 
+    maintenance_equipment_details AS med
+JOIN 
+    maintenance AS meq ON med.mm_id = meq.mm_id
+JOIN 
+    equipment AS eq ON med.eq_id = eq.eq_id
+JOIN 
+    (
+        SELECT 
+            med.eq_id,
+            SUM(meq.cost) AS total_maintenance_cost
+        FROM 
+            maintenance_equipment_details AS med
+        JOIN 
+            maintenance AS meq ON med.mm_id = meq.mm_id
+        GROUP BY 
+            med.eq_id
+    ) AS subquery ON med.eq_id = subquery.eq_id
+   WHERE
+    med.eq_id = $P{id}]]>
+	</queryString>
+	<field name="equipment_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="eq_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="equipment_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="maintenance_equipment_details"/>
+	</field>
+	<field name="equipment_cost" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cost"/>
+		<property name="com.jaspersoft.studio.field.label" value="equipment_cost"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="equipment"/>
+	</field>
+	<field name="equipment_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="equipment_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="equipment"/>
+	</field>
+	<field name="total_maintenance_cost" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="total_maintenance_cost"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_maintenance_cost"/>
+	</field>
+	<field name="maintenance_date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="date"/>
+		<property name="com.jaspersoft.studio.field.label" value="maintenance_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="maintenance"/>
+	</field>
+	<field name="predicted_maintenance_date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="predicted_maintenance_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="predicted_maintenance_date"/>
+	</field>
+	<field name="maintenance_cost" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cost"/>
+		<property name="com.jaspersoft.studio.field.label" value="maintenance_cost"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="maintenance"/>
+	</field>
+	<field name="warranty" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="warranty"/>
+		<property name="com.jaspersoft.studio.field.label" value="warranty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="equipment"/>
+	</field>
+	<group name="equipment_id">
+		<groupExpression><![CDATA[$F{equipment_id}]]></groupExpression>
+	</group>
+	<group name="equipment_cost">
+		<groupExpression><![CDATA[$F{equipment_cost}]]></groupExpression>
+	</group>
+	<group name="equipment_name">
+		<groupExpression><![CDATA[$F{equipment_name}]]></groupExpression>
+	</group>
+	<group name="total_maintenance_cost">
+		<groupExpression><![CDATA[$F{total_maintenance_cost}]]></groupExpression>
+	</group>
+	<group name="maintenance_date">
+		<groupExpression><![CDATA[$F{maintenance_date}]]></groupExpression>
+	</group>
+	<group name="predicted_maintenance_date">
+		<groupExpression><![CDATA[$F{predicted_maintenance_date}]]></groupExpression>
+	</group>
+	<group name="maintenance_cost">
+		<groupExpression><![CDATA[$F{maintenance_cost}]]></groupExpression>
+	</group>
+	<group name="warranty">
+		<groupExpression><![CDATA[$F{warranty}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="135" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="10" width="240" height="30" uuid="329ac78d-5152-4c49-a179-4f9d6958deb4"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[KALUBOWILA S&M]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="414" y="50" width="100" height="30" uuid="690b3f77-7569-4d50-8760-e7518c06c21b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="167" y="40" width="227" height="30" uuid="8ac92dfe-915b-4459-9be9-d3186de23e02"/>
+				<text><![CDATA[190/5,New Galle Rd,Kollupitiya,Colombo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="122">
+			<textField>
+				<reportElement x="115" y="60" width="100" height="30" uuid="cf5af63a-be8a-4a4c-8c11-a430117b9828"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{warranty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="60" width="100" height="30" uuid="a0604215-5f11-4716-9002-a88b42937c95"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_maintenance_cost}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="10" width="100" height="30" uuid="9e746230-67f2-40ac-9f3f-f77bb7ef17fb"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{equipment_cost}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="48" y="10" width="69" height="30" uuid="316135e5-222b-4562-a8e0-c6fa58808da3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Eq Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="60" width="67" height="30" uuid="49e1a9ef-52b0-414c-9a75-93881f6a6170"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Warranty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="10" width="91" height="30" uuid="06668e45-b565-4069-a097-e7f32c954b02"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Equip Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="60" width="144" height="30" uuid="58325224-43b2-42f1-9f7c-25dae47fac19"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Total Cost Maintain]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="117" y="10" width="100" height="30" uuid="c4e5b65d-e6cd-4438-a002-5c6985acdc90">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b7a27bd-78bd-4432-a830-6a16d96914d7"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{equipment_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="380" y="0" width="146" height="30" uuid="9a0f07b9-1196-4767-94b0-0dc2b1fa92b2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="42710318-e9e2-48a1-a6e2-367bffd1394a"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Available Maintain Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="0" width="120" height="30" uuid="30769974-bce5-4307-8836-ccef98cf408d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="94ec6a5e-4055-464c-a09a-f80a3e28d65a"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Maintenance Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="100" height="30" uuid="16b10f9b-f2d3-4eba-8e67-2af4dd13c57f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ad8ba6a-5403-42da-a5a8-c5568c8ac315"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Maintain Date]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="390" y="0" width="100" height="30" uuid="c20e1bd3-deac-4be4-b36e-8f0e8366b4d7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="42710318-e9e2-48a1-a6e2-367bffd1394a"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{predicted_maintenance_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="100" height="30" uuid="359f7d77-4688-4c4f-856d-ccebac7919ac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="94ec6a5e-4055-464c-a09a-f80a3e28d65a"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{maintenance_cost}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="100" height="30" uuid="6850eba2-ac5b-4b9a-8d57-346517b79352">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ad8ba6a-5403-42da-a5a8-c5568c8ac315"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{maintenance_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="430" y="20" width="100" height="30" uuid="fe1265d1-d2ec-4d94-89f9-7fceb74d8143"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[EquipCare Pro]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
