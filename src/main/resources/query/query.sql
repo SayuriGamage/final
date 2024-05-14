@@ -1,3 +1,5 @@
+DROP DATABASE gdse69;
+
 create database gdse69;
 
 use gdse69;
@@ -5,7 +7,8 @@ use gdse69;
 
 CREATE TABLE supplier (
                           sup_id VARCHAR(100) PRIMARY KEY,
-                          name VARCHAR(100)
+                          name VARCHAR(100),
+                          tel VARCHAR(100)
 );
 
 CREATE TABLE orders (
@@ -15,7 +18,6 @@ CREATE TABLE orders (
                         FOREIGN KEY (sup_id) REFERENCES supplier(sup_id)
 );
 
-
 CREATE TABLE payment (
                          pay_id VARCHAR(100) PRIMARY KEY,
                          or_id VARCHAR(100),
@@ -24,7 +26,6 @@ CREATE TABLE payment (
                          FOREIGN KEY (or_id) REFERENCES orders(or_id)
 
 );
-
 
 CREATE TABLE user (
                       user_id VARCHAR(100) PRIMARY KEY,
@@ -100,27 +101,27 @@ CREATE TABLE order_details (
 
 
 -- Generate 20 values for supplier table
-INSERT INTO supplier (sup_id, name) VALUES
-                                        ('SUP001', 'Supplier 1'),
-                                        ('SUP002', 'Supplier 2'),
-                                        ('SUP003', 'Supplier 3'),
-                                        ('SUP004', 'Supplier 4'),
-                                        ('SUP005', 'Supplier 5'),
-                                        ('SUP006', 'Supplier 6'),
-                                        ('SUP007', 'Supplier 7'),
-                                        ('SUP008', 'Supplier 8'),
-                                        ('SUP009', 'Supplier 9'),
-                                        ('SUP010', 'Supplier 10'),
-                                        ('SUP011', 'Supplier 11'),
-                                        ('SUP012', 'Supplier 12'),
-                                        ('SUP013', 'Supplier 13'),
-                                        ('SUP014', 'Supplier 14'),
-                                        ('SUP015', 'Supplier 15'),
-                                        ('SUP016', 'Supplier 16'),
-                                        ('SUP017', 'Supplier 17'),
-                                        ('SUP018', 'Supplier 18'),
-                                        ('SUP019', 'Supplier 19'),
-                                        ('SUP020', 'Supplier 20');
+INSERT INTO supplier (sup_id, name,tel) VALUES
+                                        ('SUP001', 'Supplier 1','0714561111'),
+                                        ('SUP002', 'Supplier 2','0714562222'),
+                                        ('SUP003', 'Supplier 3','0714563333'),
+                                        ('SUP004', 'Supplier 4','0714564444'),
+                                        ('SUP005', 'Supplier 5','0714565555'),
+                                        ('SUP006', 'Supplier 6','0714566666'),
+                                        ('SUP007', 'Supplier 7','0714567777'),
+                                        ('SUP008', 'Supplier 8','0714568888'),
+                                        ('SUP009', 'Supplier 9','0714569999'),
+                                        ('SUP010', 'Supplier 10','0714560000'),
+                                        ('SUP011', 'Supplier 11','07123231111'),
+                                        ('SUP012', 'Supplier 12','07123232222'),
+                                        ('SUP013', 'Supplier 13','07123233333'),
+                                        ('SUP014', 'Supplier 14','07123234444'),
+                                        ('SUP015', 'Supplier 15','07123235555'),
+                                        ('SUP016', 'Supplier 16','07123236666'),
+                                        ('SUP017', 'Supplier 17','07123237777'),
+                                        ('SUP018', 'Supplier 18','07123238888'),
+                                        ('SUP019', 'Supplier 19','07123239999'),
+                                        ('SUP020', 'Supplier 20','07123230000');
 
 -- Generate 20 values for orders table
 INSERT INTO orders (or_id, order_date, sup_id) VALUES
@@ -147,26 +148,12 @@ INSERT INTO orders (or_id, order_date, sup_id) VALUES
 
 -- Generate 20 values for payment table
 INSERT INTO payment (pay_id, or_id, date, amount) VALUES
-                                                      ('PAY001', 'ORD001', '2024-05-03', 100.50),
-                                                      ('PAY002', 'ORD002', '2024-05-04', 150.75),
-                                                      ('PAY003', 'ORD003', '2024-05-05', 200.25),
-                                                      ('PAY004', 'ORD004', '2024-05-06', 250.50),
-                                                      ('PAY005', 'ORD005', '2024-05-07', 300.75),
-                                                      ('PAY006', 'ORD006', '2024-05-08', 350.25),
-                                                      ('PAY007', 'ORD007', '2024-05-09', 400.50),
-                                                      ('PAY008', 'ORD008', '2024-05-10', 450.75),
-                                                      ('PAY009', 'ORD009', '2024-05-11', 500.25),
-                                                      ('PAY010', 'ORD010', '2024-05-12', 550.50),
-                                                      ('PAY011', 'ORD011', '2024-05-13', 600.75),
-                                                      ('PAY012', 'ORD012', '2024-05-14', 650.25),
-                                                      ('PAY013', 'ORD013', '2024-05-15', 700.50),
-                                                      ('PAY014', 'ORD014', '2024-05-16', 750.75),
-                                                      ('PAY015', 'ORD015', '2024-05-17', 800.25),
-                                                      ('PAY016', 'ORD016', '2024-05-18', 850.50),
-                                                      ('PAY017', 'ORD017', '2024-05-19', 900.75),
-                                                      ('PAY018', 'ORD018', '2024-05-20', 950.25),
-                                                      ('PAY019', 'ORD019', '2024-05-21', 1000.50),
-                                                      ('PAY020', 'ORD020', '2024-05-22', 1050.75);
+                                                      ('PAY001', 'ORD001', '2024-04-25', 500.00),
+                                                      ('PAY002', 'ORD002', '2024-04-26', 750.00),
+                                                      ('PAY003', 'ORD003', '2024-04-27', 600.00),
+                                                      ('PAY004', 'ORD004', '2024-04-28', 480.00),
+                                                      ('PAY005', 'ORD005', '2024-04-29', 720.00);
+
 
 -- Generate 20 values for user table
 INSERT INTO user (user_id, name, password) VALUES
@@ -193,146 +180,136 @@ INSERT INTO user (user_id, name, password) VALUES
 
 -- Generate 20 values for equipment table
 INSERT INTO equipment (eq_id, name, model, cost, purchase, warranty, manufacture, user_id) VALUES
-                                                                                               ('EQ001', 'Equipment 1', 'Model 1', 500.00, '2024-05-01', '2025-05-01', 'Manufacturer 1', 'USER001'),
-                                                                                               ('EQ002', 'Equipment 2', 'Model 2', 750.00, '2024-05-02', '2025-05-01','Manufacturer 2', 'USER002'),
-                                                                                               ('EQ003', 'Equipment 3', 'Model 3', 1000.00, '2024-05-03', '2025-05-01','Manufacturer 3', 'USER003'),
-                                                                                               ('EQ004', 'Equipment 4', 'Model 4', 1250.00, '2024-05-04', '2028-05-04','Manufacturer 4', 'USER004'),
-                                                                                               ('EQ005', 'Equipment 5', 'Model 5', 1500.00, '2024-05-05', '2028-05-04', 'Manufacturer 5', 'USER005'),
-                                                                                               ('EQ006', 'Equipment 6', 'Model 6', 1750.00, '2024-05-06', '2028-05-04', 'Manufacturer 6', 'USER006'),
-                                                                                               ('EQ007', 'Equipment 7', 'Model 7', 2000.00, '2024-05-07', '2025-05-01',  'Manufacturer 7', 'USER007'),
-                                                                                               ('EQ008', 'Equipment 8', 'Model 8', 2250.00, '2024-05-08', '2028-05-04', 'Manufacturer 8', 'USER008'),
-                                                                                               ('EQ009', 'Equipment 9', 'Model 9', 2500.00, '2024-05-09', '2033-05-09','Manufacturer 9', 'USER009'),
-                                                                                               ('EQ010', 'Equipment 10', 'Model 10', 2750.00, '2024-05-10', '2033-05-09', 'Manufacturer 10', 'USER010'),
-                                                                                               ('EQ011', 'Equipment 11', 'Model 11', 3000.00, '2024-05-11', '2033-05-09','Manufacturer 11', 'USER011'),
-                                                                                               ('EQ012', 'Equipment 12', 'Model 12', 3250.00, '2024-05-12', '2033-05-09','Manufacturer 12', 'USER012'),
-                                                                                               ('EQ013', 'Equipment 13', 'Model 13', 3500.00, '2024-05-13', '2036-05-13','Manufacturer 13', 'USER013'),
-                                                                                               ('EQ014', 'Equipment 14', 'Model 14', 3750.00, '2024-05-14', '2036-05-13', 'Manufacturer 14', 'USER014'),
-                                                                                               ('EQ015', 'Equipment 15', 'Model 15', 4000.00, '2024-05-15', '2036-05-13', 'Manufacturer 15', 'USER015'),
-                                                                                               ('EQ016', 'Equipment 16', 'Model 16', 4250.00, '2024-05-16', '2036-05-13','Manufacturer 16', 'USER016'),
-                                                                                               ('EQ017', 'Equipment 17', 'Model 17', 4500.00, '2024-05-17', '2041-05-17','Manufacturer 17', 'USER017'),
-                                                                                               ('EQ018', 'Equipment 18', 'Model 18', 4750.00, '2024-05-18', '2041-05-18', 'Manufacturer 18', 'USER018'),
-                                                                                               ('EQ019', 'Equipment 19', 'Model 19', 5000.00, '2024-05-19', '2041-05-18','Manufacturer 19', 'USER019'),
-                                                                                               ('EQ020', 'Equipment 20', 'Model 20', 5250.00, '2024-05-20', '2041-05-18','Manufacturer 20', 'USER020');
+                                                                                               ('EQP001', 'Digital Thermometer', 'DT-100', 45.99, '2022-05-01', '2023-11-08', 'MedTech Solutions', 'USER001'),
+                                                                                               ('EQP002', 'Patient Monitor', 'PM-2000', 1500.00, '2022-05-02', '2023-11-08', 'VitalSign Inc.', 'USER002'),
+                                                                                               ('EQP003', 'Nebulizer Machine', 'NebuCare Pro', 299.99, '2021-05-03', '2023-05-08', 'RespireTech', 'USER003'),
+                                                                                               ('EQP004', 'Portable Oxygen Concentrator', 'OxyGenius Plus', 2000.00, '2023-05-08', '2023-11-08', 'OxyLife Technologies', 'USER004'),
+                                                                                               ('EQP005', 'Wheelchair', 'EasyGlide 2000', 899.99, '2021-05-05', '2023-11-09', 'Mobility Solutions Inc.', 'USER005'),
+                                                                                               ('EQP006', 'Blood Pressure Monitor', 'BPX-500', 89.99, '2022-05-06', '2023-11-09', 'CardioTech', 'USER006'),
+                                                                                               ('EQP007', 'Electrocardiogram (ECG) Machine', 'ECG-1000', 3500.00, '2022-05-09', '2023-11-08', 'HeartCare Solutions', 'USER007'),
+                                                                                               ('EQP008', 'Portable Ultrasound Scanner', 'UltraScan Go', 5000.00, '2023-05-09', '2023-11-09', 'Imaging Technologies Inc.', 'USER008'),
+                                                                                               ('EQP009', 'Infusion Pump', 'InfuMax 3000', 2500.00, '2024-05-09', '2023-11-09', 'MediPump Corporation', 'USER009'),
+                                                                                               ('EQP010', 'Digital X-ray Machine', 'X-RayMaster 2025', 10000.00, '2023-05-10', '2023-11-09', 'MediImaging Solutions', 'USER010'),
+                                                                                               ('EQP011', 'Surgical Robot', 'SurgiTech Pro', 150000.00, '2024-05-11', '2023-11-09', 'RoboSurgery Inc.', 'USER011'),
+                                                                                               ('EQP012', 'Hearing Aid', 'HearClear 300', 799.99, '2024-05-12', '2023-05-07', 'AudioTech Innovations', 'USER012'),
+                                                                                               ('EQP013', 'MRI Machine', 'MRI-Xpert 5000', 500000.00, '2024-05-13', '2023-11-10', 'MediScan Technologies', 'USER013'),
+                                                                                               ('EQP014', 'Smart Inhaler', 'Inhalix Smart', 149.99, '2024-05-14', '2023-11-10', 'BreatheWell Inc.', 'USER014'),
+                                                                                               ('EQP015', 'Robotic Exoskeleton', 'ExoGrip Pro', 25000.00, '2024-05-15', '2023-11-10', 'BioMotion Robotics', 'USER015'),
+                                                                                               ('EQP016', 'Fetal Monitor', 'FetalCare Deluxe', 1200.00, '2024-05-16', '2023-11-09', 'NeoNatal Solutions', 'USER016'),
+                                                                                               ('EQP017', 'Patient Lift', 'LiftEase 1000', 1499.99, '2024-05-17', '2023-11-09', 'AssistiveTech Inc.', 'USER017'),
+                                                                                               ('EQP018', 'Ophthalmoscope', 'EyeTech 360', 399.99, '2024-05-18', '2023-11-09', 'VisionCare Systems', 'USER018'),
+                                                                                               ('EQP019', 'Digital Blood Glucose Meter', 'GluCheck Pro', 79.99, '2023-05-09', '2024-11-18', 'DiabTech Innovations', 'USER019'),
+                                                                                               ('EQP020', 'Pulse Oximeter', 'OxiSense Pro', 59.99, '2024-05-20', '2023-11-08', 'VitalHealth Technologies', 'USER020');
 
 INSERT INTO employee (emp_id, name, job_title, tel) VALUES
-                                                        ('EMP001', 'Employee 1', 'Job 1', '1234567890'),
-                                                        ('EMP002', 'Employee 2', 'Job 2', '0987654321'),
-                                                        ('EMP003', 'Employee 3', 'Job 3', '9876543210'),
-                                                        ('EMP004', 'Employee 4', 'Job 4', '0123456789'),
-                                                        ('EMP005', 'Employee 5', 'Job 5', '9876543210'),
-                                                        ('EMP006', 'Employee 6', 'Job 6', '0123456789'),
-                                                        ('EMP007', 'Employee 7', 'Job 7', '1234567890'),
-                                                        ('EMP008', 'Employee 8', 'Job 8', '0987654321'),
-                                                        ('EMP009', 'Employee 9', 'Job 9', '9876543210'),
-                                                        ('EMP010', 'Employee 10', 'Job 10', '0123456789'),
-                                                        ('EMP011', 'Employee 11', 'Job 11', '1234567890'),
-                                                        ('EMP012', 'Employee 12', 'Job 12', '0987654321'),
-                                                        ('EMP013', 'Employee 13', 'Job 13', '9876543210'),
-                                                        ('EMP014', 'Employee 14', 'Job 14', '0123456789'),
-                                                        ('EMP015', 'Employee 15', 'Job 15', '1234567890'),
-                                                        ('EMP016', 'Employee 16', 'Job 16', '0987654321'),
-                                                        ('EMP017', 'Employee 17', 'Job 17', '9876543210'),
-                                                        ('EMP018', 'Employee 18', 'Job 18', '0123456789'),
-                                                        ('EMP019', 'Employee 19', 'Job 19', '1234567890'),
-                                                        ('EMP020', 'Employee 20', 'Job 20', '0987654321');
+                                                        ('EMP001', 'Ranil', 'Technical Officer', '0771234567'),
+                                                        ('EMP002', 'Nimal', 'Laborer', '0719876543'),
+                                                        ('EMP003', 'Samantha', 'Technician', '0763456789'),
+                                                        ('EMP004', 'Kumari', 'Technical Officer', '0752345678'),
+                                                        ('EMP005', 'Sunil', 'Laborer', '0708765432'),
+                                                        ('EMP006', 'Kamala', 'Technician', '0724567890'),
+                                                        ('EMP007', 'Ranjith', 'Technical Officer', '0789876543'),
+                                                        ('EMP008', 'Deepani', 'Laborer', '0776543210'),
+                                                        ('EMP009', 'Suresh', 'Technician', '0712345678'),
+                                                        ('EMP010', 'Chaminda', 'Technical Officer', '0768765432'),
+                                                        ('EMP011', 'Malani', 'Laborer', '0703456789'),
+                                                        ('EMP012', 'Upul', 'Technician', '0729876543'),
+                                                        ('EMP013', 'Chathurika', 'Technical Officer', '0782345678'),
+                                                        ('EMP014', 'Nirosha', 'Laborer', '0778765432'),
+                                                        ('EMP015', 'Ajitha', 'Technician', '0713456789'),
+                                                        ('EMP016', 'Lasantha', 'Technical Officer', '0769876543'),
+                                                        ('EMP017', 'Kamal', 'Laborer', '0702345678'),
+                                                        ('EMP018', 'Anuradha', 'Technician', '0728765432'),
+                                                        ('EMP019', 'Nadeesha', 'Technical Officer', '0783456789'),
+                                                        ('EMP020', 'Kasun', 'Laborer', '0776543210');
 
--- Generate 20 values for maintenance table
 INSERT INTO maintenance (mm_id, date, description, cost, emp_id) VALUES
-                                                                     ('MAINT001', '2025-05-01', 'Maintenance 1', 50.00, 'EMP001'),
-                                                                     ('MAINT002', '2025-05-01', 'Maintenance 2', 75.00, 'EMP002'),
-                                                                     ('MAINT003', '2025-05-01', 'Maintenance 3', 100.00, 'EMP003'),
-                                                                     ('MAINT004', '2028-05-04', 'Maintenance 4', 125.00, 'EMP004'),
-                                                                     ('MAINT005', '2028-05-04', 'Maintenance 5', 150.00, 'EMP005'),
-                                                                     ('MAINT006', '2028-05-05', 'Maintenance 6', 175.00, 'EMP006'),
-                                                                     ('MAINT007', '2025-05-01', 'Maintenance 7', 200.00, 'EMP007'),
-                                                                     ('MAINT008', '2028-05-04', 'Maintenance 8', 225.00, 'EMP008'),
-                                                                     ('MAINT009', '2033-05-09', 'Maintenance 9', 250.00, 'EMP009'),
-                                                                     ('MAINT010', '2033-05-09', 'Maintenance 10', 275.00, 'EMP010'),
-                                                                     ('MAINT011', '2033-05-09', 'Maintenance 11', 300.00, 'EMP011'),
-                                                                     ('MAINT012', '2033-05-09', 'Maintenance 12', 325.00, 'EMP012'),
-                                                                     ('MAINT013', '2036-05-13', 'Maintenance 13', 350.00, 'EMP013'),
-                                                                     ('MAINT014', '2036-05-13', 'Maintenance 14', 375.00, 'EMP014'),
-                                                                     ('MAINT015', '2035-05-15', 'Maintenance 15', 400.00, 'EMP015'),
-                                                                     ('MAINT016', '2036-05-13', 'Maintenance 16', 425.00, 'EMP016'),
-                                                                     ('MAINT017', '2041-05-18', 'Maintenance 17', 450.00, 'EMP017'),
-                                                                     ('MAINT018', '2041-05-18', 'Maintenance 18', 475.00, 'EMP018'),
-                                                                     ('MAINT019', '2041-05-18', 'Maintenance 19', 500.00, 'EMP019'),
-                                                                     ('MAINT020', '2041-05-20', 'Maintenance 20', 525.00, 'EMP020'),
-                                                                     ('MAINT021', '2025-11-01', 'Maintenance 21', 525.00, 'EMP001'),
-                                                                     ('MAINT022', '2026-05-01', 'Maintenance 22', 200.00, 'EMP001'),
-                                                                     ('MAINT023', '2025-11-01', 'Maintenance 23', 300.00, 'EMP002');
+                                                                     ('MAI001', '2023-11-08', 'Engine Maintenance', 50.00, 'EMP001'),
+                                                                     ('MAI002', '2023-11-08', 'Transmission Service', 75.00, 'EMP002'),
+                                                                     ('MAI003', '2023-11-08', 'Electrical System Check', 100.00, 'EMP003'),
+                                                                     ('MAI004', '2023-11-08', 'Brake Inspection', 125.00, 'EMP004'),
+                                                                     ('MAI005', '2023-11-09', 'Oil Change', 150.00, 'EMP005'),
+                                                                     ('MAI006', '2023-11-09', 'Coolant Flush', 175.00, 'EMP006'),
+                                                                     ('MAI007', '2023-11-09', 'Suspension Alignment', 200.00, 'EMP007'),
+                                                                     ('MAI008', '2023-11-09', 'Tire Rotation', 225.00, 'EMP008'),
+                                                                     ('MAI009', '2023-11-09', 'Battery Replacement', 250.00, 'EMP009'),
+                                                                     ('MAI010', '2023-11-09', 'Air Filter Replacement', 275.00, 'EMP010'),
+                                                                     ('MAI011', '2023-11-09', 'Brake Pad Replacement', 300.00, 'EMP011'),
+                                                                     ('MAI012', '2023-11-09', 'Wheel Bearing Replacement', 325.00, 'EMP012'),
+                                                                     ('MAI013', '2023-11-10', 'Fuel System Cleaning', 350.00, 'EMP013'),
+                                                                     ('MAI014', '2023-11-10', 'Exhaust System Repair', 375.00, 'EMP014'),
+                                                                     ('MAI015', '2023-11-10', 'Ignition System Tune-Up', 400.00, 'EMP015'),
+                                                                     ('MAI016', '2023-11-10', 'Air Conditioning Service', 425.00, 'EMP016'),
+                                                                     ('MAI017', '2023-11-10', 'Engine Rebuild', 450.00, 'EMP017'),
+                                                                     ('MAI018', '2023-11-10', 'Electrical Wiring Replacement', 475.00, 'EMP018'),
+                                                                     ('MAI019', '2023-11-10', 'Steering System Repair', 500.00, 'EMP019'),
+                                                                     ('MAI020', '2023-11-10', 'Transmission Overhaul', 525.00, 'EMP020');
 
--- Generate 20 values for spareparts table
 INSERT INTO spareparts (sp_id, name, manufacture, cost, qty, purchase, mm_id) VALUES
-                                                                                  ('SP001', 'Sparepart 1', 'Manufacturer 1', 10.00, 100, '2024-04-30', 'MAINT001'),
-                                                                                  ('SP002', 'Sparepart 2', 'Manufacturer 2', 15.00, 150, '2024-05-01', 'MAINT002'),
-                                                                                  ('SP003', 'Sparepart 3', 'Manufacturer 3', 20.00, 200, '2024-05-02', 'MAINT003'),
-                                                                                  ('SP004', 'Sparepart 4', 'Manufacturer 4', 25.00, 250, '2024-05-03', 'MAINT004'),
-                                                                                  ('SP005', 'Sparepart 5', 'Manufacturer 5', 30.00, 300, '2024-05-04', 'MAINT005'),
-                                                                                  ('SP006', 'Sparepart 6', 'Manufacturer 6', 35.00, 350, '2024-05-05', 'MAINT006'),
-                                                                                  ('SP007', 'Sparepart 7', 'Manufacturer 7', 40.00, 400, '2024-05-06', 'MAINT007'),
-                                                                                  ('SP008', 'Sparepart 8', 'Manufacturer 8', 45.00, 450, '2024-05-07', 'MAINT008'),
-                                                                                  ('SP009', 'Sparepart 9', 'Manufacturer 9', 50.00, 500, '2024-05-08', 'MAINT009'),
-                                                                                  ('SP010', 'Sparepart 10', 'Manufacturer 10', 55.00, 550, '2024-05-09', 'MAINT010'),
-                                                                                  ('SP011', 'Sparepart 11', 'Manufacturer 11', 60.00, 600, '2024-05-10', 'MAINT011'),
-                                                                                  ('SP012', 'Sparepart 12', 'Manufacturer 12', 65.00, 650, '2024-05-11', 'MAINT012'),
-                                                                                  ('SP013', 'Sparepart 13', 'Manufacturer 13', 70.00, 700, '2024-05-12', 'MAINT013'),
-                                                                                  ('SP014', 'Sparepart 14', 'Manufacturer 14', 75.00, 750, '2024-05-13', 'MAINT014'),
-                                                                                  ('SP015', 'Sparepart 15', 'Manufacturer 15', 80.00, 800, '2024-05-14', 'MAINT015'),
-                                                                                  ('SP016', 'Sparepart 16', 'Manufacturer 16', 85.00, 850, '2024-05-15', 'MAINT016'),
-                                                                                  ('SP017', 'Sparepart 17', 'Manufacturer 17', 90.00, 900, '2024-05-16', 'MAINT017'),
-                                                                                  ('SP018', 'Sparepart 18', 'Manufacturer 18', 95.00, 950, '2024-05-17', 'MAINT018'),
-                                                                                  ('SP019', 'Sparepart 19', 'Manufacturer 19', 100.00, 1000, '2024-05-18', 'MAINT019'),
-                                                                                  ('SP020', 'Sparepart 20', 'Manufacturer 20', 105.00, 1050, '2024-05-19', 'MAINT020');
+                                                                                  ('SP001', 'Oil Filter', 'ABC Auto Parts', 10.00, 100, '2024-04-30', 'MAI001'),
+                                                                                  ('SP002', 'Air Filter', 'XYZ Motors', 15.00, 150, '2024-05-01', 'MAI002'),
+                                                                                  ('SP003', 'Brake Pads', 'SuperBrakes Inc.', 20.00, 200, '2024-05-02', 'MAI003'),
+                                                                                  ('SP004', 'Spark Plugs', 'Spark Plug Co.', 25.00, 250, '2024-05-03', 'MAI004'),
+                                                                                  ('SP005', 'Engine Oil', 'Engine Oil Ltd.', 30.00, 300, '2024-05-04', 'MAI005'),
+                                                                                  ('SP006', 'Transmission Fluid', 'Transmission Solutions', 35.00, 350, '2024-05-05', 'MAI006'),
+                                                                                  ('SP007', 'Brake Fluid', 'Brake Fluids Inc.', 40.00, 400, '2024-05-06', 'MAI007'),
+                                                                                  ('SP008', 'Coolant', 'Coolant Systems Ltd.', 45.00, 450, '2024-05-07', 'MAI008'),
+                                                                                  ('SP009', 'Battery', 'Power Batteries', 50.00, 500, '2024-05-08', 'MAI009'),
+                                                                                  ('SP010', 'Wiper Blades', 'Wiper Solutions', 55.00, 550, '2024-05-09', 'MAI010'),
+                                                                                  ('SP011', 'Brake Rotors', 'Brake Rotor Co.', 60.00, 600, '2024-05-10', 'MAI011'),
+                                                                                  ('SP012', 'Tires', 'Tire World', 65.00, 650, '2024-05-11', 'MAI012'),
+                                                                                  ('SP013', 'Alternator', 'Alternator Works', 70.00, 700, '2024-05-12', 'MAI013'),
+                                                                                  ('SP014', 'Starter Motor', 'Starter Motor Co.', 75.00, 750, '2024-05-13', 'MAI014'),
+                                                                                  ('SP015', 'Fuel Pump', 'Fuel Pump Ltd.', 80.00, 800, '2024-05-14', 'MAI015'),
+                                                                                  ('SP016', 'Radiator', 'Radiator Solutions', 85.00, 850, '2024-05-15', 'MAI016'),
+                                                                                  ('SP017', 'Ignition Coil', 'Ignition Coils Inc.', 90.00, 900, '2024-05-16', 'MAI017'),
+                                                                                  ('SP018', 'Oxygen Sensor', 'Oxygen Sensor Corp.', 95.00, 950, '2024-05-17', 'MAI018'),
+                                                                                  ('SP019', 'Thermostat', 'Thermostat Works', 100.00, 1000, '2024-05-18', 'MAI019'),
+                                                                                  ('SP020', 'Cabin Air Filter', 'Air Quality Filters', 105.00, 1050, '2024-05-19', 'MAI020');
 
--- Generate 20 values for condemn table
 INSERT INTO condemn (c_id, details, date, mm_id) VALUES
-                                                     ('COND001', 'Details 1', '2024-05-01', 'MAINT001'),
-                                                     ('COND002', 'Details 2', '2024-05-02', 'MAINT002'),
-                                                     ('COND003', 'Details 3', '2024-05-03', 'MAINT003'),
-                                                     ('COND004', 'Details 4', '2024-05-04', 'MAINT004'),
-                                                     ('COND005', 'Details 5', '2024-05-05', 'MAINT005'),
-                                                     ('COND006', 'Details 6', '2024-05-06', 'MAINT006'),
-                                                     ('COND007', 'Details 7', '2024-05-07', 'MAINT007'),
-                                                     ('COND008', 'Details 8', '2024-05-08', 'MAINT008'),
-                                                     ('COND009', 'Details 9', '2024-05-09', 'MAINT009'),
-                                                     ('COND010', 'Details 10', '2024-05-10', 'MAINT010'),
-                                                     ('COND011', 'Details 11', '2024-05-11', 'MAINT011'),
-                                                     ('COND012', 'Details 12', '2024-05-12', 'MAINT012'),
-                                                     ('COND013', 'Details 13', '2024-05-13', 'MAINT013'),
-                                                     ('COND014', 'Details 14', '2024-05-14', 'MAINT014'),
-                                                     ('COND015', 'Details 15', '2024-05-15', 'MAINT015'),
-                                                     ('COND016', 'Details 16', '2024-05-16', 'MAINT016'),
-                                                     ('COND017', 'Details 17', '2024-05-17', 'MAINT017'),
-                                                     ('COND018', 'Details 18', '2024-05-18', 'MAINT018'),
-                                                     ('COND019', 'Details 19', '2024-05-19', 'MAINT019'),
-                                                     ('COND020', 'Details 20', '2024-05-20', 'MAINT020');
+                                                     ('CON001', 'Worn out and unusable', '2024-05-01', 'MAI001'),
+                                                     ('CON002', 'Corroded beyond repair', '2024-05-02', 'MAI002'),
+                                                     ('CON003', 'Faulty electrical components', '2024-05-03', 'MAI003'),
+                                                     ('CON004', 'Excessive wear and tear', '2024-05-04', 'MAI004'),
+                                                     ('CON005', 'Broken beyond repair', '2024-05-05', 'MAI005'),
+                                                     ('CON006', 'Leaking fluids and damaged internals', '2024-05-06', 'MAI006'),
+                                                     ('CON007', 'Damaged due to overheating', '2024-05-07', 'MAI007'),
+                                                     ('CON008', 'Severe structural damage', '2024-05-08', 'MAI008'),
+                                                     ('CON009', 'Excessive vibration and noise', '2024-05-09', 'MAI009'),
+                                                     ('CON010', 'Failure to meet safety standards', '2024-05-10', 'MAI010'),
+                                                     ('CON011', 'Excessive rust and corrosion', '2024-05-11', 'MAI011'),
+                                                     ('CON012', 'Physical damage beyond repair', '2024-05-12', 'MAI012'),
+                                                     ('CON013', 'Software malfunction', '2024-05-13', 'MAI013'),
+                                                     ('CON014', 'Exceeds operational limits', '2024-05-14', 'MAI014'),
+                                                     ('CON015', 'Obsolete and incompatible ', '2024-05-15', 'MAI015'),
+                                                     ('CON016', 'Environmental damage', '2024-05-16', 'MAI016'),
+                                                     ('CON017', 'Severe contamination', '2024-05-17', 'MAI017'),
+                                                     ('CON018', 'Insufficient performance', '2024-05-18', 'MAI018'),
+                                                     ('CON019', 'Excessive power consumption', '2024-05-19', 'MAI019'),
+                                                     ('CON020', 'Component failure', '2024-05-20', 'MAI020');
 
--- Generate 20 values for maintenance_equipment_details table
 INSERT INTO maintenance_equipment_details (type, mm_id, eq_id) VALUES
-                                                                   ('Type 1', 'MAINT001', 'EQ001'),
-                                                                   ('Type 2', 'MAINT002', 'EQ002'),
-                                                                   ('Type 3', 'MAINT003', 'EQ003'),
-                                                                   ('Type 4', 'MAINT004', 'EQ004'),
-                                                                   ('Type 5', 'MAINT005', 'EQ005'),
-                                                                   ('Type 6', 'MAINT006', 'EQ006'),
-                                                                   ('Type 7', 'MAINT007', 'EQ007'),
-                                                                   ('Type 8', 'MAINT008', 'EQ008'),
-                                                                   ('Type 9', 'MAINT009', 'EQ009'),
-                                                                   ('Type 10', 'MAINT010', 'EQ010'),
-                                                                   ('Type 11', 'MAINT011', 'EQ011'),
-                                                                   ('Type 12', 'MAINT012', 'EQ012'),
-                                                                   ('Type 13', 'MAINT013', 'EQ013'),
-                                                                   ('Type 14', 'MAINT014', 'EQ014'),
-                                                                   ('Type 15', 'MAINT015', 'EQ015'),
-                                                                   ('Type 16', 'MAINT016', 'EQ016'),
-                                                                   ('Type 17', 'MAINT017', 'EQ017'),
-                                                                   ('Type 18', 'MAINT018', 'EQ018'),
-                                                                   ('Type 19', 'MAINT019', 'EQ019'),
-                                                                   ('Type 20', 'MAINT020', 'EQ020'),
-                                                                   ('Type 21', 'MAINT021', 'EQ001'),
-                                                                   ('Type 22', 'MAINT022', 'EQ001'),
-                                                                   ('Type 23', 'MAINT023', 'EQ002');
+                                                                   ('Type 1', 'MAI001', 'EQP001'),
+                                                                   ('Type 2', 'MAI002', 'EQP002'),
+                                                                   ('Type 3', 'MAI003', 'EQP003'),
+                                                                   ('Type 4', 'MAI004', 'EQP004'),
+                                                                   ('Type 5', 'MAI005', 'EQP005'),
+                                                                   ('Type 6', 'MAI006', 'EQP006'),
+                                                                   ('Type 7', 'MAI007', 'EQP007'),
+                                                                   ('Type 8', 'MAI008', 'EQP008'),
+                                                                   ('Type 9', 'MAI009', 'EQP009'),
+                                                                   ('Type 10', 'MAI010', 'EQP010'),
+                                                                   ('Type 11', 'MAI011', 'EQP011'),
+                                                                   ('Type 12', 'MAI012', 'EQP012'),
+                                                                   ('Type 13', 'MAI013', 'EQP013'),
+                                                                   ('Type 14', 'MAI014', 'EQP014'),
+                                                                   ('Type 15', 'MAI015', 'EQP015'),
+                                                                   ('Type 16', 'MAI016', 'EQP016'),
+                                                                   ('Type 17', 'MAI017', 'EQP017'),
+                                                                   ('Type 18', 'MAI018', 'EQP018'),
+                                                                   ('Type 19', 'MAI019', 'EQP019'),
+                                                                   ('Type 20', 'MAI020', 'EQP020');
 
 
 

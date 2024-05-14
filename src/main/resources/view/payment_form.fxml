@@ -6,34 +6,32 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
+<AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
    <children>
-      <AnchorPane layoutX="11.0" layoutY="88.0" prefHeight="253.0" prefWidth="971.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
+      <AnchorPane layoutX="11.0" layoutY="63.0" prefHeight="253.0" prefWidth="971.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <Button layoutX="322.0" layoutY="181.0" mnemonicParsing="false" onAction="#updatePaymentAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="UPDATE" textFill="WHITE">
+            <Button layoutX="322.0" layoutY="181.0" mnemonicParsing="false" onAction="#updatePaymentAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #874CCCFF;" text="UPDATE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="763.0" layoutY="182.0" mnemonicParsing="false" onAction="#clearpaymentAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" styleClass="nav-btn" stylesheets="@../css/greaybutton.css" text="CLEAR" textFill="WHITE">
+            <Button layoutX="763.0" layoutY="182.0" mnemonicParsing="false" onAction="#clearpaymentAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" text="CLEAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="527.0" layoutY="182.0" mnemonicParsing="false" onAction="#deletepaymentAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" styleClass="nav-btn" stylesheets="@../css/another.css" text="DELETE" textFill="WHITE">
+            <Button layoutX="527.0" layoutY="182.0" mnemonicParsing="false" onAction="#deletepaymentAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" text="DELETE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
          </children></AnchorPane>
-      <TextField fx:id="paymenttext" layoutX="170.0" layoutY="129.0" onAction="#payonAction" prefHeight="25.0" prefWidth="282.0" />
-      <TextField fx:id="datetext" layoutX="574.0" layoutY="129.0" prefHeight="25.0" prefWidth="282.0" />
-      <TextField fx:id="amounttext" layoutX="574.0" layoutY="177.0" prefHeight="25.0" prefWidth="282.0" />
+      <TextField fx:id="paymenttext" layoutX="170.0" layoutY="129.0" onAction="#payonAction" onKeyReleased="#paymentidAction" prefHeight="25.0" prefWidth="282.0" />
+      <TextField fx:id="datetext" layoutX="574.0" layoutY="129.0" onKeyReleased="#paymentdate" prefHeight="25.0" prefWidth="282.0" />
+      <TextField fx:id="amounttext" layoutX="574.0" layoutY="177.0" onKeyReleased="#paymentamount" prefHeight="25.0" prefWidth="282.0" />
       <Label layoutX="71.0" layoutY="133.0" text="Payment ID">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -54,11 +52,11 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="95.0" layoutY="268.0" mnemonicParsing="false" onAction="#savepaymentAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="SAVE" textFill="WHITE">
+      <Button layoutX="95.0" layoutY="268.0" mnemonicParsing="false" onAction="#savepaymentAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #874CCCFF;" text="SAVE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <TableView fx:id="tblpayment" layoutX="21.0" layoutY="387.0" prefHeight="286.0" prefWidth="956.0">
+      <TableView fx:id="tblpayment" layoutX="21.0" layoutY="340.0" prefHeight="334.0" prefWidth="956.0">
         <columns>
           <TableColumn fx:id="colpayid" prefWidth="202.8580265045166" text="Payment ID" />
           <TableColumn fx:id="colorid" prefWidth="220.71514892578125" text="Order ID" />
@@ -66,19 +64,14 @@
             <TableColumn fx:id="colpayamount" prefWidth="280.7154541015625" text="Amount" />
         </columns>
       </TableView>
-      <ImageView fitHeight="44.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/img_21.png" />
-         </image>
-      </ImageView>
       <ComboBox fx:id="comorpay" layoutX="170.0" layoutY="177.0" prefHeight="25.0" prefWidth="282.0" />
-      <Label layoutX="35.0" layoutY="22.0" text="EquipCare Pro" textFill="#b4b4b8">
+      <Label layoutX="11.0" layoutY="11.0" text="EquipCare Pro" textFill="#b4b4b8">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="lbldatepayments" layoutX="803.0" layoutY="9.0" prefHeight="25.0" prefWidth="176.0" />
-      <Label layoutX="370.0" layoutY="17.0" text="Payments" textFill="#114232">
+      <Label fx:id="lbldatepayments" layoutX="803.0" layoutY="9.0" prefHeight="25.0" prefWidth="176.0" textFill="WHITE" />
+      <Label layoutX="370.0" layoutY="17.0" text="Payments Manage" textFill="#874ccc">
          <font>
             <Font size="26.0" />
          </font>

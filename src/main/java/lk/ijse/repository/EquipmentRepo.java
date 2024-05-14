@@ -118,4 +118,16 @@ public class EquipmentRepo {
         }
         return idList;
     }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT eq_id FROM equipment ORDER BY eq_id DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String empId = resultSet.getString(1);
+            return empId;
+        }
+        return null;
+    }
+
 }

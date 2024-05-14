@@ -6,16 +6,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.CondemnedFormController">
+<AnchorPane prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.CondemnedFormController">
    <children>
       <AnchorPane layoutX="9.0" layoutY="72.0" prefHeight="279.0" prefWidth="979.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
-            <TextField fx:id="datetext" layoutX="618.0" layoutY="127.0" prefHeight="25.0" prefWidth="282.0" />
+            <TextField fx:id="datetext" layoutX="618.0" layoutY="127.0" onKeyReleased="#condateAction" prefHeight="25.0" prefWidth="282.0" />
             <ComboBox fx:id="comconid" layoutX="618.0" layoutY="63.0" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="571.0" layoutY="133.0" text="Date">
                <font>
@@ -27,8 +25,8 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="reasontext" layoutX="170.0" layoutY="127.0" prefHeight="25.0" prefWidth="282.0" />
-            <TextField fx:id="context" layoutX="170.0" layoutY="62.0" onAction="#conOnActionsearch" prefHeight="25.0" prefWidth="282.0" />
+            <TextField fx:id="reasontext" layoutX="170.0" layoutY="127.0" onKeyReleased="#reasonAction" prefHeight="25.0" prefWidth="282.0" />
+            <TextField fx:id="context" layoutX="170.0" layoutY="62.0" onAction="#conOnActionsearch" onKeyReleased="#conidAction" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="55.0" layoutY="66.0" text="Condemned ID">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -39,22 +37,27 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="750.0" layoutY="211.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" styleClass="nav-btn" stylesheets="@../css/greaybutton.css" text="CLEAR" textFill="WHITE">
+            <Button layoutX="750.0" layoutY="211.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" text="CLEAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Button>
-            <Button layoutX="543.0" layoutY="211.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" styleClass="nav-btn" stylesheets="@../css/another.css" text="DELET" textFill="WHITE">
+            <Button layoutX="543.0" layoutY="211.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #E72929;" text="DELET" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Button>
-            <Button layoutX="331.0" layoutY="211.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="UPDATE" textFill="WHITE">
+            <Button layoutX="342.0" layoutY="211.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #874CCCFF;" text="UPDATE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Button>
-            <Button layoutX="142.0" layoutY="211.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="SAVE" textFill="WHITE">
+            <Button layoutX="142.0" layoutY="211.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #874CCCFF;" text="SAVE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Button>
+            <Label layoutX="387.0" layoutY="62.0" prefHeight="25.0" prefWidth="51.0" text="search">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <TableView fx:id="tblcondemned" layoutX="15.0" layoutY="377.0" prefHeight="296.0" prefWidth="967.0">
@@ -65,18 +68,13 @@
             <TableColumn fx:id="colmaintenace" prefWidth="187.14361572265625" text="Maintenance ID" />
         </columns>
       </TableView>
-      <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/img_21.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="23.0" layoutY="24.0" text="EquipCare Pro" textFill="#b4b4b8">
+      <Label layoutX="14.0" layoutY="16.0" text="EquipCare Pro" textFill="#b4b4b8">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblcondatetime" layoutX="770.0" layoutY="14.0" prefHeight="25.0" prefWidth="209.0" />
-      <Label ellipsisString="" layoutX="376.0" layoutY="23.0" text="Condemneds" textFill="#114232">
+      <Label fx:id="lblcondatetime" layoutX="770.0" layoutY="14.0" prefHeight="25.0" prefWidth="209.0" textFill="WHITE" />
+      <Label ellipsisString="" layoutX="356.0" layoutY="19.0" text="Condemneds Manage" textFill="#874ccc">
          <font>
             <Font size="26.0" />
          </font>

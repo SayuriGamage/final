@@ -47,29 +47,6 @@ public class EmployeeRepo {
 
         return pstm.executeUpdate() > 0;
     }
-
-    public static Employee searchById(String id) throws SQLException {
-        String sql = "SELECT * FROM employee WHERE emp_id = ?";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setObject(1, id);
-
-        ResultSet resultSet = pstm.executeQuery();
-        if (resultSet.next()) {
-            String cus_id = resultSet.getString(1);
-            String name = resultSet.getString(2);
-            String address = resultSet.getString(3);
-            String tel = resultSet.getString(4);
-
-            Employee employee = new Employee(cus_id, name, address, tel);
-
-            return employee;
-        }
-
-        return null;
-    }
-
     public static List<Employee> getAll() throws SQLException {
         String sql = "SELECT * FROM employee";
 
@@ -105,5 +82,33 @@ public class EmployeeRepo {
             eqList.add(id);
         }
         return eqList;
+    }
+
+    public static Employee searchBytel(String tel) throws SQLException {
+        String sql = "SELECT * FROM employee WHERE tel=?";
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, tel);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String id = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String job = resultSet.getString(3);
+            String teln = resultSet.getString(4);
+            Employee employee = new Employee(id, name, job, teln);
+            return employee;
+        }
+        return null;
+    }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT emp_id FROM employee ORDER BY emp_id DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String empId = resultSet.getString(1);
+            return empId;
+        }
+        return null;
     }
 }

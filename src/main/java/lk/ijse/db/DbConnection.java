@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class DbConnection {
     private static DbConnection dbConnection;
-    private Connection connection;
+    private static Connection connection;
 
     private DbConnection() throws SQLException {
         connection = DriverManager.getConnection(
@@ -26,7 +26,7 @@ public class DbConnection {
 
 
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 }

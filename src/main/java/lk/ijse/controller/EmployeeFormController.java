@@ -13,6 +13,7 @@ import javafx.util.Duration;
 import lk.ijse.model.Employee;
 import lk.ijse.model.tm.EmployeeTm;
 import lk.ijse.repository.EmployeeRepo;
+import lk.ijse.repository.OrdersRepo;
 import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
@@ -28,8 +29,7 @@ public class EmployeeFormController {
     public TextField telemptext;
     public TableView tblEmployee;
     public Label dateemptext;
-
-
+    public Label lblempid;
 
 
 
@@ -46,24 +46,49 @@ public class EmployeeFormController {
     private TableColumn<?, ?> colTel;
 
     public void initialize() {
-       setCellValueFactory();
+        setCellValueFactory();
         loadAllCustomers();
         setDate();
         tblEmployee.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
 
                 EmployeeTm selectedEmployee = (EmployeeTm) newSelection;
-                empidtext.setText(selectedEmployee.getId());
+                lblempid.setText(selectedEmployee.getId());
                 empnametext.setText(selectedEmployee.getName());
                 addresemptext.setText(selectedEmployee.getAddress());
                 telemptext.setText(selectedEmployee.getTel());
             }
         });
+        String currentempId = null;
+        try {
+            currentempId = EmployeeRepo.getCurrentId();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        String nextempId = generateNextempId(currentempId);
+        lblempid.setText(nextempId);
     }
+
+    private String generateNextempId(String currentempId) {
+        if (currentempId != null && currentempId.matches("^EMP\\d+$")) {
+
+            String numericPart = currentempId.substring(3);
+            try {
+
+                int orderId = Integer.parseInt(numericPart) + 1;
+
+                return "EMP" + String.format("%03d", orderId);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return "EMP001";
+    }
+
 
     private void setDate() {
 
-      
+
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
                     LocalDateTime now = LocalDateTime.now();
@@ -107,7 +132,7 @@ public class EmployeeFormController {
     }
 
     public void saveempAction(ActionEvent actionEvent) {
-        String id = empidtext.getText();
+        String id = lblempid.getText();
         String name = empnametext.getText();
         String address = addresemptext.getText();
         String tel = telemptext.getText();
@@ -115,35 +140,49 @@ public class EmployeeFormController {
         Employee employee = new Employee(id, name, address, tel);
 
         try {
-            boolean isSaved = EmployeeRepo.save(employee);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "employee saved!").show();
-                clearFields();
-                loadAllCustomers();
-                setCellValueFactory();
+            if(isValied()) {
+                boolean isSaved = EmployeeRepo.save(employee);
+
+                if (isSaved) {
+
+                    new Alert(Alert.AlertType.CONFIRMATION, "employee saved!").show();
+
+                    clearFields();
+                    loadAllCustomers();
+                    setCellValueFactory();
+                  String   currentempId = EmployeeRepo.getCurrentId();
+                    String nextempId = generateNextempId(currentempId);
+               lblempid.setText(nextempId);
+                }
+            }else{
+                new Alert(Alert.AlertType.ERROR, "wrong informations!").show();
             }
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
     private void clearFields() {
-        empidtext.setText("");
+        lblempid.setText("");
         empnametext.setText("");
         addresemptext.setText("");
         telemptext.setText("");
     }
 
     public void deleteempAction(ActionEvent actionEvent) {
-        String id = empidtext.getText();
+        String id = lblempid.getText();
 
         try {
             boolean isDeleted = EmployeeRepo.delete(id);
-            if(isDeleted) {
+            if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "employee deleted!").show();
                 clearFields();
                 loadAllCustomers();
                 setCellValueFactory();
+                String   currentempId = EmployeeRepo.getCurrentId();
+                String nextempId = generateNextempId(currentempId);
+                lblempid.setText(nextempId);
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -151,9 +190,8 @@ public class EmployeeFormController {
     }
 
 
-
     public void updateempAction(ActionEvent actionEvent) {
-        String id = empidtext.getText();
+        String id = lblempid.getText();
         String name = empnametext.getText();
         String address = addresemptext.getText();
         String tel = telemptext.getText();
@@ -162,48 +200,56 @@ public class EmployeeFormController {
 
         try {
             boolean isUpdated = EmployeeRepo.update(employee);
-            if(isUpdated) {
+            if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "employee updated!").show();
                 clearFields();
                 loadAllCustomers();
                 setCellValueFactory();
+                String   currentempId = EmployeeRepo.getCurrentId();
+                String nextempId = generateNextempId(currentempId);
+               lblempid.setText(nextempId);
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
-    public void clearempAction(ActionEvent actionEvent) {
+    public void clearempAction(ActionEvent actionEvent) throws SQLException {
         clearFields();
-    }
-
-
-
-
-
-    public void textSearchOnAction(ActionEvent actionEvent) throws SQLException {
-        String id = empidtext.getText();
-
-        Employee employee = EmployeeRepo.searchById(id);
-        if (employee != null) {
-            empidtext.setText(employee.getId());
-            empnametext.setText(employee.getName());
-            addresemptext.setText(employee.getAddress());
-            telemptext.setText(employee.getTel());
-        } else {
-            new Alert(Alert.AlertType.INFORMATION, "employee not found!").show();
-        }
-    }
-
-   public void employeeidAction(KeyEvent keyEvent) {
-       Regex.setTextColor(lk.ijse.util.TextField.ID,empidtext);
-    }
-
-    public void employeenameAction(KeyEvent keyEvent) {
-       Regex.setTextColor(lk.ijse.util.TextField.NAME, empnametext);
+        String   currentempId = EmployeeRepo.getCurrentId();
+        String nextempId = generateNextempId(currentempId);
+        lblempid.setText(nextempId);
     }
 
     public void employetelAction(KeyEvent keyEvent) {
         Regex.setTextColor(lk.ijse.util.TextField.CONTACT, telemptext);
+    }
+
+    public boolean isValied() {
+        if (!Regex.setTextColor(lk.ijse.util.TextField.TEXT, addresemptext)) return  false;
+        if(!Regex.setTextColor(lk.ijse.util.TextField.CONTACT,telemptext)) return  false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.NAME,empnametext)) return false;
+        return  true;
+    }
+
+    public void employeenameAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.NAME,empnametext);
+    }
+
+    public void telsearchAction(ActionEvent actionEvent) throws SQLException {
+        String tel=telemptext.getText();
+        Employee employee=EmployeeRepo.searchBytel(tel);
+        if (employee!=null){
+            lblempid.setText(employee.getId());
+            empnametext.setText(employee.getName());
+            addresemptext.setText(employee.getAddress());
+            telemptext.setText(employee.getTel());
+        }else{
+            new Alert(Alert.AlertType.ERROR,"employee not found!").show();
+        }
+    }
+
+    public void regetitelAction(KeyEvent keyEvent) {
+Regex.setTextColor(lk.ijse.util.TextField.TEXT,addresemptext);
     }
 }

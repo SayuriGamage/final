@@ -56,5 +56,41 @@ public class MaintenanceRepo {
     }
 
 
-}
+
+
+    public static String getMaintenanceId( String description, double cost) throws SQLException {
+        String maintenanceId = null;
+        String sql = "SELECT mm_id FROM maintenance WHERE description = ? AND cost = ?";
+
+        try (Connection connection = DbConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, description);
+            preparedStatement.setDouble(2, cost);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    maintenanceId = resultSet.getString("mm_id");
+                }
+            }
+        }
+
+        return maintenanceId;
+    }
+
+    public static boolean updateMaintenance(Maintenance maintenance) throws SQLException {
+        try (Connection connection = DbConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement("UPDATE maintenance SET date =?,description = ?, cost = ?, emp_id = ? WHERE mm_id = ?")) {
+            statement.setString(1,maintenance.getDate());
+            statement.setString(2, maintenance.getDescription());
+            statement.setDouble(3, maintenance.getCost());
+            statement.setString(4, maintenance.getEmp_id());
+            statement.setString(5, maintenance.getMm_id());
+
+            int affectedRows = statement.executeUpdate();
+            return affectedRows > 0;
+        }
+    }
+    }
+
+
 

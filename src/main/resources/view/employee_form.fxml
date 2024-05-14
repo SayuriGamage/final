@@ -5,12 +5,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootNode" prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.EmployeeFormController">
+<AnchorPane fx:id="rootNode" prefHeight="674.0" prefWidth="994.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.EmployeeFormController">
    <children>
       <TableView fx:id="tblEmployee" layoutX="11.0" layoutY="362.0" prefHeight="314.0" prefWidth="975.0">
         <columns>
@@ -23,7 +21,7 @@
       <AnchorPane layoutX="6.0" layoutY="80.0" prefHeight="257.0" prefWidth="984.0" style="-fx-background-color: #C7C8CC; -fx-background-radius: 15;">
          <children>
             <TextField fx:id="empnametext" layoutX="564.0" layoutY="45.0" onKeyReleased="#employeenameAction" prefHeight="25.0" prefWidth="282.0" />
-            <TextField fx:id="telemptext" layoutX="564.0" layoutY="96.0" onKeyReleased="#employetelAction" prefHeight="25.0" prefWidth="282.0" />
+            <TextField fx:id="telemptext" layoutX="564.0" layoutY="96.0" onAction="#telsearchAction" onKeyReleased="#employetelAction" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="517.0" layoutY="53.0" text="Name">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -34,52 +32,56 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="empidtext" layoutX="142.0" layoutY="45.0" onAction="#textSearchOnAction" onKeyReleased="#employeeidAction" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="76.0" layoutY="53.0" text="ID">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="addresemptext" layoutX="142.0" layoutY="96.0" prefHeight="25.0" prefWidth="282.0" />
+            <TextField fx:id="addresemptext" layoutX="142.0" layoutY="96.0" onKeyReleased="#regetitelAction" prefHeight="25.0" prefWidth="282.0" />
             <Label layoutX="76.0" layoutY="104.0" text="Job Titel">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="722.0" layoutY="183.0" mnemonicParsing="false" onAction="#clearempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" styleClass="nav-btn" stylesheets="@../css/greaybutton.css" text="CLEAR" textFill="WHITE">
+            <Button layoutX="722.0" layoutY="183.0" mnemonicParsing="false" onAction="#clearempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #B4B4B8;" text="CLEAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="333.0" layoutY="183.0" mnemonicParsing="false" onAction="#updateempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="UPDATE" textFill="WHITE">
+            <Button layoutX="333.0" layoutY="183.0" mnemonicParsing="false" onAction="#updateempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #874CCCFF;" text="UPDATE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="519.0" layoutY="183.0" mnemonicParsing="false" onAction="#deleteempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #D71313;" styleClass="nav-btn" stylesheets="@../css/another.css" text="DELETE" textFill="WHITE">
+            <Button layoutX="519.0" layoutY="183.0" mnemonicParsing="false" onAction="#deleteempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #D71313;" text="DELETE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="137.0" layoutY="183.0" mnemonicParsing="false" onAction="#saveempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #114232;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="SAVE" textFill="WHITE">
+            <Button layoutX="137.0" layoutY="183.0" mnemonicParsing="false" onAction="#saveempAction" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: #874CCCFF;" text="SAVE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
+            <Label fx:id="lblempid" layoutX="142.0" layoutY="44.0" prefHeight="34.0" prefWidth="114.0" text="Label">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="785.0" layoutY="96.0" prefHeight="25.0" prefWidth="54.0" text="search">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="dateemptext" layoutX="800.0" layoutY="14.0" prefHeight="21.0" prefWidth="181.0" />
-      <ImageView fitHeight="44.0" fitWidth="51.0" layoutX="6.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/img_21.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="43.0" layoutY="24.0" text="EquipCare Pro" textAlignment="CENTER" textFill="#b4b4b8">
+      <Label fx:id="dateemptext" layoutX="800.0" layoutY="14.0" prefHeight="21.0" prefWidth="181.0" textFill="WHITE" />
+      <Label layoutX="6.0" layoutY="5.0" prefHeight="25.0" prefWidth="134.0" text="EquipCare Pro" textAlignment="CENTER" textFill="#b4b4b8">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="430.0" layoutY="18.0" text="Employee" textFill="#114232">
+      <Label layoutX="315.0" layoutY="18.0" text="Employee Manage" textFill="#874ccc">
          <font>
             <Font size="27.0" />
          </font>

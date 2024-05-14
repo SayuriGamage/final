@@ -8,12 +8,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import lk.ijse.model.Employee;
 import lk.ijse.model.Supplier;
 import lk.ijse.model.tm.SupplierTm;
 import lk.ijse.repository.EmployeeRepo;
+import lk.ijse.repository.EquipmentRepo;
 import lk.ijse.repository.SupplierRepo;
+import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -23,6 +26,10 @@ import java.util.List;
 public class SupplierFromController {
 
     public Label lblsupdatetim;
+    public TableColumn coltelsup;
+    public TextField suptel;
+
+
     @FXML
     private TableColumn<?, ?> colsup;
 
@@ -39,9 +46,11 @@ public class SupplierFromController {
     private TableView<SupplierTm> suppliertbl;
 
     @FXML
-    void clearAction(ActionEvent event) {
+    void clearAction(ActionEvent event) throws SQLException {
         clearFields();
-
+        String   currenteqId = SupplierRepo.getCurrentId();
+        String nextempId = generateNextspId(currenteqId);
+        supidtext.setText(nextempId);
 
     }
 
@@ -56,6 +65,9 @@ public class SupplierFromController {
                 clearFields();
                 loadAllSupplier();
                 setCellValueFactory();
+                String   currenteqId = SupplierRepo.getCurrentId();
+                String nextempId = generateNextspId(currenteqId);
+                supidtext.setText(nextempId);
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -66,17 +78,25 @@ public class SupplierFromController {
     void saveAction(ActionEvent event) {
         String id = supidtext.getText();
         String name = supnametext.getText();
+String tels=suptel.getText();
 
-
-        Supplier supplier = new Supplier(id, name);
+        Supplier supplier = new Supplier(id, name,tels);
 
         try {
+            if (valid()){
             boolean isSaved = SupplierRepo.save(supplier);
             if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
-                clearFields();
-                loadAllSupplier();
-                setCellValueFactory();
+
+                    new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
+                    clearFields();
+                    loadAllSupplier();
+                    setCellValueFactory();
+                    String   currenteqId = SupplierRepo.getCurrentId();
+                    String nextempId = generateNextspId(currenteqId);
+                    supidtext.setText(nextempId);
+                }
+            }else {
+                new Alert(Alert.AlertType.WARNING, "wrong inputs!").show();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -86,29 +106,19 @@ public class SupplierFromController {
     private void clearFields() {
         supidtext.setText("");
         supnametext.setText("");
+        suptel.setText("");
     }
 
-    @FXML
-    void supAction(ActionEvent event) throws SQLException {
-        String id =supidtext.getText();
 
-        Supplier supplier=SupplierRepo.searchById(id);
-        if (supplier != null) {
-           supidtext.setText(supplier.getSup_id());
-            supnametext.setText(supplier.getName());
 
-        } else {
-            new Alert(Alert.AlertType.INFORMATION, "supplier not found!").show();
-        }
-    }
 
     @FXML
     void updateAction(ActionEvent event) {
         String id = supidtext.getText();
         String name = supnametext.getText();
+String tels=suptel.getText();
 
-
-        Supplier supplier = new Supplier(id, name);
+        Supplier supplier = new Supplier(id, name,tels);
 
         try {
             boolean isUpdated = SupplierRepo.update(supplier);
@@ -117,12 +127,15 @@ public class SupplierFromController {
                 clearFields();
                 loadAllSupplier();
                 setCellValueFactory();
+                String   currenteqId = SupplierRepo.getCurrentId();
+                String nextempId = generateNextspId(currenteqId);
+                supidtext.setText(nextempId);
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
-    public void initialize() {
+    public void initialize() throws SQLException {
         loadAllSupplier();
         setCellValueFactory();
 
@@ -133,8 +146,28 @@ public class SupplierFromController {
                 SupplierTm selectedSupplier = newSelection;
                 supidtext.setText(selectedSupplier.getSup_id());
                 supnametext.setText(selectedSupplier.getName());
+                suptel.setText(selectedSupplier.getTel());
             }
         });
+        String   currenteqId = SupplierRepo.getCurrentId();
+        String nextempId = generateNextspId(currenteqId);
+        supidtext.setText(nextempId);
+    }
+
+    private String generateNextspId(String currenteqId) {
+        if (currenteqId != null && currenteqId.matches("^SUP\\d+$")) {
+
+            String numericPart = currenteqId.substring(3);
+            try {
+
+                int orderId = Integer.parseInt(numericPart) + 1;
+
+                return "SUP" + String.format("%03d", orderId);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return "SUP001";
     }
 
     private void setdate() {
@@ -153,6 +186,7 @@ public class SupplierFromController {
     private void setCellValueFactory() {
         colsup.setCellValueFactory(new PropertyValueFactory<>("sup_id"));
         colsupnam.setCellValueFactory(new PropertyValueFactory<>("name"));
+coltelsup.setCellValueFactory(new PropertyValueFactory<>("tel"));
     }
 
     private void loadAllSupplier() {
@@ -164,8 +198,8 @@ public class SupplierFromController {
             for (Supplier supplier : supplierList) {
                 SupplierTm tm = new SupplierTm(
                         supplier.getSup_id(),
-                        supplier.getName()
-
+                        supplier.getName(),
+supplier.getTel()
                 );
 
                 obList.add(tm);
@@ -175,5 +209,32 @@ public class SupplierFromController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+
+
+    public  boolean valid(){
+        if(!Regex.setTextColor(lk.ijse.util.TextField.CONTACT,suptel)) return  false;
+        if(!Regex.setTextColor(lk.ijse.util.TextField.NAME,supnametext)) return  false;
+        return  true;
+    }
+
+    public void searchsuptel(ActionEvent actionEvent) throws SQLException {
+String tell=suptel.getText();
+Supplier supplier=SupplierRepo.searchBytell(tell);
+if (supplier!= null){
+    supidtext.setText(supplier.getSup_id());
+    supnametext.setText(supplier.getName());
+    suptel.setText(supplier.getTel());
+        }
+    }
+
+    public void suptelacction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.CONTACT,suptel);
+    }
+
+    public void nameaction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.NAME,supnametext);
     }
 }

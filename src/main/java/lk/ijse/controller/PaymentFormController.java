@@ -7,11 +7,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import lk.ijse.model.Employee;
 import lk.ijse.model.Payment;
 import lk.ijse.model.tm.PaymentTm;
 import lk.ijse.repository.*;
+import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -139,10 +141,12 @@ public class PaymentFormController {
 
             boolean isSaved = PaymentRepo.save(payment);
             if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Payment saved successfully!").show();
-                clearFields();
-                loadAllPayments();
-                setCellValueFactory();
+                if(valid()) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Payment saved successfully!").show();
+                    clearFields();
+                    loadAllPayments();
+                    setCellValueFactory();
+                }
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to save payment!").show();
             }
@@ -203,5 +207,23 @@ public class PaymentFormController {
 
     public void clearpaymentAction(ActionEvent actionEvent) {
 clearFields();
+    }
+
+    public void paymentidAction(KeyEvent keyEvent) {
+       Regex.setTextColor(lk.ijse.util.TextField.ID,paymenttext);
+    }
+
+    public void paymentdate(KeyEvent keyEvent) {
+       Regex.setTextColor(lk.ijse.util.TextField.DATE,datetext);
+    }
+
+    public void paymentamount(KeyEvent keyEvent) {
+Regex.setTextColor(lk.ijse.util.TextField.COST,amounttext);
+    }
+    public  boolean valid(){
+        if(!Regex.setTextColor(lk.ijse.util.TextField.ID,paymenttext)) return false;
+        if(!Regex.setTextColor(lk.ijse.util.TextField.DATE,datetext));
+        if(!Regex.setTextColor(lk.ijse.util.TextField.COST,amounttext));
+        return true;
     }
 }

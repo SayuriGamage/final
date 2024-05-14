@@ -259,13 +259,17 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import lk.ijse.db.DbConnection;
 import lk.ijse.model.*;
 import lk.ijse.model.tm.AddsTm;
 import lk.ijse.model.tm.CartTm;
 import lk.ijse.model.tm.EmployeeTm;
 import lk.ijse.repository.*;
+import lk.ijse.util.Regex;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -275,6 +279,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class MaintenanceFormController {
+    public TextField maintext;
+
     @FXML
     private TableColumn<String, String> coleqid;
 
@@ -302,59 +308,66 @@ public class MaintenanceFormController {
 
     @FXML
     private Label lblmaidate;
-    @FXML
-    private Label lblmainid;
-
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
 
-    @FXML
-    void addOnAction(ActionEvent event) {
-
-        String equipmentid = comeqid.getValue();
-        String types = maintypetext.getText();
-        String description = descriptiontext.getText();
-        double cost = 0.0; //
 
 
-
-        try {
-            cost = Double.parseDouble(costtext.getText());
-        } catch (NumberFormatException e) {
-            // Handle parsing error
-            e.printStackTrace();
-
-            return;
-        }
-
-
-        AddsTm tms = new AddsTm();
-        tms.setEq_id(equipmentid);
-        tms.setType(types);
-        tms.setDescription(description);
-        tms.setCost(cost);
-
-        obList.add(tms);
-
-        tblmaintenance.setItems(obList);
-    }
-
-    public void initialize() {
+    public void initialize() throws SQLException {
         setDate();
         getEmployeeid();
         getEquipmentid();
         setCellValueFactory();
+        tblmaintenance.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
 
-        try {
-            String currentmainId = MaintenanceRepo.getCurrentId();
-            String nextOrderId = generateNextmainId(currentmainId);
-            lblmainid.setText(nextOrderId);
-        } catch (SQLException e) {
-            // Handle SQLException
-            e.printStackTrace();
+                AddsTm selectedMaintenance = (AddsTm) newSelection;
+                maintypetext.setText(selectedMaintenance.getType());
+                descriptiontext.setText(selectedMaintenance.getDescription());
+                costtext.setText(String.valueOf(selectedMaintenance.getCost()));
+
+           comeqid.setValue(selectedMaintenance.getEq_id());
+                String maintenanceId = null;
+                try {
+                    maintenanceId = MaintenanceRepo.getMaintenanceId(selectedMaintenance.getDescription(),selectedMaintenance.getCost());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                maintext.setText(maintenanceId);
+
+
+            }
+        });
+            loadMaintenanceData();
+        String   currentmainId = MaintenanceRepo.getCurrentId();
+        String nextmainId = generateNextmId(currentmainId);
+        maintext.setText(nextmainId);
+    }
+
+    private String generateNextmId(String currentmainId) {
+        if (currentmainId != null && currentmainId.matches("^MAI\\d+$")) {
+
+            String numericPart = currentmainId.substring(3);
+            try {
+
+                int orderId = Integer.parseInt(numericPart) + 1;
+
+                return "MAI" + String.format("%03d", orderId);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
         }
+        return "MAI001";
     }
 
 
+    private void loadMaintenanceData() throws SQLException {
+        List<AddsTm> adds = new ArrayList<>();
+        adds = AddsRepo.getAllAddsTm();
+        tblmaintenance.getItems().clear();
+        for (AddsTm addsTm : adds) {
+            tblmaintenance.getItems().add(addsTm);
+        }
+    }
 
 
     private void setCellValueFactory() {
@@ -392,17 +405,7 @@ public class MaintenanceFormController {
         }
     }
 
-    private String generateNextmainId(String currentMainId) {
-        if (currentMainId != null && currentMainId.matches("^MM\\d{3}$")) {
-            try {
-                int mainId = Integer.parseInt(currentMainId.substring(2)) + 1;
-                return "MM" + String.format("%03d", mainId);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-        }
-        return "MM001";
-    }
+
 
     private void setDate() {
         Timeline timeline = new Timeline(
@@ -418,7 +421,7 @@ public class MaintenanceFormController {
     }
 
     public void removeonAction(ActionEvent actionEvent) throws SQLException {
-        String maintenanceId = lblmainid.getText();
+        String maintenanceId = maintext.getText();
         String date = String.valueOf(LocalDate.now());
         String description = descriptiontext.getText();
         double cost = Double.parseDouble(costtext.getText());
@@ -438,15 +441,17 @@ public class MaintenanceFormController {
         }
         placeMaintenance po = new placeMaintenance(maintenance, osList);
         boolean isPlaced = PlaceMaintenanceRepo.placeMaintenance(po);
+        if (valid()){
         if (isPlaced) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Maintenance details Placed!").show();
-            clearTextFields();
-            obList.clear();
-           tblmaintenance.refresh();
-            String currentmainId = MaintenanceRepo.getCurrentId();
-            String nextOrderId = generateNextmainId(currentmainId);
-            lblmainid.setText(nextOrderId);
 
+                new Alert(Alert.AlertType.CONFIRMATION, "Maintenance details Placed!").show();
+                clearTextFields();
+                obList.clear();
+                tblmaintenance.refresh();
+                loadMaintenanceData();
+            }else {
+            new Alert(Alert.AlertType.WARNING, "wrong inputs!").show();
+        }
 
         } else {
             new Alert(Alert.AlertType.WARNING, "Placed Unsuccessfully!").show();
@@ -458,7 +463,7 @@ public class MaintenanceFormController {
         maintypetext.setText("");
         costtext.setText("");
         descriptiontext.setText("");
-        lblmainid.setText("");
+        maintext.setText("");
 
 
 
@@ -476,5 +481,82 @@ public class MaintenanceFormController {
             new Alert(Alert.AlertType.WARNING, "Please select an item to delete.").show();
         }
     }
-}
 
+    public void costAction(KeyEvent keyEvent) {
+       Regex.setTextColor(lk.ijse.util.TextField.COST,costtext);
+    }
+
+    public void finaladddAction(ActionEvent actionEvent) throws SQLException {
+        String equipmentid = comeqid.getValue();
+        String types = maintypetext.getText();
+        String description = descriptiontext.getText();
+        double cost = 0.0; //
+
+
+
+        try {
+            cost = Double.parseDouble(costtext.getText());
+        } catch (NumberFormatException e) {
+            // Handle parsing error
+            e.printStackTrace();
+
+            return;
+        }
+
+
+        AddsTm tms = new AddsTm();
+        tms.setEq_id(equipmentid);
+        tms.setType(types);
+        tms.setDescription(description);
+        tms.setCost(cost);
+
+        obList.add(tms);
+
+        tblmaintenance.setItems(obList);
+    }
+
+    public void updateonAction(ActionEvent actionEvent) throws SQLException {
+        String maintainId= maintext.getText();
+        String description=descriptiontext.getText();
+        String maintype= maintypetext.getText();
+        double cost= Double.parseDouble(costtext.getText());
+        String empid=comempid.getValue();
+        String eqid=comeqid.getValue();
+
+String date=String.valueOf(LocalDate.now());
+        Maintenance maintenance = new Maintenance(maintainId, LocalDate.now().toString(), description, cost, empid);
+        equipmentDetails equipmentDetails=new equipmentDetails(maintainId,maintype,eqid);
+
+        boolean isUpdated = MaintenanceRepo.updateMaintenance(maintenance);
+        System.out.println("methanata wenakn wadada");
+        if (isUpdated) {
+            boolean update=equipmentDetailsRepo.updateequipmentDetails(equipmentDetails);
+            if(update) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Maintenance details updated successfully!").show();
+
+                clearTextFields();
+            }
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Failed to update maintenance details!").show();
+        }
+
+    }
+
+    public void mainidAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.ID,maintext);
+    }
+    public boolean valid(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.TEXT,maintypetext)) return false;
+        if(!Regex.setTextColor(lk.ijse.util.TextField.COST,costtext)) return false;
+        if(!Regex.setTextColor(lk.ijse.util.TextField.TEXT,descriptiontext)) return false;
+        return  true;
+    }
+
+    public void typeaction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.TEXT,maintypetext);
+    }
+
+    public void descripaction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.TEXT,descriptiontext);
+    }
+}

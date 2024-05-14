@@ -8,4 +8,5 @@ import lombok.*;
 public class SupplierTm {
     private  String sup_id;
     private  String name;
+    private  String tel;
 }

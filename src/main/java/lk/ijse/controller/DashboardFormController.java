@@ -1,20 +1,27 @@
 package lk.ijse.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class DashboardFormController {
+public class DashboardFormController  {
 
     public AnchorPane dashboardpane;
     public AnchorPane rootNode;
     public Label lblusernamedashboard;
     private String loggedInUsername;
+
 
 
     public void initialize(){
@@ -132,4 +139,6 @@ public class DashboardFormController {
         stage.setScene(scene);
         stage.setTitle("Login Form");
     }
+
+
 }

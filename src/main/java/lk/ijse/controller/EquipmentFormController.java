@@ -8,12 +8,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import lk.ijse.model.Employee;
 import lk.ijse.model.Equipment;
 import lk.ijse.model.tm.EquipmentTm;
 import lk.ijse.repository.EmployeeRepo;
 import lk.ijse.repository.EquipmentRepo;
+import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -43,7 +45,7 @@ public class EquipmentFormController {
 
 
 
-    public void initialize() {
+    public void initialize() throws SQLException {
 
         loadAllEquipment();
         setCellValueFactory();
@@ -62,6 +64,25 @@ public class EquipmentFormController {
                 equseridtext.setText(selectedEquipment.getUser_id());
             }
         });
+     String   currenteqId = EquipmentRepo.getCurrentId();
+        String nextempId = generateNextempId(currenteqId);
+        eqidtext.setText(nextempId);
+    }
+
+    private String generateNextempId(String currenteqId) {
+        if (currenteqId != null && currenteqId.matches("^EQP\\d+$")) {
+
+            String numericPart = currenteqId.substring(3);
+            try {
+
+                int orderId = Integer.parseInt(numericPart) + 1;
+
+                return "EQP" + String.format("%03d", orderId);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return "EQP001";
     }
 
     private void setDate() {
@@ -131,14 +152,20 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
         Equipment equipment = new Equipment(id, name, model, cost, purchaseDate, warranty, manufacturer, userId);
 
         try {
+            if (valid()){
             boolean isSaved = EquipmentRepo.save(equipment);
             if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Equipment saved!").show();
-                clearFields();
-                loadAllEquipment();
-                setCellValueFactory();
+
+                    new Alert(Alert.AlertType.CONFIRMATION, "Equipment saved!").show();
+                    clearFields();
+                    loadAllEquipment();
+                    setCellValueFactory();
+                String   currenteqId = EquipmentRepo.getCurrentId();
+                String nextempId = generateNextempId(currenteqId);
+                eqidtext.setText(nextempId);
+                }
             } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to save equipment!").show();
+                new Alert(Alert.AlertType.ERROR, "wrong inputs!").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "An error occurred while saving equipment: " + e.getMessage()).show();
@@ -176,6 +203,9 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
                 clearFields();
                 loadAllEquipment();
                 setCellValueFactory();
+                String   currenteqId = EquipmentRepo.getCurrentId();
+                String nextempId = generateNextempId(currenteqId);
+                eqidtext.setText(nextempId);
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to update equipment!").show();
             }
@@ -195,6 +225,9 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
                 clearFields();
                 loadAllEquipment();
                 setCellValueFactory();
+                String   currenteqId = EquipmentRepo.getCurrentId();
+                String nextempId = generateNextempId(currenteqId);
+                eqidtext.setText(nextempId);
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Error occurred while deleting equipment: " + e.getMessage()).show();
@@ -224,7 +257,56 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
 
     }
 
-    public void eqclAction(ActionEvent actionEvent) {
+    public void eqclAction(ActionEvent actionEvent) throws SQLException {
 clearFields();
+        String   currenteqId = EquipmentRepo.getCurrentId();
+        String nextempId = generateNextempId(currenteqId);
+        eqidtext.setText(nextempId);
+    }
+
+    public void purchaseAction(KeyEvent keyEvent) {
+
+        Regex.setTextColor(lk.ijse.util.TextField.DATE,eqpurtext);
+    }
+
+    public void warrantyAction(KeyEvent keyEvent) {
+
+        Regex.setTextColor(lk.ijse.util.TextField.DATE,eqwartext);
+    }
+
+    public void equiponAction(KeyEvent keyEvent) {
+Regex.setTextColor(lk.ijse.util.TextField.ID,eqidtext);
+    }
+
+    public void manufactureAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.DATE,eqmanutext);
+    }
+
+    public void useridAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.ID,equseridtext);
+    }
+
+    public void equipcostAction(KeyEvent keyEvent) {
+
+        Regex.setTextColor(lk.ijse.util.TextField.COST,eqcosttext);
+    }
+    public boolean valid(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.DATE,eqpurtext)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.DATE,eqwartext)) return false;
+        if(!Regex.setTextColor(lk.ijse.util.TextField.ID,eqwartext)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.DATE,eqmanutext)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.ID,equseridtext)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.COST,eqcosttext)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.NAME,eqnametext)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.TEXT,eqmodltext)) return false;
+         return true;
+    }
+
+    public void nameequipAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.NAME,eqnametext);
+    }
+
+    public void modelaction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.TEXT,eqmodltext);
     }
 }

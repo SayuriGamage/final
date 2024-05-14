@@ -159,4 +159,14 @@ public class SparepartsRepo {
     }
 
 
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT sp_id FROM spareparts ORDER BY sp_id DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String empId = resultSet.getString(1);
+            return empId;
+        }
+        return null;
+    }
 }

@@ -5,20 +5,31 @@ import java.util.regex.Pattern;
 
 public class Regex {
     public static boolean isTextFieldValid(TextField textField, String text){
-        String filed = "";
+        String field = "";
 
-        switch (textField){
-            case ID:
-                filed = "r'^COND\\d{3}$'";
-                break;
+        switch (textField) {
+            case  ID:
+                field="";
             case NAME:
-                filed = "^[A-z|\\\\s]{4,}$";
+                field = "^[A-Za-z\\s]{4,}$";
                 break;
             case CONTACT:
-                filed="^[A-z|\\\\s]{4,}$";
+                field = "^(\\+94|0)?[1-9][0-9]{8}$";
+                break;
+            case COST:
+                field = "^([0-9]){1,}[.]([0-9]){1,}$";
+                break;
+            case DATE:
+                field = "^\\d{4}-\\d{2}-\\d{2}$";
+                break;
+            case TEXT:
+                field="^[a-zA-Z0-9]{0,30}$";
+            case QTY:
+                field="^\\d+$";
         }
 
-        Pattern pattern = Pattern.compile(filed);
+
+        Pattern pattern = Pattern.compile(field);
 
         if (text != null){
             if (text.trim().isEmpty()){
@@ -48,4 +59,5 @@ public class Regex {
             return false;
         }
     }
+
 }

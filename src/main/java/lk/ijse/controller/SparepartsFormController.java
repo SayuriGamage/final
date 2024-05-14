@@ -7,11 +7,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import lk.ijse.model.Spareparts;
 import lk.ijse.model.tm.SparepartsTm;
+import lk.ijse.repository.EquipmentRepo;
 import lk.ijse.repository.MaintenanceRepo;
 import lk.ijse.repository.SparepartsRepo;
+import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -38,7 +41,7 @@ public class SparepartsFormController {
     public Label lblspdatetime;
 
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         loadAllSpareparts();
         setCellValueFactory();
 
@@ -57,6 +60,25 @@ public class SparepartsFormController {
                 comspid.setValue(selectedSparepart.getMm_id());
             }
         });
+        String   currentspId = SparepartsRepo.getCurrentId();
+        String nextempId = generateNextspId(currentspId);
+        sptext.setText(nextempId);
+    }
+
+    private String generateNextspId(String currentspId) {
+        if (currentspId != null && currentspId.matches("^SP\\d+$")) {
+
+            String numericPart = currentspId.substring(2);
+            try {
+
+                int orderId = Integer.parseInt(numericPart) + 1;
+
+                return "SP" + String.format("%03d", orderId);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return "SP001";
     }
 
     private void setDatetime() {
@@ -157,12 +179,20 @@ public class SparepartsFormController {
         Spareparts spareparts = new Spareparts(id, name, manu, price, qty, purch, main);
 
         try {
+            if (valid()){
             boolean isSaved = SparepartsRepo.save(spareparts);
             if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "spareparts saved!").show();
-                clearFields();
-                loadAllSpareparts();
-                setCellValueFactory();
+
+                    new Alert(Alert.AlertType.CONFIRMATION, "spareparts saved!").show();
+                    clearFields();
+                    loadAllSpareparts();
+                    setCellValueFactory();
+                String   currentspId = SparepartsRepo.getCurrentId();
+                String nextempId = generateNextspId(currentspId);
+                sptext.setText(nextempId);
+                }
+            }else {
+                new Alert(Alert.AlertType.WARNING, "wrong input!").show();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -197,6 +227,9 @@ public class SparepartsFormController {
                 clearFields();
                 loadAllSpareparts();
                 setCellValueFactory();
+                String   currentspId = SparepartsRepo.getCurrentId();
+                String nextempId = generateNextspId(currentspId);
+                sptext.setText(nextempId);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -213,13 +246,52 @@ public class SparepartsFormController {
                 clearFields();
                 loadAllSpareparts();
                 setCellValueFactory();
+                String   currentspId = SparepartsRepo.getCurrentId();
+                String nextempId = generateNextspId(currentspId);
+                sptext.setText(nextempId);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void clespAction(ActionEvent actionEvent) {
+    public void clespAction(ActionEvent actionEvent) throws SQLException {
         clearFields();
+        String   currentspId = SparepartsRepo.getCurrentId();
+        String nextempId = generateNextspId(currentspId);
+        sptext.setText(nextempId);
+    }
+
+    public void purchaseAction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.DATE,sppurtext);
+    }
+
+    public void priceAction(KeyEvent keyEvent) {
+Regex.setTextColor(lk.ijse.util.TextField.COST,sppritext);
+    }
+
+    public void manufactureAction(KeyEvent keyEvent) {
+Regex.setTextColor(lk.ijse.util.TextField.DATE,spmanutext);
+    }
+
+    public void spareidAction(KeyEvent keyEvent) {
+Regex.setTextColor(lk.ijse.util.TextField.ID,sptext);
+    }
+    public  boolean valid(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.DATE,sppurtext)) return false;
+        if(!Regex.setTextColor(lk.ijse.util.TextField.COST,sppritext)) return false;
+        if(! Regex.setTextColor(lk.ijse.util.TextField.DATE,spmanutext)) return  false;
+
+        if(!Regex.setTextColor(lk.ijse.util.TextField.NAME,spnametext)) return false;
+        if(!Regex.setTextColor(lk.ijse.util.TextField.QTY,spqtytext)) return false;
+        return true;
+    }
+
+    public void qtyaction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.QTY,spqtytext);
+    }
+
+    public void nameaction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.NAME,spnametext);
     }
 }

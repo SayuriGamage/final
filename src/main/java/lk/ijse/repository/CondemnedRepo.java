@@ -106,4 +106,16 @@ public class CondemnedRepo {
         }
         return idList;
     }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT c_id FROM condemn ORDER BY c_id DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String conId = resultSet.getString(1);
+            return conId;
+        }
+        return null;
+
+    }
 }

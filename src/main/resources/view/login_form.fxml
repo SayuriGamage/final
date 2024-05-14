@@ -14,41 +14,41 @@
    <children>
       <ImageView fitHeight="689.0" fitWidth="1049.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/img_23.png" />
+            <Image url="@../images/img_39.png" />
          </image>
          <cursor>
             <Cursor fx:constant="SW_RESIZE" />
          </cursor>
       </ImageView>
-      <AnchorPane layoutX="449.0" layoutY="70.0" prefHeight="455.0" prefWidth="464.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
+      <AnchorPane layoutX="462.0" layoutY="61.0" prefHeight="420.0" prefWidth="391.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
          <children>
-            <Button layoutX="113.0" layoutY="364.0" mnemonicParsing="false" onAction="#signinOnAction" prefHeight="37.0" prefWidth="237.0" style="-fx-background-color: #E72929;" text="SIGN IN" textFill="WHITE" />
-            <Button layoutX="113.0" layoutY="270.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="37.0" prefWidth="237.0" style="-fx-background-color: #31363F;" text="LOGIN" textFill="WHITE">
+            <Button layoutX="92.0" layoutY="353.0" mnemonicParsing="false" onAction="#signinOnAction" prefHeight="29.0" prefWidth="206.0" style="-fx-background-color: #E72929;" text="SIGN IN" textFill="WHITE" />
+            <Button layoutX="92.0" layoutY="265.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: #874CCC;" text="LOGIN" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <PasswordField fx:id="uspasstext" alignment="CENTER" layoutX="59.0" layoutY="197.0" opacity="0.72" prefHeight="26.0" prefWidth="246.0" style="-fx-background-radius: 15; -fx-background-insets: 1; -fx-background-color: #DDDDDD;">
+            <PasswordField fx:id="uspasstext" alignment="CENTER" layoutX="85.0" layoutY="197.0" opacity="0.72" prefHeight="26.0" prefWidth="237.0" style="-fx-background-radius: 15; -fx-background-insets: 1; -fx-background-color: #DDDDDD;">
                <font>
                   <Font size="7.0" />
                </font></PasswordField>
-            <Label layoutX="70.0" layoutY="178.0" text="Password">
+            <Label layoutX="94.0" layoutY="178.0" text="Password">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="70.0" layoutY="101.0" text="Username">
+            <Label layoutX="94.0" layoutY="101.0" text="Username">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="150.0" layoutY="331.0" text="Don't have an Account" />
-            <Label layoutX="150.0" layoutY="27.0" prefHeight="26.0" prefWidth="214.0" text="Wellcome Back !" textFill="#0d0101">
+            <Label layoutX="121.0" layoutY="320.0" prefHeight="16.0" prefWidth="164.0" text="Don't have an Account ?" />
+            <Label layoutX="101.0" layoutY="31.0" prefHeight="26.0" prefWidth="214.0" text="Wellcome Back !" textFill="#874ccc">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="texusen" alignment="CENTER" layoutX="63.0" layoutY="120.0" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: #DDDDDD; -fx-background-radius: 15; -fx-background-insets: 1;" />
+            <TextField fx:id="texusen" alignment="CENTER" layoutX="84.0" layoutY="120.0" opacity="0.79" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: #DDDDDD; -fx-background-radius: 15; -fx-background-insets: 1;" />
          </children></AnchorPane>
       <Label layoutX="25.0" layoutY="13.0" prefHeight="25.0" prefWidth="163.0" text="EquipCare Pro" textFill="WHITE">
          <font>

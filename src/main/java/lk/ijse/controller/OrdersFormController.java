@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.ijse.db.DbConnection;
@@ -18,6 +19,7 @@ import lk.ijse.repository.OrdersRepo;
 import lk.ijse.repository.PlaceOrderRepo;
 import lk.ijse.repository.SparepartsRepo;
 import lk.ijse.repository.SupplierRepo;
+import lk.ijse.util.Regex;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -50,12 +52,15 @@ public class  OrdersFormController {
     public Label lblbalance;
     public TextField lblcash;
     public TextField textqty;
+    public TextField suppliertel;
+
 
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
 
     public void initialize() {
         setDate();
-        getSuppliersid();
+
+        getSupplierTel();
         getSparepartsCode();
         setCellValueFactory();
         try {
@@ -109,23 +114,20 @@ public class  OrdersFormController {
         }
     }
 
-    private void getSuppliersid() {
-        ObservableList<String> obList = FXCollections.observableArrayList();
 
-        try {
-            List<String> idList = SupplierRepo.getIds();
-
-            for (String id : idList) {
-                obList.add(id);
-            }
-
-            comsupid.setItems(obList);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+private void getSupplierTel()  {
+        ObservableList<String> obList=FXCollections.observableArrayList();
+    List<String> telList= null;
+    try {
+        telList = SupplierRepo.getTells();
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
     }
-
+    for (String tel: telList){
+            obList.add(tel);
+        }
+       // lblsupnam.setItems(obList);
+}
     private void setDate() {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
@@ -139,48 +141,6 @@ public class  OrdersFormController {
         timeline.play();
     }
 
-    public void addcartAction(ActionEvent actionEvent) {
-        String orderId = lblorid.getText(); // Get the current order ID
-        String code = comspid.getValue();
-        String description = lblsparename.getText();
-        int qty = Integer.parseInt(textqty.getText());
-        double unitPrice = Double.parseDouble(lblunitprice.getText());
-        double total = qty * unitPrice;
-        JFXButton btnRemove = new JFXButton("remove");
-        btnRemove.setCursor(Cursor.HAND);
-
-        btnRemove.setOnAction((e) -> {
-            ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
-            ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
-
-            if (type.orElse(no) == yes) {
-
-                CartTm selectedCartItem = tblorder.getSelectionModel().getSelectedItem();
-
-                if (selectedCartItem != null) {
-
-                    obList.remove(selectedCartItem);
-
-                    tblorder.refresh();
-                    calculateNetTotal();
-                } else {
-
-                    new Alert(Alert.AlertType.WARNING, "Please select an item to remove.").show();
-                }
-            }
-        });
-
-
-        CartTm tm = new CartTm(code, description, qty, unitPrice, total, btnRemove);
-        obList.add(tm);
-
-        tblorder.setItems(obList);
-        calculateNetTotal();
-        textqty.setText("");
-
-    }
 
     private Object calculateBalance() {
         double totalCost = Double.parseDouble(lbltotalfinal.getText());
@@ -203,9 +163,9 @@ public class  OrdersFormController {
     public void comnameAction(ActionEvent actionEvent) {
         String id = comsupid.getValue();
         try {
-            Supplier supplier = SupplierRepo.searchById(id);
+            Supplier supplier = SupplierRepo.searchBytell(id);
 
-            lblsupnam.setText(supplier.getName());
+            lblsupnam.setText(supplier.getSup_id());
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -232,7 +192,7 @@ public class  OrdersFormController {
 
     public void placeorderAction(ActionEvent actionEvent) throws SQLException {
         String orderId = lblorid.getText();
-        String supId = comsupid.getValue();
+        String supId = lblsupnam.getText();
 
 
         String date = String.valueOf(Date.valueOf(LocalDate.now()));
@@ -309,6 +269,65 @@ lblcash.requestFocus();
 
     public void calculBalance(ActionEvent actionEvent) {
         calculateBalance();
+    }
+
+    public void addtonAction(ActionEvent actionEvent) {
+        String orderId = lblorid.getText(); // Get the current order ID
+        String code = comspid.getValue();
+        String description = lblsparename.getText();
+        int qty = Integer.parseInt(textqty.getText());
+        double unitPrice = Double.parseDouble(lblunitprice.getText());
+        double total = qty * unitPrice;
+        JFXButton btnRemove = new JFXButton("remove");
+        btnRemove.setCursor(Cursor.HAND);
+
+        btnRemove.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+            if (type.orElse(no) == yes) {
+
+                CartTm selectedCartItem = tblorder.getSelectionModel().getSelectedItem();
+
+                if (selectedCartItem != null) {
+
+                    obList.remove(selectedCartItem);
+
+                    tblorder.refresh();
+                    calculateNetTotal();
+                } else {
+
+                    new Alert(Alert.AlertType.WARNING, "Please select an item to remove.").show();
+                }
+            }
+        });
+
+
+        CartTm tm = new CartTm(code, description, qty, unitPrice, total, btnRemove);
+        obList.add(tm);
+
+        tblorder.setItems(obList);
+        calculateNetTotal();
+        textqty.setText("");
+    }
+
+
+    public void suptelAction(ActionEvent actionEvent) {
+        String id = suppliertel.getText();
+        try {
+            Supplier supplier = SupplierRepo.searchBytell(id);
+
+            lblsupnam.setText(supplier.getSup_id());
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void contactaction(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.util.TextField.CONTACT,suppliertel);
     }
 }
 

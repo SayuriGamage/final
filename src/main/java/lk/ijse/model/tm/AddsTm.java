@@ -14,7 +14,7 @@ public class AddsTm extends  CartTm{
     private  String type;
     private  String description;
     private  double cost;
-    private JFXButton btnRemove;
+   // private JFXButton btnRemove;
 
 
 }
