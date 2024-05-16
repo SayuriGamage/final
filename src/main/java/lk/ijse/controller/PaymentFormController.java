@@ -50,6 +50,31 @@ public class PaymentFormController {
                 amounttext.setText(String.valueOf(selectedPayment.getAmount()));
             }
         });
+
+        String     currenteqId = null;
+        try {
+            currenteqId = PaymentRepo.getCurrentId();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        String nextempId = generateNextpayId(currenteqId);
+        paymenttext.setText(nextempId);
+    }
+
+    private String generateNextpayId(String currenteqId) {
+        if (currenteqId != null && currenteqId.matches("^PAY\\d+$")) {
+
+            String numericPart = currenteqId.substring(3);
+            try {
+
+                int orderId = Integer.parseInt(numericPart) + 1;
+
+                return "PAY" + String.format("%03d", orderId);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return "PAY001";
     }
 
     private void setdate() {
@@ -138,17 +163,20 @@ public class PaymentFormController {
         Payment payment = new Payment(paymentId, orderId, date, amount);
 
         try {
-
+if (valid()){
             boolean isSaved = PaymentRepo.save(payment);
             if (isSaved) {
-                if(valid()) {
+
                     new Alert(Alert.AlertType.CONFIRMATION, "Payment saved successfully!").show();
                     clearFields();
                     loadAllPayments();
                     setCellValueFactory();
+                String     currenteqId = PaymentRepo.getCurrentId();
+                String nextempId = generateNextpayId(currenteqId);
+                paymenttext.setText(nextempId);
                 }
             } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to save payment!").show();
+                new Alert(Alert.AlertType.WARNING, "wrong inputs!").show();
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, "Error occurred while saving payment: " + e.getMessage()).show();
@@ -179,6 +207,9 @@ public class PaymentFormController {
                 clearFields();
                 loadAllPayments();
                 setCellValueFactory();
+                String     currenteqId = PaymentRepo.getCurrentId();
+                String nextempId = generateNextpayId(currenteqId);
+                paymenttext.setText(nextempId);
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to update payment!").show();
             }
@@ -197,6 +228,9 @@ public class PaymentFormController {
                 clearFields();
                 loadAllPayments();
                 setCellValueFactory();
+                String     currenteqId = PaymentRepo.getCurrentId();
+                String nextempId = generateNextpayId(currenteqId);
+                paymenttext.setText(nextempId);
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to delete payment!").show();
             }
@@ -205,13 +239,14 @@ public class PaymentFormController {
         }
     }
 
-    public void clearpaymentAction(ActionEvent actionEvent) {
+    public void clearpaymentAction(ActionEvent actionEvent) throws SQLException {
 clearFields();
+        String     currenteqId = PaymentRepo.getCurrentId();
+        String nextempId = generateNextpayId(currenteqId);
+        paymenttext.setText(nextempId);
     }
 
-    public void paymentidAction(KeyEvent keyEvent) {
-       Regex.setTextColor(lk.ijse.util.TextField.ID,paymenttext);
-    }
+
 
     public void paymentdate(KeyEvent keyEvent) {
        Regex.setTextColor(lk.ijse.util.TextField.DATE,datetext);
@@ -221,9 +256,9 @@ clearFields();
 Regex.setTextColor(lk.ijse.util.TextField.COST,amounttext);
     }
     public  boolean valid(){
-        if(!Regex.setTextColor(lk.ijse.util.TextField.ID,paymenttext)) return false;
-        if(!Regex.setTextColor(lk.ijse.util.TextField.DATE,datetext));
-        if(!Regex.setTextColor(lk.ijse.util.TextField.COST,amounttext));
+
+        if(!Regex.setTextColor(lk.ijse.util.TextField.DATE,datetext)) return false;
+        if(!Regex.setTextColor(lk.ijse.util.TextField.COST,amounttext))return  false;
         return true;
     }
 }

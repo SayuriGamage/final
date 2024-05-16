@@ -92,4 +92,15 @@ public class PaymentRepo {
 
         return null;
     }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT pay_id FROM payment ORDER BY pay_id DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String empId = resultSet.getString(1);
+            return empId;
+        }
+        return null;
+    }
 }

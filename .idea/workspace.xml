@@ -4,75 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="917b1985-5e07-462e-b6fc-cdcd5a635f46" name="Changes" comment="aa">
-      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/AddsRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/img_9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_25.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_26.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_27.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_28.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_29.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_30.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_31.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_33.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_34.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_35.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_36.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_37.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_38.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_39.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_40.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_41.png" afterDir="false" />
+    <list default="true" id="917b1985-5e07-462e-b6fc-cdcd5a635f46" name="Changes" comment="finally">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_42.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_43.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_44.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_45.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_46.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/img_47.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CondemnedFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/CondemnedFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardsecFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardsecFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EmployeeFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EmployeeFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EquipmentFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/EquipmentFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/MaintenanceFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/MaintenanceFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/OrdersFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/OrdersFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/PaymentFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/PaymentFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/SparepartsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/SparepartsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/SupplierFromController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/SupplierFromController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/db/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/db/DbConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/model/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/Supplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/model/tm/AddsTm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/tm/AddsTm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/model/tm/SupplierTm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/model/tm/SupplierTm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/CondemnedRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/CondemnedRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/EmployeeRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/EmployeeRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/EquipmentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/EquipmentRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/MaintenanceRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/MaintenanceRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/SparepartsRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/SparepartsRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/SupplierRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/SupplierRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/equipmentDetailsRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/equipmentDetailsRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/util/Regex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/util/Regex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/util/TextField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/util/TextField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/forms.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/PaymentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/repository/PaymentRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/query/query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/query/query.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/condemned_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/condemned_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/dashboard_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/dashboard_form.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/dashboardsec_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/dashboardsec_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/employee_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/employee_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/equipment_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/equipment_form.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/login_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/login_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/maintenance_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/maintenance_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/orders_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/orders_form.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/payment_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/payment_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/register_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/register_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/spareparts_form.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/spareparts_form.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/supplier_from.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/supplier_from.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,44 +52,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LauncherWrapper.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/sayuri/IdeaProjects/try karala balanna asa hithei/src/main/resources/reports&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Launcher.executor": "Run",
+    "Application.LauncherWrapper.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/sayuri/IdeaProjects/try karala balanna asa hithei/src/main/resources/images",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;module&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "module"
     ],
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="lk.ijse.db" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/images" />
       <recent name="$PROJECT_DIR$/src/main/resources/reports" />
       <recent name="$PROJECT_DIR$/src/main/resources/icon" />
       <recent name="$PROJECT_DIR$/src/main/resources/query" />
-      <recent name="$PROJECT_DIR$/src/main/resources/images" />
       <recent name="$PROJECT_DIR$/src/main/resources/view" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -304,6 +251,9 @@
       <workItem from="1715606330581" duration="6853000" />
       <workItem from="1715680567513" duration="2801000" />
       <workItem from="1715702354226" duration="5523000" />
+      <workItem from="1715708193404" duration="258000" />
+      <workItem from="1715743579085" duration="5938000" />
+      <workItem from="1715834044709" duration="4580000" />
     </task>
     <task id="LOCAL-00001" summary="nn">
       <option name="closed" value="true" />
@@ -417,7 +367,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715013407299</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="finally">
+      <option name="closed" value="true" />
+      <created>1715708316775</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715708316775</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,7 +395,8 @@
     <MESSAGE value="ALL OK" />
     <MESSAGE value="ALL OKs" />
     <MESSAGE value="aa" />
-    <option name="LAST_COMMIT_MESSAGE" value="aa" />
+    <MESSAGE value="finally" />
+    <option name="LAST_COMMIT_MESSAGE" value="finally" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

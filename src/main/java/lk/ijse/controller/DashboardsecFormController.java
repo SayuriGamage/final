@@ -42,7 +42,7 @@ public class DashboardsecFormController {
     private int itemCount;
     @FXML
     private LineChart<?, ?> linechart;
-private int equipmentCount;
+    private int equipmentCount;
 
     public void initialize() throws SQLException {
         setDate();
@@ -150,62 +150,61 @@ private int equipmentCount;
         dateatext.setText("");
     }
 
-   public void lineChart(){
-       XYChart.Series series1 = new XYChart.Series();
-       series1.setName("Equipment");
+    public void lineChart(){
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("maintenance cost");
 
-       PreparedStatement stm = null;
-       try {
-           stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT\n" +
-                   "    DATE_FORMAT(MIN(o.order_date), '%Y-%m-%d') AS WeekStartDate,\n" +
-                   "    DATE_FORMAT(MAX(o.order_date), '%Y-%m-%d') AS WeekEndDate,\n" +
-                   "    COUNT(*) AS WeeklyOrders,\n" +
-                   "    SUM(p.amount) AS TotalAmount\n" +
-                   "FROM\n" +
-                   "    orders o\n" +
-                   "JOIN\n" +
-                   "    payment p ON o.or_id = p.or_id\n" +
-                   "WHERE\n" +
-                   "    o.order_date BETWEEN (SELECT MIN(order_date) FROM orders) AND (SELECT MAX(order_date) FROM orders)\n" +
-                   "GROUP BY\n" +
-                   "    YEARWEEK(o.order_date, 1)\n" +
-                   "ORDER BY\n" +
-                   "    WeekStartDate;\n");
-       } catch (SQLException e) {
-           e.printStackTrace();
-       }
+        PreparedStatement stm = null;
+        try {
+            stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT\n" +
+                    "    DATE_FORMAT(MIN(o.order_date), '%Y-%m-%d') AS WeekStartDate,\n" +
+                    "    DATE_FORMAT(MAX(o.order_date), '%Y-%m-%d') AS WeekEndDate,\n" +
+                    "    COUNT(*) AS WeeklyOrders,\n" +
+                    "    SUM(p.amount) AS TotalAmount\n" +
+                    "FROM\n" +
+                    "    orders o\n" +
+                    "JOIN\n" +
+                    "    payment p ON o.or_id = p.or_id\n" +
+                    "WHERE\n" +
+                    "    o.order_date BETWEEN (SELECT MIN(order_date) FROM orders) AND (SELECT MAX(order_date) FROM orders)\n" +
+                    "GROUP BY\n" +
+                    "    YEARWEEK(o.order_date, 1)\n" +
+                    "ORDER BY\n" +
+                    "    WeekStartDate;\n ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-       ResultSet rst = null;
-       try {
-           rst = stm.executeQuery();
-       } catch (SQLException e) {
-           e.printStackTrace();
-       }
+        ResultSet rst = null;
+        try {
+            rst = stm.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-       while (true) {
-           try {
-               if (!rst.next()) break;
-           } catch (SQLException e) {
-               e.printStackTrace();
-           }
+        while (true) {
+            try {
+                if (!rst.next()) break;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
-           String date = null;
-           try {
-               date = rst.getString(2);
-           } catch (SQLException e) {
-               e.printStackTrace();
-           }
+            String date = null;
+            try {
+                date = rst.getString(2);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
-           int count = 0;
-           try {
-               count = rst.getInt(4);
-           } catch (SQLException e) {
-               e.printStackTrace();
-           }
-           series1.getData().add(new XYChart.Data<>(date, count));
-       }
-       barChart.getData().addAll(series1);
-   }
-
+            int count = 0;
+            try {
+                count = rst.getInt(4);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            series1.getData().add(new XYChart.Data<>(date, count));
+        }
+        barChart.getData().addAll(series1);
+    }
 
 }

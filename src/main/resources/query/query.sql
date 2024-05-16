@@ -155,6 +155,7 @@ INSERT INTO payment (pay_id, or_id, date, amount) VALUES
                                                       ('PAY005', 'ORD005', '2024-04-29', 720.00);
 
 
+
 -- Generate 20 values for user table
 INSERT INTO user (user_id, name, password) VALUES
                                                ('USER001', 'ss', '1'),
@@ -180,18 +181,18 @@ INSERT INTO user (user_id, name, password) VALUES
 
 -- Generate 20 values for equipment table
 INSERT INTO equipment (eq_id, name, model, cost, purchase, warranty, manufacture, user_id) VALUES
-                                                                                               ('EQP001', 'Digital Thermometer', 'DT-100', 45.99, '2022-05-01', '2023-11-08', 'MedTech Solutions', 'USER001'),
+                                                                                               ('EQP001', 'Digital Thermometer', 'DT-100', 45.99, '2022-05-01', '2024-05-15', 'MedTech Solutions', 'USER001'),
                                                                                                ('EQP002', 'Patient Monitor', 'PM-2000', 1500.00, '2022-05-02', '2023-11-08', 'VitalSign Inc.', 'USER002'),
                                                                                                ('EQP003', 'Nebulizer Machine', 'NebuCare Pro', 299.99, '2021-05-03', '2023-05-08', 'RespireTech', 'USER003'),
-                                                                                               ('EQP004', 'Portable Oxygen Concentrator', 'OxyGenius Plus', 2000.00, '2023-05-08', '2023-11-08', 'OxyLife Technologies', 'USER004'),
-                                                                                               ('EQP005', 'Wheelchair', 'EasyGlide 2000', 899.99, '2021-05-05', '2023-11-09', 'Mobility Solutions Inc.', 'USER005'),
+                                                                                               ('EQP004', 'Portable Oxygen Concentrator', 'OxyGenius Plus', 2000.00, '2024-05-15', '2023-11-08', 'OxyLife Technologies', 'USER004'),
+                                                                                               ('EQP005', 'Wheelchair', 'EasyGlide 2000', 899.99, '2021-05-05', '2024-05-15', 'Mobility Solutions Inc.', 'USER005'),
                                                                                                ('EQP006', 'Blood Pressure Monitor', 'BPX-500', 89.99, '2022-05-06', '2023-11-09', 'CardioTech', 'USER006'),
-                                                                                               ('EQP007', 'Electrocardiogram (ECG) Machine', 'ECG-1000', 3500.00, '2022-05-09', '2023-11-08', 'HeartCare Solutions', 'USER007'),
-                                                                                               ('EQP008', 'Portable Ultrasound Scanner', 'UltraScan Go', 5000.00, '2023-05-09', '2023-11-09', 'Imaging Technologies Inc.', 'USER008'),
+                                                                                               ('EQP007', 'Electrocardiogram (ECG) Machine', 'ECG-1000', 3500.00, '2024-05-16', '2024-05-16', 'HeartCare Solutions', 'USER007'),
+                                                                                               ('EQP008', 'Portable Ultrasound Scanner', 'UltraScan Go', 5000.00, '2024-05-16', '2024-05-16', 'Imaging Technologies Inc.', 'USER008'),
                                                                                                ('EQP009', 'Infusion Pump', 'InfuMax 3000', 2500.00, '2024-05-09', '2023-11-09', 'MediPump Corporation', 'USER009'),
-                                                                                               ('EQP010', 'Digital X-ray Machine', 'X-RayMaster 2025', 10000.00, '2023-05-10', '2023-11-09', 'MediImaging Solutions', 'USER010'),
-                                                                                               ('EQP011', 'Surgical Robot', 'SurgiTech Pro', 150000.00, '2024-05-11', '2023-11-09', 'RoboSurgery Inc.', 'USER011'),
-                                                                                               ('EQP012', 'Hearing Aid', 'HearClear 300', 799.99, '2024-05-12', '2023-05-07', 'AudioTech Innovations', 'USER012'),
+                                                                                               ('EQP010', 'Digital X-ray Machine', 'X-RayMaster 2025', 10000.00, '2024-05-17', '2023-11-09', 'MediImaging Solutions', 'USER010'),
+                                                                                               ('EQP011', 'Surgical Robot', 'SurgiTech Pro', 150000.00, '2024-05-11', '2024-05-17', 'RoboSurgery Inc.', 'USER011'),
+                                                                                               ('EQP012', 'Hearing Aid', 'HearClear 300', 799.99, '2024-05-12', '2024-05-17', 'AudioTech Innovations', 'USER012'),
                                                                                                ('EQP013', 'MRI Machine', 'MRI-Xpert 5000', 500000.00, '2024-05-13', '2023-11-10', 'MediScan Technologies', 'USER013'),
                                                                                                ('EQP014', 'Smart Inhaler', 'Inhalix Smart', 149.99, '2024-05-14', '2023-11-10', 'BreatheWell Inc.', 'USER014'),
                                                                                                ('EQP015', 'Robotic Exoskeleton', 'ExoGrip Pro', 25000.00, '2024-05-15', '2023-11-10', 'BioMotion Robotics', 'USER015'),
