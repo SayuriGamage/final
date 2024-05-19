@@ -23,7 +23,6 @@ import java.util.List;
 
 public class EmployeeFormController {
 
-    public TextField empidtext;
     public TextField empnametext;
     public TextField addresemptext;
     public TextField telemptext;
@@ -114,7 +113,8 @@ public class EmployeeFormController {
         try {
             List<Employee> employeeList = EmployeeRepo.getAll();
 
-            for (Employee employee : employeeList) {
+            for (int i = 0; i < employeeList.size(); i++) {
+                Employee employee = employeeList.get(i);
                 EmployeeTm tm = new EmployeeTm(
                         employee.getId(),
                         employee.getName(),

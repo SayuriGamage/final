@@ -115,19 +115,20 @@ public class  OrdersFormController {
     }
 
 
-private void getSupplierTel()  {
-        ObservableList<String> obList=FXCollections.observableArrayList();
-    List<String> telList= null;
-    try {
-        telList = SupplierRepo.getTells();
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-    }
-    for (String tel: telList){
+    private void getSupplierTel() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        List<String> telList = null;
+        try {
+            telList = SupplierRepo.getTells();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        for (String tel : telList) {
             obList.add(tel);
         }
-       // lblsupnam.setItems(obList);
-}
+
+    }
+
     private void setDate() {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
@@ -160,17 +161,6 @@ private void getSupplierTel()  {
         return netTotal;
     }
 
-    public void comnameAction(ActionEvent actionEvent) {
-        String id = comsupid.getValue();
-        try {
-            Supplier supplier = SupplierRepo.searchBytell(id);
-
-            lblsupnam.setText(supplier.getSup_id());
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public void comspareAction(ActionEvent actionEvent) {
         String code = comspid.getValue();
@@ -197,7 +187,7 @@ private void getSupplierTel()  {
 
         String date = String.valueOf(Date.valueOf(LocalDate.now()));
 
-        var order = new Orders(orderId, date, supId);
+        Orders order = new Orders(orderId, date, supId);
 
 
         List<OrderDetail> odList = new ArrayList<>();
@@ -220,15 +210,16 @@ private void getSupplierTel()  {
         boolean isPlaced = PlaceOrderRepo.placeOrder(po);
         if (isPlaced) {
             new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
-lblcash.requestFocus();
+            lblcash.requestFocus();
 
         } else {
             new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
         }
     }
+
     private void clearTextFields() {
-     comsupid.getSelectionModel().clearSelection();
-     comspid.getSelectionModel().clearSelection();
+        comsupid.getSelectionModel().clearSelection();
+        comspid.getSelectionModel().clearSelection();
         textqty.setText("");
         lblorid.setText("");
         lblsupnam.setText("");
@@ -237,6 +228,7 @@ lblcash.requestFocus();
         lbltotalfinal.setText("");
         lblcash.setText("");
         lblbalance.setText("");
+        suppliertel.setText("");
 
     }
 
@@ -244,22 +236,22 @@ lblcash.requestFocus();
         JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/order.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-        Map<String,Object> datat = new HashMap<>();
+        Map<String, Object> datat = new HashMap<>();
         String orderId = lblorid.getText();
-        datat.put("ids",orderId);
+        datat.put("ids", orderId);
         String netTotalString = String.valueOf(calculateNetTotal());
         datat.put("total", netTotalString);
-        String cash=lblcash.getText();
-        datat.put("cash",cash);
-        String bala=String.valueOf(calculateBalance());
-        datat.put("balance",bala);
+        String cash = lblcash.getText();
+        datat.put("cash", cash);
+        String bala = String.valueOf(calculateBalance());
+        datat.put("balance", bala);
 
 
         JasperPrint jasperPrint =
                 JasperFillManager.fillReport(jasperReport, datat, DbConnection.getInstance().getConnection());
-        JasperViewer.viewReport(jasperPrint,false);
+        JasperViewer.viewReport(jasperPrint, false);
 
-       obList.clear();
+        obList.clear();
         tblorder.refresh();
         clearTextFields();
         String currentOrderId = OrdersRepo.getCurrentId();
@@ -272,7 +264,7 @@ lblcash.requestFocus();
     }
 
     public void addtonAction(ActionEvent actionEvent) {
-        String orderId = lblorid.getText(); // Get the current order ID
+
         String code = comspid.getValue();
         String description = lblsparename.getText();
         int qty = Integer.parseInt(textqty.getText());
@@ -325,10 +317,8 @@ lblcash.requestFocus();
             throw new RuntimeException(e);
         }
     }
-
-    public void contactaction(KeyEvent keyEvent) {
-        Regex.setTextColor(lk.ijse.util.TextField.CONTACT,suppliertel);
-    }
 }
+
+
 
 

@@ -1,9 +1,5 @@
 package lk.ijse.model;
 
-
-
-
-
 public class Condemned {
         private String c_id;
         private String details;

@@ -40,8 +40,7 @@ public class DashboardsecFormController {
     public BarChart barChart;
     private  int empCount;
     private int itemCount;
-    @FXML
-    private LineChart<?, ?> linechart;
+
     private int equipmentCount;
 
     public void initialize() throws SQLException {
@@ -156,19 +155,19 @@ public class DashboardsecFormController {
 
         PreparedStatement stm = null;
         try {
-            stm = DbConnection.getInstance().getConnection().prepareStatement("SELECT\n" +
-                    "    DATE_FORMAT(MIN(o.order_date), '%Y-%m-%d') AS WeekStartDate,\n" +
-                    "    DATE_FORMAT(MAX(o.order_date), '%Y-%m-%d') AS WeekEndDate,\n" +
+            stm = DbConnection.getInstance().getConnection().prepareStatement( "SELECT\n" +
+                    "    DATE_FORMAT(MIN(STR_TO_DATE(p.date, '%Y-%m-%d')), '%Y-%m-%d') AS WeekStartDate,\n" +
+                    "    DATE_FORMAT(MAX(STR_TO_DATE(p.date, '%Y-%m-%d')), '%Y-%m-%d') AS WeekEndDate,\n" +
                     "    COUNT(*) AS WeeklyOrders,\n" +
                     "    SUM(p.amount) AS TotalAmount\n" +
                     "FROM\n" +
                     "    orders o\n" +
-                    "JOIN\n" +
-                    "    payment p ON o.or_id = p.or_id\n" +
+                    "    INNER JOIN payment p ON o.or_id = p.or_id\n" +
                     "WHERE\n" +
-                    "    o.order_date BETWEEN (SELECT MIN(order_date) FROM orders) AND (SELECT MAX(order_date) FROM orders)\n" +
+                    "    STR_TO_DATE(p.date, '%Y-%m-%d') BETWEEN (SELECT MIN(STR_TO_DATE(date, '%Y-%m-%d')) FROM payment) \n" +
+                    "    AND (SELECT MAX(STR_TO_DATE(date, '%Y-%m-%d')) FROM payment)\n" +
                     "GROUP BY\n" +
-                    "    YEARWEEK(o.order_date, 1)\n" +
+                    "    YEARWEEK(STR_TO_DATE(p.date, '%Y-%m-%d'), 1)\n" +
                     "ORDER BY\n" +
                     "    WeekStartDate;\n ");
         } catch (SQLException e) {

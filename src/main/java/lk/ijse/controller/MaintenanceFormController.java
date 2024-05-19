@@ -428,7 +428,7 @@ public class MaintenanceFormController {
         String employeeId = comempid.getValue();
         String equipmentId = comeqid.getValue();
         String type = maintypetext.getText();
-        var maintenance = new Maintenance(maintenanceId, date, description, cost, employeeId);
+        Maintenance maintenance = new Maintenance(maintenanceId, date, description, cost, employeeId);
         List<equipmentDetails> osList = new ArrayList<>();
         for (int i = 0; i < tblmaintenance.getItems().size(); i++) {
             AddsTm am = (AddsTm) obList.get(i);
@@ -490,14 +490,14 @@ public class MaintenanceFormController {
         String equipmentid = comeqid.getValue();
         String types = maintypetext.getText();
         String description = descriptiontext.getText();
-        double cost = 0.0; //
+        double cost = 0.0;
 
 
 
         try {
             cost = Double.parseDouble(costtext.getText());
         } catch (NumberFormatException e) {
-            // Handle parsing error
+
             e.printStackTrace();
 
             return;
@@ -515,36 +515,9 @@ public class MaintenanceFormController {
         tblmaintenance.setItems(obList);
     }
 
-    public void updateonAction(ActionEvent actionEvent) throws SQLException {
-        String maintainId= maintext.getText();
-        String description=descriptiontext.getText();
-        String maintype= maintypetext.getText();
-        double cost= Double.parseDouble(costtext.getText());
-        String empid=comempid.getValue();
-        String eqid=comeqid.getValue();
 
-String date=String.valueOf(LocalDate.now());
-        Maintenance maintenance = new Maintenance(maintainId, LocalDate.now().toString(), description, cost, empid);
-        equipmentDetails equipmentDetails=new equipmentDetails(maintainId,maintype,eqid);
 
-        boolean isUpdated = MaintenanceRepo.updateMaintenance(maintenance);
-        System.out.println("methanata wenakn wadada");
-        if (isUpdated) {
-            boolean update=equipmentDetailsRepo.updateequipmentDetails(equipmentDetails);
-            if(update) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Maintenance details updated successfully!").show();
-
-                clearTextFields();
-            }
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Failed to update maintenance details!").show();
-        }
-
-    }
-
-    public void mainidAction(KeyEvent keyEvent) {
-        Regex.setTextColor(lk.ijse.util.TextField.ID,maintext);
-    }
+   
     public boolean valid(){
         if (!Regex.setTextColor(lk.ijse.util.TextField.TEXT,maintypetext)) return false;
         if(!Regex.setTextColor(lk.ijse.util.TextField.COST,costtext)) return false;
@@ -559,4 +532,6 @@ String date=String.valueOf(LocalDate.now());
     public void descripaction(KeyEvent keyEvent) {
         Regex.setTextColor(lk.ijse.util.TextField.TEXT,descriptiontext);
     }
+
+
 }

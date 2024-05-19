@@ -35,13 +35,13 @@
                   <Font size="7.0" />
                </font>
             </PasswordField>
-            <Button layoutX="125.0" layoutY="274.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: #240750;" text="LOGIN" textFill="WHITE">
+            <Button layoutX="125.0" layoutY="274.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: #240750;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="LOGIN" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
             <Label layoutX="138.0" layoutY="332.0" prefHeight="16.0" prefWidth="164.0" text="Don't have an Account ?" textFill="WHITE" />
-            <Button layoutX="125.0" layoutY="372.0" mnemonicParsing="false" onAction="#signinOnAction" prefHeight="29.0" prefWidth="206.0" style="-fx-background-color: #E72929;" text="SIGN IN" textFill="WHITE" />
+            <Button layoutX="125.0" layoutY="372.0" mnemonicParsing="false" onAction="#signinOnAction" prefHeight="29.0" prefWidth="206.0" style="-fx-background-color: #E72929;" styleClass="nav-btn" stylesheets="@../css/greenbutton.css" text="SIGN IN" textFill="WHITE" />
          </children>
       </AnchorPane>
       <Label layoutX="242.0" layoutY="123.0" />
