@@ -31,7 +31,8 @@ CREATE TABLE user (
                       user_id VARCHAR(100) PRIMARY KEY,
                       name VARCHAR(100),
                       password VARCHAR(255),
-                      tel VARCHAR(100)
+                      tel VARCHAR(100),
+                      email VARCHAR(200)
 );
 
 CREATE TABLE equipment (
@@ -173,49 +174,50 @@ INSERT INTO payment (pay_id, or_id, date, amount) VALUES
 
 
 -- Generate 20 values for user table
-INSERT INTO user (user_id, name, password,tel) VALUES
-                                                   ('USER001', 'Laksiri', '123', ' 071 123 4567'),
-                                                   ('USER002', 'User 2', 'password2', '072 234 5678'),
-                                                   ('USER003', 'User 3', 'password3', '073 345 6789'),
-                                                   ('USER004', 'User 4', 'password4', '074 456 7890'),
-                                                   ('USER005', 'User 5', 'password5', '075 567 8901'),
-                                                   ('USER006', 'User 6', 'password6', '076 678 9012'),
-                                                   ('USER007', 'User 7', 'password7', '077 789 0123'),
-                                                   ('USER008', 'User 8', 'password8', '078 890 1234'),
-                                                   ('USER009', 'User 9', 'password9', '070 901 2345'),
-                                                   ('USER010', 'User 10', 'password10', '071 012 3456'),
-                                                   ('USER011', 'User 11', 'password11', '072 123 4567'),
-                                                   ('USER012', 'User 12', 'password12', '073 234 5678'),
-                                                   ('USER013', 'User 13', 'password13', '074 345 6789'),
-                                                   ('USER014', 'User 14', 'password14', '075 456 7890'),
-                                                   ('USER015', 'User 15', 'password15', '076 567 8901'),
-                                                   ('USER016', 'User 16', 'password16', '077 678 9012'),
-                                                   ('USER017', 'User 17', 'password17', '078 789 0123'),
-                                                   ('USER018', 'User 18', 'password18', '070 890 1234'),
-                                                   ('USER019', 'User 19', 'password19', '071 901 2345'),
-                                                   ('USER020', 'User 20', 'password20', '072 012 3456');
+INSERT INTO user (user_id, name, password, tel, email) VALUES
+                                                           ('USER001', 'sayuri', '123', '071 350 4196', 'dinukaphoto692@gmail.com'),
+                                                           ('USER002', 'User 2', 'password2', '072 234 5678', 'user2@example.com'),
+                                                           ('USER003', 'User 3', 'password3', '073 345 6789', 'user3@example.com'),
+                                                           ('USER004', 'User 4', 'password4', '074 456 7890', 'user4@example.com'),
+                                                           ('USER005', 'User 5', 'password5', '075 567 8901', 'user5@example.com'),
+                                                           ('USER006', 'User 6', 'password6', '076 678 9012', 'user6@example.com'),
+                                                           ('USER007', 'User 7', 'password7', '077 789 0123', 'user7@example.com'),
+                                                           ('USER008', 'User 8', 'password8', '078 890 1234', 'user8@example.com'),
+                                                           ('USER009', 'User 9', 'password9', '070 901 2345', 'user9@example.com'),
+                                                           ('USER010', 'User 10', 'password10', '071 012 3456', 'user10@example.com'),
+                                                           ('USER011', 'User 11', 'password11', '072 123 4567', 'user11@example.com'),
+                                                           ('USER012', 'User 12', 'password12', '073 234 5678', 'user12@example.com'),
+                                                           ('USER013', 'User 13', 'password13', '074 345 6789', 'user13@example.com'),
+                                                           ('USER014', 'User 14', 'password14', '075 456 7890', 'user14@example.com'),
+                                                           ('USER015', 'User 15', 'password15', '076 567 8901', 'user15@example.com'),
+                                                           ('USER016', 'User 16', 'password16', '077 678 9012', 'user16@example.com'),
+                                                           ('USER017', 'User 17', 'password17', '078 789 0123', 'user17@example.com'),
+                                                           ('USER018', 'User 18', 'password18', '070 890 1234', 'user18@example.com'),
+                                                           ('USER019', 'User 19', 'password19', '071 901 2345', 'user19@example.com'),
+                                                           ('USER020', 'User 20', 'password20', '072 012 3456', 'user20@example.com');
+
 
 -- Generate 20 values for equipment table
 INSERT INTO equipment (eq_id, name, model, cost, purchase, warranty, manufacture, user_id) VALUES
-                                                                                               ('EQP001', 'Digital Thermometer', 'DT-100', 45.99, '2022-05-01', '2024-05-17', 'MedTech Solutions', 'USER001'),
-                                                                                               ('EQP002', 'Patient Monitor', 'PM-2000', 1500.00, '2022-05-02', '2023-11-17', 'VitalSign Inc.', 'USER002'),
-                                                                                               ('EQP003', 'Nebulizer Machine', 'NebuCare Pro', 299.99, '2021-05-03', '2023-05-08', 'RespireTech', 'USER003'),
+                                                                                               ('EQP001', 'Digital Thermometer', 'DT-100', 45.99, '2022-05-01', '2024-05-28', 'MedTech Solutions', 'USER001'),
+                                                                                               ('EQP002', 'Patient Monitor', 'PM-2000', 1500.00, '2022-05-02', '2023-05-26', 'VitalSign Inc.', 'USER002'),
+                                                                                               ('EQP003', 'Nebulizer Machine', 'NebuCare Pro', 299.99, '2021-05-03', '2023-05-26', 'RespireTech', 'USER003'),
                                                                                                ('EQP004', 'Portable Oxygen Concentrator', 'OxyGenius Plus', 2000.00, '2023-05-15', '2023-11-17', 'OxyLife Technologies', 'USER004'),
-                                                                                               ('EQP005', 'Wheelchair', 'EasyGlide 2000', 899.99, '2021-05-05', '2024-05-15', 'Mobility Solutions Inc.', 'USER005'),
+                                                                                               ('EQP005', 'Wheelchair', 'EasyGlide 2000', 899.99, '2021-05-05', '2024-05-26', 'Mobility Solutions Inc.', 'USER005'),
                                                                                                ('EQP006', 'Blood Pressure Monitor', 'BPX-500', 89.99, '2022-05-06', '2023-11-18', 'CardioTech', 'USER006'),
-                                                                                               ('EQP007', 'Electrocardiogram (ECG) Machine', 'ECG-1000', 3500.00, '2022-05-16', '2024-05-16', 'HeartCare Solutions', 'USER007'),
-                                                                                               ('EQP008', 'Portable Ultrasound Scanner', 'UltraScan Go', 5000.00, '2021-05-16', '2024-05-16', 'Imaging Technologies Inc.', 'USER008'),
+                                                                                               ('EQP007', 'Electrocardiogram (ECG) Machine', 'ECG-1000', 3500.00, '2022-05-16', '2024-05-26', 'HeartCare Solutions', 'USER007'),
+                                                                                               ('EQP008', 'Portable Ultrasound Scanner', 'UltraScan Go', 5000.00, '2021-05-16', '2024-05-26', 'Imaging Technologies Inc.', 'USER008'),
                                                                                                ('EQP009', 'Infusion Pump', 'InfuMax 3000', 2500.00, '2021-05-09', '2023-11-18', 'MediPump Corporation', 'USER009'),
                                                                                                ('EQP010', 'Digital X-ray Machine', 'X-RayMaster 2025', 10000.00, '2021-05-17', '2023-11-18', 'MediImaging Solutions', 'USER010'),
-                                                                                               ('EQP011', 'Surgical Robot', 'SurgiTech Pro', 150000.00, '2021-05-11', '2024-05-17', 'RoboSurgery Inc.', 'USER011'),
-                                                                                               ('EQP012', 'Hearing Aid', 'HearClear 300', 799.99, '2020-05-12', '2024-05-17', 'AudioTech Innovations', 'USER012'),
+                                                                                               ('EQP011', 'Surgical Robot', 'SurgiTech Pro', 150000.00, '2021-05-11', '2024-05-26', 'RoboSurgery Inc.', 'USER011'),
+                                                                                               ('EQP012', 'Hearing Aid', 'HearClear 300', 799.99, '2020-05-12', '2024-05-27', 'AudioTech Innovations', 'USER012'),
                                                                                                ('EQP013', 'MRI Machine', 'MRI-Xpert 5000', 500000.00, '2019-05-13', '2023-11-18', 'MediScan Technologies', 'USER013'),
                                                                                                ('EQP014', 'Smart Inhaler', 'Inhalix Smart', 149.99, '2021-05-14', '2023-11-18', 'BreatheWell Inc.', 'USER014'),
                                                                                                ('EQP015', 'Robotic Exoskeleton', 'ExoGrip Pro', 25000.00, '2022-05-15', '2023-11-19', 'BioMotion Robotics', 'USER015'),
                                                                                                ('EQP016', 'Fetal Monitor', 'FetalCare Deluxe', 1200.00, '2022-05-16', '2023-11-19', 'NeoNatal Solutions', 'USER016'),
                                                                                                ('EQP017', 'Patient Lift', 'LiftEase 1000', 1499.99, '2022-05-17', '2023-11-19', 'AssistiveTech Inc.', 'USER017'),
                                                                                                ('EQP018', 'Ophthalmoscope', 'EyeTech 360', 399.99, '2021-05-18', '2023-11-19', 'VisionCare Systems', 'USER018'),
-                                                                                               ('EQP019', 'Digital Blood Glucose Meter', 'GluCheck Pro', 79.99, '2021-05-09', '2024-11-18', 'DiabTech Innovations', 'USER019'),
+                                                                                               ('EQP019', 'Digital Blood Glucose Meter', 'GluCheck Pro', 79.99, '2021-05-09', '2024-05-26', 'DiabTech Innovations', 'USER019'),
                                                                                                ('EQP020', 'Pulse Oximeter', 'OxiSense Pro', 59.99, '2021-05-20', '2023-11-18', 'VitalHealth Technologies', 'USER020');
 
 INSERT INTO employee (emp_id, name, job_title, tel) VALUES
@@ -241,26 +243,26 @@ INSERT INTO employee (emp_id, name, job_title, tel) VALUES
                                                         ('EMP020', 'Kasun', 'Laborer', '0776543210');
 
 INSERT INTO maintenance (mm_id, date, description, cost, emp_id) VALUES
-                                                                     ('MAI001', '2023-11-17', 'Engine Maintenance', 50.00, 'EMP001'),
-                                                                     ('MAI002', '2023-11-17', 'Transmission Service', 75.00, 'EMP002'),
-                                                                     ('MAI003', '2023-11-17', 'Electrical System Check', 100.00, 'EMP003'),
-                                                                     ('MAI004', '2023-11-17', 'Brake Inspection', 125.00, 'EMP004'),
-                                                                     ('MAI005', '2023-11-18', 'Oil Change', 150.00, 'EMP005'),
-                                                                     ('MAI006', '2023-11-18', 'Coolant Flush', 175.00, 'EMP006'),
-                                                                     ('MAI007', '2023-11-18', 'Suspension Alignment', 200.00, 'EMP007'),
-                                                                     ('MAI008', '2023-11-18', 'Tire Rotation', 225.00, 'EMP008'),
-                                                                     ('MAI009', '2023-11-18', 'Battery Replacement', 250.00, 'EMP009'),
-                                                                     ('MAI010', '2023-11-18', 'Air Filter Replacement', 275.00, 'EMP010'),
-                                                                     ('MAI011', '2023-11-19', 'Brake Pad Replacement', 300.00, 'EMP011'),
-                                                                     ('MAI012', '2023-11-19', 'Wheel Bearing Replacement', 325.00, 'EMP012'),
-                                                                     ('MAI013', '2023-11-19', 'Fuel System Cleaning', 350.00, 'EMP013'),
-                                                                     ('MAI014', '2023-11-16', 'Exhaust System Repair', 375.00, 'EMP014'),
-                                                                     ('MAI015', '2023-11-20', 'Ignition System Tune-Up', 400.00, 'EMP015'),
-                                                                     ('MAI016', '2023-11-20', 'Air Conditioning Service', 425.00, 'EMP016'),
-                                                                     ('MAI017', '2023-11-20', 'Engine Rebuild', 450.00, 'EMP017'),
-                                                                     ('MAI018', '2023-11-20', 'Electrical Wiring Replacement', 475.00, 'EMP018'),
-                                                                     ('MAI019', '2023-11-20', 'Steering System Repair', 500.00, 'EMP019'),
-                                                                     ('MAI020', '2023-11-20', 'Transmission Overhaul', 525.00, 'EMP020');
+                                                                     ('MAI001', '2023-11-26', 'Engine Maintenance', 50.00, 'EMP001'),
+                                                                     ('MAI002', '2023-11-27', 'Transmission Service', 75.00, 'EMP002'),
+                                                                     ('MAI003', '2023-11-27', 'Electrical System Check', 100.00, 'EMP003'),
+                                                                     ('MAI004', '2023-11-27', 'Brake Inspection', 125.00, 'EMP004'),
+                                                                     ('MAI005', '2023-11-28', 'Oil Change', 150.00, 'EMP005'),
+                                                                     ('MAI006', '2023-11-26', 'Coolant Flush', 175.00, 'EMP006'),
+                                                                     ('MAI007', '2023-11-26', 'Suspension Alignment', 200.00, 'EMP007'),
+                                                                     ('MAI008', '2023-11-26', 'Tire Rotation', 225.00, 'EMP008'),
+                                                                     ('MAI009', '2023-11-28', 'Battery Replacement', 250.00, 'EMP009'),
+                                                                     ('MAI010', '2023-11-26', 'Air Filter Replacement', 275.00, 'EMP010'),
+                                                                     ('MAI011', '2023-11-29', 'Brake Pad Replacement', 300.00, 'EMP011'),
+                                                                     ('MAI012', '2023-11-29', 'Wheel Bearing Replacement', 325.00, 'EMP012'),
+                                                                     ('MAI013', '2023-11-26', 'Fuel System Cleaning', 350.00, 'EMP013'),
+                                                                     ('MAI014', '2023-11-26', 'Exhaust System Repair', 375.00, 'EMP014'),
+                                                                     ('MAI015', '2023-11-26', 'Ignition System Tune-Up', 400.00, 'EMP015'),
+                                                                     ('MAI016', '2023-11-28', 'Air Conditioning Service', 425.00, 'EMP016'),
+                                                                     ('MAI017', '2023-11-26', 'Engine Rebuild', 450.00, 'EMP017'),
+                                                                     ('MAI018', '2023-11-26', 'Electrical Wiring Replacement', 475.00, 'EMP018'),
+                                                                     ('MAI019', '2023-11-26', 'Steering System Repair', 500.00, 'EMP019'),
+                                                                     ('MAI020', '2023-11-26', 'Transmission Overhaul', 525.00, 'EMP020');
 
 INSERT INTO spareparts (sp_id, name, manufacture, cost, qty, purchase, mm_id) VALUES
                                                                                   ('SP001', 'Oil Filter', 'ABC Auto Parts', 10.00, 100, '2024-04-30', 'MAI001'),

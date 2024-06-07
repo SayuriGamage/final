@@ -22,8 +22,7 @@
 FROM maintenance_equipment_details AS med
 JOIN maintenance AS m ON med.mm_id = m.mm_id
 JOIN equipment AS e ON med.eq_id = e.eq_id
-WHERE DATE_ADD(m.date, INTERVAL 6 MONTH) = $P{date}
-]]>
+WHERE DATE_ADD(m.date, INTERVAL 6 MONTH) = $P{date}]]>
 	</queryString>
 	<field name="equipment_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
@@ -52,11 +51,15 @@ WHERE DATE_ADD(m.date, INTERVAL 6 MONTH) = $P{date}
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="91" splitType="Stretch">
+		<band height="93" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="-20" y="-20" width="399" height="90" uuid="d99fcfdf-0bae-4489-90fe-7d8af1c98842"/>
+				<imageExpression><![CDATA["/home/sayuri/IdeaProjects/Kalubowila S&M/src/main/resources/images/img_45.png"]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement x="100" y="10" width="180" height="30" uuid="29f6090a-b473-45f6-b57f-992310a9c9fb"/>
+				<reportElement x="100" y="10" width="200" height="30" uuid="29f6090a-b473-45f6-b57f-992310a9c9fb"/>
 				<textElement>
-					<font size="18"/>
+					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[KALUBOWILA S&M]]></text>
 			</staticText>

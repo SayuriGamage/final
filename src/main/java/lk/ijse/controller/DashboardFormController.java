@@ -10,9 +10,12 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.email.GmailSender;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DashboardFormController  {
@@ -21,6 +24,9 @@ public class DashboardFormController  {
     public AnchorPane rootNode;
     public Label lblusernamedashboard;
     private String loggedInUsername;
+
+    static String password;
+
 
 
 
@@ -60,6 +66,7 @@ public class DashboardFormController  {
 
         dashboardpane.getChildren().clear();
         dashboardpane.getChildren().add(form);
+
     }
 
     public void spareAction(ActionEvent actionEvent) throws IOException {

@@ -104,25 +104,33 @@ JOIN
 	</background>
 	<title>
 		<band height="135" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="-20" y="-20" width="594" height="154" uuid="a3bb3655-6312-4747-8bf8-c2afe2d99958"/>
+				<imageExpression><![CDATA["/home/sayuri/IdeaProjects/Kalubowila S&M/src/main/resources/images/img_44.png"]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement x="160" y="10" width="240" height="30" uuid="329ac78d-5152-4c49-a179-4f9d6958deb4"/>
+				<reportElement x="131" y="30" width="270" height="30" uuid="329ac78d-5152-4c49-a179-4f9d6958deb4"/>
 				<textElement>
-					<font size="24"/>
+					<font size="24" isBold="true"/>
 				</textElement>
 				<text><![CDATA[KALUBOWILA S&M]]></text>
 			</staticText>
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="414" y="50" width="100" height="30" uuid="690b3f77-7569-4d50-8760-e7518c06c21b"/>
+				<reportElement x="430" y="70" width="100" height="30" uuid="690b3f77-7569-4d50-8760-e7518c06c21b"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="167" y="40" width="227" height="30" uuid="8ac92dfe-915b-4459-9be9-d3186de23e02"/>
+				<reportElement x="153" y="60" width="227" height="30" uuid="8ac92dfe-915b-4459-9be9-d3186de23e02"/>
 				<text><![CDATA[190/5,New Galle Rd,Kollupitiya,Colombo]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="122">
+		<band height="103">
+			<image scaleImage="FillFrame">
+				<reportElement x="-20" y="-10" width="594" height="90" uuid="7d9d305c-1cbb-4cb9-93ec-8a7f3943be64"/>
+				<imageExpression><![CDATA["/home/sayuri/IdeaProjects/Kalubowila S&M/src/main/resources/images/img_44.png"]]></imageExpression>
+			</image>
 			<textField>
 				<reportElement x="115" y="60" width="100" height="30" uuid="cf5af63a-be8a-4a4c-8c11-a430117b9828"/>
 				<textElement>
@@ -184,7 +192,11 @@ JOIN
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="52" splitType="Stretch">
+		<band height="47" splitType="Stretch">
+			<image scaleImage="FillFrame" evaluationTime="Group" evaluationGroup="maintenance_date">
+				<reportElement x="-20" y="-23" width="594" height="70" uuid="db904628-a4fe-4520-9d87-411843e227c7"/>
+				<imageExpression><![CDATA["/home/sayuri/IdeaProjects/Kalubowila S&M/src/main/resources/images/img_44.png"]]></imageExpression>
+			</image>
 			<staticText>
 				<reportElement x="380" y="0" width="146" height="30" uuid="9a0f07b9-1196-4767-94b0-0dc2b1fa92b2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="42710318-e9e2-48a1-a6e2-367bffd1394a"/>
@@ -215,7 +227,11 @@ JOIN
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="38" splitType="Stretch">
+		<band height="39" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="-20" y="0" width="594" height="30" uuid="7e92ede9-8012-424b-97b6-63d78407121f"/>
+				<imageExpression><![CDATA["/home/sayuri/IdeaProjects/Kalubowila S&M/src/main/resources/images/img_44.png"]]></imageExpression>
+			</image>
 			<textField>
 				<reportElement x="390" y="0" width="100" height="30" uuid="c20e1bd3-deac-4be4-b36e-8f0e8366b4d7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="42710318-e9e2-48a1-a6e2-367bffd1394a"/>
@@ -246,10 +262,14 @@ JOIN
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="3" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="55" splitType="Stretch">
+		<band height="64" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="-20" y="-11" width="593" height="71" uuid="4fbedaa8-441d-4d80-8330-38277d90f6a7"/>
+				<imageExpression><![CDATA["/home/sayuri/IdeaProjects/Kalubowila S&M/src/main/resources/images/img_44.png"]]></imageExpression>
+			</image>
 			<staticText>
 				<reportElement x="430" y="20" width="100" height="30" uuid="fe1265d1-d2ec-4d94-89f9-7fceb74d8143"/>
 				<textElement>
@@ -260,6 +280,6 @@ JOIN
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="7" splitType="Stretch"/>
 	</summary>
 </jasperReport>
