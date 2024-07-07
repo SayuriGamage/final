@@ -10,12 +10,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import lk.ijse.model.Employee;
-import lk.ijse.model.Supplier;
-import lk.ijse.model.tm.SupplierTm;
-import lk.ijse.repository.EmployeeRepo;
-import lk.ijse.repository.EquipmentRepo;
-import lk.ijse.repository.SupplierRepo;
+import lk.ijse.DTO.SupplierDTO;
+import lk.ijse.bo.SupplierBO;
+import lk.ijse.bo.impl.BOFactory;
+import lk.ijse.bo.impl.BOTypes;
+import lk.ijse.entity.Supplier;
+import lk.ijse.entity.tm.SupplierTm;
 import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
@@ -45,10 +45,13 @@ public class SupplierFromController {
     @FXML
     private TableView<SupplierTm> suppliertbl;
 
+
+     SupplierBO supplierBO= (SupplierBO) BOFactory.getBoFactory().getBO(BOTypes.Supplierbo);
+
     @FXML
     void clearAction(ActionEvent event) throws SQLException {
         clearFields();
-        String   currenteqId = SupplierRepo.getCurrentId();
+        String   currenteqId =supplierBO.getCurrentSupplierId();
         String nextempId = generateNextspId(currenteqId);
         supidtext.setText(nextempId);
 
@@ -59,13 +62,13 @@ public class SupplierFromController {
         String id = supidtext.getText();
 
         try {
-            boolean isDeleted = SupplierRepo.delete(id);
+            boolean isDeleted = supplierBO.deleteSupplier(id);
             if(isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier deleted!").show();
                 clearFields();
                 loadAllSupplier();
                 setCellValueFactory();
-                String   currenteqId = SupplierRepo.getCurrentId();
+                String   currenteqId = supplierBO.getCurrentSupplierId();
                 String nextempId = generateNextspId(currenteqId);
                 supidtext.setText(nextempId);
             }
@@ -80,24 +83,22 @@ public class SupplierFromController {
         String name = supnametext.getText();
 String tels=suptel.getText();
 
-        Supplier supplier = new Supplier(id, name,tels);
+      //  Supplier supplier = new Supplier(id, name,tels);
 
         try {
-            if (valid()){
-            boolean isSaved = SupplierRepo.save(supplier);
+
+            boolean isSaved = supplierBO.saveSupplier(new SupplierDTO(id,name,tels));
             if (isSaved) {
 
                     new Alert(Alert.AlertType.CONFIRMATION, "supplier saved!").show();
                     clearFields();
                     loadAllSupplier();
                     setCellValueFactory();
-                    String   currenteqId = SupplierRepo.getCurrentId();
+                    String   currenteqId = supplierBO.getCurrentSupplierId();
                     String nextempId = generateNextspId(currenteqId);
                     supidtext.setText(nextempId);
                 }
-            }else {
-                new Alert(Alert.AlertType.WARNING, "wrong inputs!").show();
-            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -118,16 +119,16 @@ String tels=suptel.getText();
         String name = supnametext.getText();
 String tels=suptel.getText();
 
-        Supplier supplier = new Supplier(id, name,tels);
+      //  Supplier supplier = new Supplier(id, name,tels);
 
         try {
-            boolean isUpdated = SupplierRepo.update(supplier);
+            boolean isUpdated = supplierBO.updateSupplier(new SupplierDTO(id,name,tels));
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "supplier updated!").show();
                 clearFields();
                 loadAllSupplier();
                 setCellValueFactory();
-                String   currenteqId = SupplierRepo.getCurrentId();
+                String   currenteqId = supplierBO.getCurrentSupplierId();
                 String nextempId = generateNextspId(currenteqId);
                 supidtext.setText(nextempId);
             }
@@ -149,7 +150,7 @@ String tels=suptel.getText();
                 suptel.setText(selectedSupplier.getTel());
             }
         });
-        String   currenteqId = SupplierRepo.getCurrentId();
+        String   currenteqId = supplierBO.getCurrentSupplierId();
         String nextempId = generateNextspId(currenteqId);
         supidtext.setText(nextempId);
     }
@@ -193,9 +194,9 @@ coltelsup.setCellValueFactory(new PropertyValueFactory<>("tel"));
         ObservableList<SupplierTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Supplier> supplierList = SupplierRepo.getAll();
+            List<SupplierDTO> supplierList =supplierBO.getAllSupplier();
 
-            for (Supplier supplier : supplierList) {
+            for (SupplierDTO supplier : supplierList) {
                 SupplierTm tm = new SupplierTm(
                         supplier.getSup_id(),
                         supplier.getName(),
@@ -221,9 +222,9 @@ supplier.getTel()
     }
 
     public void searchsuptel(ActionEvent actionEvent) throws SQLException {
-String tell=suptel.getText();
-Supplier supplier=SupplierRepo.searchBytell(tell);
-if (supplier!= null){
+      String tell=suptel.getText();
+       SupplierDTO supplier= supplierBO .searchSupplier(tell);
+      if (supplier!= null){
     supidtext.setText(supplier.getSup_id());
     supnametext.setText(supplier.getName());
     suptel.setText(supplier.getTel());

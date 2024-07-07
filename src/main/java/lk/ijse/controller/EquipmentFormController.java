@@ -1,6 +1,4 @@
 package lk.ijse.controller;
-
-import com.sun.javafx.charts.Legend;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -10,13 +8,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import lk.ijse.model.Employee;
-import lk.ijse.model.Equipment;
-import lk.ijse.model.tm.EquipmentTm;
-import lk.ijse.repository.EmployeeRepo;
-import lk.ijse.repository.EquipmentRepo;
+import lk.ijse.DTO.EquipmentDTO;
+import lk.ijse.bo.EquipmentBO;
+import lk.ijse.bo.impl.BOFactory;
+import lk.ijse.bo.impl.BOTypes;
+import lk.ijse.bo.impl.EquipmentBOImpl;
+import lk.ijse.entity.Equipment;
+import lk.ijse.entity.tm.EquipmentTm;
 import lk.ijse.util.Regex;
-
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -44,6 +43,7 @@ public class EquipmentFormController {
     public Label lbleqdatetime;
 
 
+     EquipmentBO equipmentBO= (EquipmentBO) BOFactory.getBoFactory().getBO(BOTypes.Equipmentbo);
 
     public void initialize() throws SQLException {
 
@@ -64,7 +64,7 @@ public class EquipmentFormController {
                 equseridtext.setText(selectedEquipment.getUser_id());
             }
         });
-     String   currenteqId = EquipmentRepo.getCurrentId();
+     String   currenteqId = equipmentBO.getCurrentEquipmentId();
         String nextempId = generateNextempId(currenteqId);
         eqidtext.setText(nextempId);
     }
@@ -113,9 +113,9 @@ public class EquipmentFormController {
         ObservableList<EquipmentTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Equipment> equipmentList = EquipmentRepo.getAll();
+            List<EquipmentDTO> equipmentList = equipmentBO.getAllEquipment();
 
-            for (Equipment equipment : equipmentList) {
+            for (EquipmentDTO equipment : equipmentList) {
                 EquipmentTm tm = new EquipmentTm(
                         equipment.getEq_id(),
                         equipment.getName(),
@@ -149,24 +149,22 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
         String manufacturer = eqmanutext.getText();
         String userId = equseridtext.getText();
 
-        Equipment equipment = new Equipment(id, name, model, cost, purchaseDate, warranty, manufacturer, userId);
+      //  Equipment equipment = new Equipment(id, name, model, cost, purchaseDate, warranty, manufacturer, userId);
 
         try {
-            if (valid()){
-            boolean isSaved = EquipmentRepo.save(equipment);
+
+            boolean isSaved = equipmentBO.saveEquipment(new EquipmentDTO(id,name,model,cost,purchaseDate,warranty,manufacturer,userId));
             if (isSaved) {
 
                     new Alert(Alert.AlertType.CONFIRMATION, "Equipment saved!").show();
                     clearFields();
                     loadAllEquipment();
                     setCellValueFactory();
-                String   currenteqId = EquipmentRepo.getCurrentId();
+                String   currenteqId = equipmentBO.getCurrentEquipmentId();
                 String nextempId = generateNextempId(currenteqId);
                 eqidtext.setText(nextempId);
                 }
-            } else {
-                new Alert(Alert.AlertType.ERROR, "wrong inputs!").show();
-            }
+
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "An error occurred while saving equipment: " + e.getMessage()).show();
         }
@@ -193,17 +191,17 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
         String manufacturer = eqmanutext.getText();
         String userId = equseridtext.getText();
 
-        Equipment equipment = new Equipment(id, name, model, cost, purchaseDate, warranty, manufacturer, userId);
+      //  Equipment equipment = new Equipment(id, name, model, cost, purchaseDate, warranty, manufacturer, userId);
 
         try {
-            boolean isUpdated = EquipmentRepo.update(equipment);
+            boolean isUpdated = equipmentBO.updateEquipment(new EquipmentDTO(id, name, model, cost, purchaseDate, warranty, manufacturer, userId));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
 
                 clearFields();
                 loadAllEquipment();
                 setCellValueFactory();
-                String   currenteqId = EquipmentRepo.getCurrentId();
+                String   currenteqId = equipmentBO.getCurrentEquipmentId();
                 String nextempId = generateNextempId(currenteqId);
                 eqidtext.setText(nextempId);
             } else {
@@ -218,14 +216,14 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
     public void eqdeleteAction(ActionEvent actionEvent) { String id = eqidtext.getText();
 
         try {
-            boolean isDeleted = EquipmentRepo.delete(id);
+            boolean isDeleted = equipmentBO.deleteEquipment(id);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Equipment deleted!").show();
 
                 clearFields();
                 loadAllEquipment();
                 setCellValueFactory();
-                String   currenteqId = EquipmentRepo.getCurrentId();
+                String   currenteqId = equipmentBO.getCurrentEquipmentId();
                 String nextempId = generateNextempId(currenteqId);
                 eqidtext.setText(nextempId);
             }
@@ -238,7 +236,7 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
     public void eqorAction(ActionEvent actionEvent) {String id = eqidtext.getText();
 
         try {
-            Equipment equipment = EquipmentRepo.searchById(id);
+            EquipmentDTO equipment = equipmentBO.searchEquipment(id);
             if (equipment != null) {
                 eqidtext.setText(equipment.getEq_id());
                 eqnametext.setText(equipment.getName());
@@ -259,7 +257,7 @@ public void eqsaveAction(ActionEvent actionEvent) {String id = eqidtext.getText(
 
     public void eqclAction(ActionEvent actionEvent) throws SQLException {
 clearFields();
-        String   currenteqId = EquipmentRepo.getCurrentId();
+        String   currenteqId = equipmentBO.getCurrentEquipmentId();
         String nextempId = generateNextempId(currenteqId);
         eqidtext.setText(nextempId);
     }

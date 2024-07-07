@@ -10,28 +10,22 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.db.DbConnection;
-import lk.ijse.email.GmailSender;
-
+import lk.ijse.bo.UserBO;
+import lk.ijse.bo.impl.BOFactory;
+import lk.ijse.bo.impl.BOTypes;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoginFormController implements Initializable {
 
 
     public AnchorPane rootNode;
-
     public PasswordField uspasstext;
     public TextField texusen;
 
-
+    UserBO userBO= (UserBO) BOFactory.getBoFactory().getBO(BOTypes.userbo);
 
     public void loginAction(ActionEvent actionEvent) throws IOException {
 
@@ -47,62 +41,30 @@ public class LoginFormController implements Initializable {
     }
 
     private void checktest(String pw) throws SQLException {
-        String sql = "select email from user where password=?";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setObject(1, pw);
-        ResultSet resultSet = pstm.executeQuery();
-        if(resultSet.next()){
-            String emal=resultSet.getString("email");
-            sendmail(emal);
-
-        }
+        String mail= userBO.checktests(pw);
+      sendmail(mail);
     }
 
     private void sendmail(String email) throws SQLException {
-        String sql = "SELECT eq_id, name FROM equipment WHERE warranty = CURDATE()";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        ResultSet resultSet = pstm.executeQuery();
-        List<String> ss = new ArrayList<>();
-
-        while (resultSet.next()) {
-            String id = resultSet.getString("eq_id");
-            String name=resultSet.getString("name");
-            ss.add(id+":"+name);
-        }
-
-        GmailSender.setData(ss, email);
+        userBO.sendemils(email);
     }
 
 
     private void checkCredential(String username, String pw) throws SQLException, IOException {
-        String sql = "select name,password from user where name=?";
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setObject(1, username);
-        ResultSet resultSet = pstm.executeQuery();
-        if (resultSet.next()) {
 
-            String dbpw = resultSet.getString("password");
-            if (pw.equals(dbpw)) {
+            String db=userBO.Checkcredentialuser(username);
+            if (db==null) {
+                new Alert(Alert.AlertType.ERROR, "Sorry, user name not found!").show();
+            }else {
+            if (pw.equals(db)) {
 
                 navigateDashboard(username);
 
             } else {
                 new Alert(Alert.AlertType.ERROR, "Sorry, the password is incorrect!").show();
             }
-        } else {
-            new Alert(Alert.AlertType.INFORMATION, "Sorry, user name not found!").show();
         }
     }
-
-
-
-
 
    private void navigateDashboard(String username) throws IOException {
        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard_form.fxml"));

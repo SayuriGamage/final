@@ -1,5 +1,5 @@
-DROP DATABASE gdse69;
 
+drop database gdse69;
 create database gdse69;
 
 use gdse69;
@@ -15,7 +15,8 @@ CREATE TABLE orders (
                         or_id VARCHAR(100) PRIMARY KEY,
                         order_date VARCHAR(100),
                         sup_id VARCHAR(100),
-                        FOREIGN KEY (sup_id) REFERENCES supplier(sup_id)
+                        FOREIGN KEY (sup_id) REFERENCES supplier(sup_id)   ON UPDATE CASCADE ON DELETE CASCADE
+
 );
 
 CREATE TABLE payment (
@@ -23,7 +24,7 @@ CREATE TABLE payment (
                          or_id VARCHAR(100),
                          date VARCHAR(100),
                          amount DOUBLE (10,2),
-                         FOREIGN KEY (or_id) REFERENCES orders(or_id)
+                         FOREIGN KEY (or_id) REFERENCES orders(or_id)   ON UPDATE CASCADE ON DELETE CASCADE
 
 );
 
@@ -44,7 +45,7 @@ CREATE TABLE equipment (
                            warranty VARCHAR(100),
                            manufacture VARCHAR(100),
                            user_id VARCHAR(100),
-                           FOREIGN KEY (user_id) REFERENCES user(user_id)
+                           FOREIGN KEY (user_id) REFERENCES user(user_id)  ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE employee (
@@ -60,7 +61,7 @@ CREATE TABLE maintenance (
                              description VARCHAR(50),
                              cost DOUBLE(10, 2),
                              emp_id VARCHAR(100),
-                             FOREIGN KEY (emp_id) REFERENCES employee(emp_id)
+                             FOREIGN KEY (emp_id) REFERENCES employee(emp_id)   ON UPDATE CASCADE ON DELETE CASCADE
 
 );
 
@@ -72,7 +73,7 @@ CREATE TABLE spareparts (
                             qty INT(50),
                             purchase VARCHAR(100),
                             mm_id VARCHAR(100),
-                            FOREIGN KEY (mm_id) REFERENCES maintenance(mm_id)
+                            FOREIGN KEY (mm_id) REFERENCES maintenance(mm_id)  ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE condemn (
@@ -80,7 +81,7 @@ CREATE TABLE condemn (
                          details VARCHAR(40),
                          date VARCHAR(100),
                          mm_id VARCHAR(100),
-                         FOREIGN KEY (mm_id) REFERENCES maintenance(mm_id)
+                         FOREIGN KEY (mm_id) REFERENCES maintenance(mm_id)  ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE maintenance_equipment_details (
@@ -88,8 +89,8 @@ CREATE TABLE maintenance_equipment_details (
 
                                                mm_id VARCHAR(100),
                                                eq_id VARCHAR(100),
-                                               FOREIGN KEY (mm_id) REFERENCES maintenance(mm_id),
-                                               FOREIGN KEY (eq_id) REFERENCES equipment(eq_id)
+                                               FOREIGN KEY (mm_id) REFERENCES maintenance(mm_id)  ON UPDATE CASCADE ON DELETE CASCADE,
+                                               FOREIGN KEY (eq_id) REFERENCES equipment(eq_id)  ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE order_details (
@@ -97,8 +98,8 @@ CREATE TABLE order_details (
                                sp_id VARCHAR(100),
                                qty INT(50),
                                cost DOUBLE(10, 2),
-                               FOREIGN KEY (or_id) REFERENCES orders(or_id),
-                               FOREIGN KEY (sp_id) REFERENCES spareparts(sp_id)
+                               FOREIGN KEY (or_id) REFERENCES orders(or_id)  ON UPDATE CASCADE ON DELETE CASCADE,
+                               FOREIGN KEY (sp_id) REFERENCES spareparts(sp_id)  ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 

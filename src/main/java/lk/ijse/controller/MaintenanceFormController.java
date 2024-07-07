@@ -248,35 +248,33 @@ public class MaintenanceFormController {
     }
 }*/
 package lk.ijse.controller;
-
-import com.jfoenix.controls.JFXButton;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import lk.ijse.db.DbConnection;
-import lk.ijse.model.*;
-import lk.ijse.model.tm.AddsTm;
-import lk.ijse.model.tm.CartTm;
-import lk.ijse.model.tm.EmployeeTm;
-import lk.ijse.repository.*;
+import lk.ijse.DTO.placeMaintenanceDTO;
+import lk.ijse.bo.MaintenanceBO;
+import lk.ijse.bo.impl.BOFactory;
+import lk.ijse.bo.impl.BOTypes;
+import lk.ijse.bo.impl.MaintenanaceBOImpl;
+import lk.ijse.dao.*;
+import lk.ijse.dao.Impl.*;
+import lk.ijse.entity.*;
+import lk.ijse.entity.tm.AddsTm;
+import lk.ijse.entity.tm.CartTm;
 import lk.ijse.util.Regex;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class MaintenanceFormController {
     public TextField maintext;
@@ -309,7 +307,7 @@ public class MaintenanceFormController {
     @FXML
     private Label lblmaidate;
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
-
+    MaintenanceBO maintenanceBO= (MaintenanceBO) BOFactory.getBoFactory().getBO(BOTypes.Maintenancebo);
 
 
     public void initialize() throws SQLException {
@@ -324,21 +322,24 @@ public class MaintenanceFormController {
                 maintypetext.setText(selectedMaintenance.getType());
                 descriptiontext.setText(selectedMaintenance.getDescription());
                 costtext.setText(String.valueOf(selectedMaintenance.getCost()));
-
            comeqid.setValue(selectedMaintenance.getEq_id());
+
                 String maintenanceId = null;
+                String empId=null;
                 try {
-                    maintenanceId = MaintenanceRepo.getMaintenanceId(selectedMaintenance.getDescription(),selectedMaintenance.getCost());
+                    maintenanceId = maintenanceBO.getMaintenanceId(selectedMaintenance.getDescription(),selectedMaintenance.getCost());
+                    empId=maintenanceBO.getMaintenanceempId(selectedMaintenance.getDescription(),selectedMaintenance.getCost());
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
                 maintext.setText(maintenanceId);
+                comempid.setValue(empId);
 
 
             }
         });
             loadMaintenanceData();
-        String   currentmainId = MaintenanceRepo.getCurrentId();
+        String   currentmainId = maintenanceBO.getCurrentMaintenanceId();
         String nextmainId = generateNextmId(currentmainId);
         maintext.setText(nextmainId);
     }
@@ -362,7 +363,8 @@ public class MaintenanceFormController {
 
     private void loadMaintenanceData() throws SQLException {
         List<AddsTm> adds = new ArrayList<>();
-        adds = AddsRepo.getAllAddsTm();
+        AddsDAO addsDAO=new AddsDAOImpl();
+        adds = addsDAO.getAllAddsTm();
         tblmaintenance.getItems().clear();
         for (AddsTm addsTm : adds) {
             tblmaintenance.getItems().add(addsTm);
@@ -382,7 +384,7 @@ public class MaintenanceFormController {
     private void getEquipmentid() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<String> equiList = EquipmentRepo.getIds();
+            List<String> equiList = maintenanceBO.getEquipmentIds();
             for (String id : equiList) {
                 obList.add(id);
             }
@@ -395,7 +397,8 @@ public class MaintenanceFormController {
     private void getEmployeeid() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<String> mainList = EmployeeRepo.getIds();
+
+            List<String> mainList = maintenanceBO.getIdEmployee();
             for (String id : mainList) {
                 obList.add(id);
             }
@@ -429,34 +432,34 @@ public class MaintenanceFormController {
         String equipmentId = comeqid.getValue();
         String type = maintypetext.getText();
         Maintenance maintenance = new Maintenance(maintenanceId, date, description, cost, employeeId);
-        List<equipmentDetails> osList = new ArrayList<>();
+        List<EquipmentDetails> osList = new ArrayList<>();
         for (int i = 0; i < tblmaintenance.getItems().size(); i++) {
             AddsTm am = (AddsTm) obList.get(i);
-            equipmentDetails od = new equipmentDetails(
+            EquipmentDetails od = new EquipmentDetails(
                     type,
                     maintenanceId,
                     am.getEq_id()
             );
             osList.add(od);
         }
-        placeMaintenance po = new placeMaintenance(maintenance, osList);
-        boolean isPlaced = PlaceMaintenanceRepo.placeMaintenance(po);
-        if (valid()){
+        placeMaintenanceDTO po = new placeMaintenanceDTO(maintenance, osList);
+        boolean isPlaced = maintenanceBO.placeMaintenances(po);
+
         if (isPlaced) {
 
-                new Alert(Alert.AlertType.CONFIRMATION, "Maintenance details Placed!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Maintenance  Placed!").show();
                 clearTextFields();
                 obList.clear();
                 tblmaintenance.refresh();
                 loadMaintenanceData();
-            }else {
-            new Alert(Alert.AlertType.WARNING, "wrong inputs!").show();
-        }
+
 
         } else {
             new Alert(Alert.AlertType.WARNING, "Placed Unsuccessfully!").show();
         }
     }
+
+
     private void clearTextFields() {
         comeqid.getSelectionModel().clearSelection();
         comempid.getSelectionModel().clearSelection();

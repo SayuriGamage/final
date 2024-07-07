@@ -9,10 +9,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import lk.ijse.model.Employee;
-import lk.ijse.model.Payment;
-import lk.ijse.model.tm.PaymentTm;
-import lk.ijse.repository.*;
+import lk.ijse.DTO.PaymentDTO;
+import lk.ijse.bo.PaymentBO;
+import lk.ijse.bo.impl.BOFactory;
+import lk.ijse.bo.impl.BOTypes;
+import lk.ijse.bo.impl.PaymentBOImpl;
+import lk.ijse.dao.Impl.OrdersDAOImpl;
+import lk.ijse.dao.Impl.PaymentDAOImpl;
+import lk.ijse.dao.PaymentDAO;
+import lk.ijse.entity.Payment;
+import lk.ijse.entity.tm.PaymentTm;
+
 import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
@@ -23,7 +30,6 @@ import java.util.List;
 public class PaymentFormController {
 
     public TextField paymenttext;
-    public TextField ordertext;
     public TextField datetext;
     public TextField amounttext;
     public TableColumn colpayid;
@@ -35,6 +41,7 @@ public class PaymentFormController {
     public Label lbldatepayments;
 
 
+    PaymentBO paymentBO= (PaymentBO) BOFactory.getBoFactory().getBO(BOTypes.Paymentbo);
     public void initialize() {
         loadAllPayments();
         setCellValueFactory();
@@ -45,7 +52,7 @@ public class PaymentFormController {
             if (newSelection != null) {
                 PaymentTm selectedPayment = (PaymentTm) newSelection;
                 paymenttext.setText(selectedPayment.getPay_id());
-                ordertext.setText(selectedPayment.getOr_id());
+                comorpay.setValue(selectedPayment.getOr_id());
                 datetext.setText(selectedPayment.getDate());
                 amounttext.setText(String.valueOf(selectedPayment.getAmount()));
             }
@@ -53,7 +60,7 @@ public class PaymentFormController {
 
         String     currenteqId = null;
         try {
-            currenteqId = PaymentRepo.getCurrentId();
+            currenteqId = paymentBO.getCurrentPaymentId();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -94,7 +101,8 @@ public class PaymentFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> orList = OrdersRepo.getIds();
+            OrdersDAOImpl ordersDAOimpl=new OrdersDAOImpl();
+            List<String> orList =ordersDAOimpl.getOrderIds();
 
             for (String id : orList) {
                 obList.add(id);
@@ -118,9 +126,9 @@ public class PaymentFormController {
         ObservableList<PaymentTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Payment> paymentList = PaymentRepo.getAllPayments();
+            List<PaymentDTO> paymentList = paymentBO.getAllPayment();
 
-            for (Payment payment : paymentList) {
+            for (PaymentDTO payment : paymentList) {
                 PaymentTm tm = new PaymentTm(
                         payment.getPay_id(),
                         payment.getOr_id(),
@@ -142,7 +150,7 @@ public class PaymentFormController {
     public void payonAction(ActionEvent actionEvent) throws SQLException {
         String id = paymenttext.getText();
 
-        Payment payment = PaymentRepo.searchById(id);
+        PaymentDTO payment = paymentBO.searchPayment(id);
         if (payment != null) {
             paymenttext.setText(payment.getPay_id());
 
@@ -160,24 +168,22 @@ public class PaymentFormController {
         String orderId = comorpay.getValue().toString();
         String date = datetext.getText();
         double amount = Double.parseDouble(amounttext.getText());
-        Payment payment = new Payment(paymentId, orderId, date, amount);
+      //  Payment payment = new Payment(paymentId, orderId, date, amount);
 
         try {
-if (valid()){
-            boolean isSaved = PaymentRepo.save(payment);
+
+            boolean isSaved = paymentBO.savePayment(new PaymentDTO(paymentId, orderId, date, amount));
             if (isSaved) {
 
                     new Alert(Alert.AlertType.CONFIRMATION, "Payment saved successfully!").show();
                     clearFields();
                     loadAllPayments();
                     setCellValueFactory();
-                String     currenteqId = PaymentRepo.getCurrentId();
+                String     currenteqId = paymentBO.getCurrentPaymentId();
                 String nextempId = generateNextpayId(currenteqId);
                 paymenttext.setText(nextempId);
                 }
-            } else {
-                new Alert(Alert.AlertType.WARNING, "wrong inputs!").show();
-            }
+
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, "Error occurred while saving payment: " + e.getMessage()).show();
         }
@@ -198,16 +204,16 @@ if (valid()){
         String date = datetext.getText();
         double amount = Double.parseDouble(amounttext.getText());
 
-        Payment payment = new Payment(paymentId, orderId, date, amount);
+      //  Payment payment = new Payment(paymentId, orderId, date, amount);
 
         try {
-            boolean isUpdated = PaymentRepo.update(payment);
+            boolean isUpdated = paymentBO.updatePayment(new PaymentDTO(paymentId, orderId, date, amount));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment updated successfully!").show();
                 clearFields();
                 loadAllPayments();
                 setCellValueFactory();
-                String     currenteqId = PaymentRepo.getCurrentId();
+                String     currenteqId = paymentBO.getCurrentPaymentId();
                 String nextempId = generateNextpayId(currenteqId);
                 paymenttext.setText(nextempId);
             } else {
@@ -222,13 +228,13 @@ if (valid()){
         String paymentId = paymenttext.getText();
 
         try {
-            boolean isDeleted = PaymentRepo.delete(paymentId);
+            boolean isDeleted = paymentBO.deletePayment(paymentId);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment deleted successfully!").show();
                 clearFields();
                 loadAllPayments();
                 setCellValueFactory();
-                String     currenteqId = PaymentRepo.getCurrentId();
+                String     currenteqId = paymentBO.getCurrentPaymentId();
                 String nextempId = generateNextpayId(currenteqId);
                 paymenttext.setText(nextempId);
             } else {
@@ -241,7 +247,7 @@ if (valid()){
 
     public void clearpaymentAction(ActionEvent actionEvent) throws SQLException {
 clearFields();
-        String     currenteqId = PaymentRepo.getCurrentId();
+        String     currenteqId = paymentBO .getCurrentPaymentId();
         String nextempId = generateNextpayId(currenteqId);
         paymenttext.setText(nextempId);
     }

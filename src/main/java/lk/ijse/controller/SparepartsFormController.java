@@ -9,11 +9,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import lk.ijse.model.Spareparts;
-import lk.ijse.model.tm.SparepartsTm;
-import lk.ijse.repository.EquipmentRepo;
-import lk.ijse.repository.MaintenanceRepo;
-import lk.ijse.repository.SparepartsRepo;
+import lk.ijse.DTO.SparepartsDTO;
+import lk.ijse.bo.MaintenanceBO;
+import lk.ijse.bo.SparepartsBO;
+import lk.ijse.bo.impl.BOFactory;
+import lk.ijse.bo.impl.BOTypes;
+import lk.ijse.bo.impl.SparepartsBOImpl;
+import lk.ijse.dao.MaintenanceDAO;
+import lk.ijse.dao.SparepartsDAO;
+import lk.ijse.entity.Spareparts;
+import lk.ijse.entity.tm.SparepartsTm;
+import lk.ijse.dao.Impl.MaintenanceDAOImpl;
+import lk.ijse.dao.Impl.SparepartsDAOImpl;
 import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
@@ -40,6 +47,8 @@ public class SparepartsFormController {
     public ComboBox comspid;
     public Label lblspdatetime;
 
+    MaintenanceBO maintenanceBO= (MaintenanceBO) BOFactory.getBoFactory().getBO(BOTypes.Maintenancebo);
+    SparepartsBO sparepartsBO= (SparepartsBO) BOFactory.getBoFactory().getBO(BOTypes.Sparepartsbo);
 
     public void initialize() throws SQLException {
         loadAllSpareparts();
@@ -60,7 +69,7 @@ public class SparepartsFormController {
                 comspid.setValue(selectedSparepart.getMm_id());
             }
         });
-        String   currentspId = SparepartsRepo.getCurrentId();
+        String   currentspId = sparepartsBO.getCurrentPartsId();
         String nextempId = generateNextspId(currentspId);
         sptext.setText(nextempId);
     }
@@ -98,7 +107,8 @@ public class SparepartsFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> spList = MaintenanceRepo.getIds();
+
+            List<String> spList = maintenanceBO.getMaintenanceIds();
 
             for (String id : spList) {
                 obList.add(id);
@@ -125,9 +135,9 @@ public class SparepartsFormController {
         ObservableList<SparepartsTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Spareparts> sparepartsList = SparepartsRepo.getAll();
+            List<SparepartsDTO> sparepartsList = sparepartsBO.getAllParts();
 
-            for (Spareparts spareparts : sparepartsList) {
+            for (SparepartsDTO spareparts : sparepartsList) {
                 SparepartsTm tm = new SparepartsTm(
                         spareparts.getSp_id(),
                         spareparts.getName(),
@@ -151,7 +161,7 @@ public class SparepartsFormController {
         String id = sptext.getText();
 
         try {
-            Spareparts spareparts = SparepartsRepo.getById(id);
+            SparepartsDTO spareparts = sparepartsBO.getById(id);
             if (spareparts != null) {
                 spnametext.setText(spareparts.getName());
                 spmanutext.setText(spareparts.getManufacture());
@@ -176,24 +186,22 @@ public class SparepartsFormController {
         String purch = sppurtext.getText();
         String main = comspid.getValue().toString();
 
-        Spareparts spareparts = new Spareparts(id, name, manu, price, qty, purch, main);
+      //  Spareparts spareparts = new Spareparts(id, name, manu, price, qty, purch, main);
 
         try {
-            if (valid()){
-            boolean isSaved = SparepartsRepo.save(spareparts);
+
+            boolean isSaved = sparepartsBO.saveParts(new SparepartsDTO(id, name, manu, price, qty, purch, main));
             if (isSaved) {
 
                     new Alert(Alert.AlertType.CONFIRMATION, "spareparts saved!").show();
                     clearFields();
                     loadAllSpareparts();
                     setCellValueFactory();
-                String   currentspId = SparepartsRepo.getCurrentId();
+                String   currentspId = sparepartsBO.getCurrentPartsId();
                 String nextempId = generateNextspId(currentspId);
                 sptext.setText(nextempId);
                 }
-            }else {
-                new Alert(Alert.AlertType.WARNING, "wrong input!").show();
-            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -221,13 +229,13 @@ public class SparepartsFormController {
         Spareparts spareparts = new Spareparts(id, name, manu, price, qty, purch, main);
 
         try {
-            boolean isUpdated = SparepartsRepo.update(spareparts);
+            boolean isUpdated = sparepartsBO.updateParts(new SparepartsDTO(id, name, manu, price, qty, purch, main));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Spare part updated!").show();
                 clearFields();
                 loadAllSpareparts();
                 setCellValueFactory();
-                String   currentspId = SparepartsRepo.getCurrentId();
+                String   currentspId = sparepartsBO.getCurrentPartsId();
                 String nextempId = generateNextspId(currentspId);
                 sptext.setText(nextempId);
             }
@@ -240,13 +248,13 @@ public class SparepartsFormController {
         String id = sptext.getText();
 
         try {
-            boolean isDeleted = SparepartsRepo.delete(id);
+            boolean isDeleted =sparepartsBO.deleteParts(id);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Spare part deleted!").show();
                 clearFields();
                 loadAllSpareparts();
                 setCellValueFactory();
-                String   currentspId = SparepartsRepo.getCurrentId();
+                String   currentspId = sparepartsBO.getCurrentPartsId();
                 String nextempId = generateNextspId(currentspId);
                 sptext.setText(nextempId);
             }
@@ -257,7 +265,7 @@ public class SparepartsFormController {
 
     public void clespAction(ActionEvent actionEvent) throws SQLException {
         clearFields();
-        String   currentspId = SparepartsRepo.getCurrentId();
+        String   currentspId = sparepartsBO.getCurrentPartsId();
         String nextempId = generateNextspId(currentspId);
         sptext.setText(nextempId);
     }

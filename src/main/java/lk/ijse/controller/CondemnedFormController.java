@@ -9,12 +9,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import lk.ijse.model.Condemned;
-import lk.ijse.model.tm.CondemnedTm;
-import lk.ijse.repository.CondemnedRepo;
-import lk.ijse.repository.EmployeeRepo;
-import lk.ijse.repository.MaintenanceRepo;
-import lk.ijse.repository.OrdersRepo;
+import lk.ijse.DTO.CondemnedDTO;
+import lk.ijse.bo.CondemnedBO;
+import lk.ijse.bo.MaintenanceBO;
+import lk.ijse.bo.impl.BOFactory;
+import lk.ijse.bo.impl.BOTypes;
+import lk.ijse.bo.impl.CondemnedBOImpl;
+import lk.ijse.dao.CondemnedDAO;
+import lk.ijse.entity.Condemned;
+import lk.ijse.entity.tm.CondemnedTm;
+import lk.ijse.dao.Impl.CondemnedDAOImpl;
+import lk.ijse.dao.Impl.MaintenanceDAOImpl;
 import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
@@ -35,6 +40,8 @@ public class CondemnedFormController {
     public ComboBox comconid;
     public Label lblcondatetime;
 
+      CondemnedBO condemnedBO= (CondemnedBO) BOFactory.getBoFactory().getBO(BOTypes.Condemnedbo);
+    MaintenanceBO maintenanceBO= (MaintenanceBO) BOFactory.getBoFactory().getBO(BOTypes.Maintenancebo);
 
     public void initialize() {
         loadAllCustomers();
@@ -56,7 +63,7 @@ public class CondemnedFormController {
 
         String   currentconId = null;
         try {
-            currentconId = CondemnedRepo.getCurrentId();
+            currentconId = condemnedBO.getCurrentCondemnId();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -99,7 +106,8 @@ public class CondemnedFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> coList = MaintenanceRepo.getIds();
+
+            List<String> coList = maintenanceBO.getMaintenanceIds();
 
             for (String id : coList) {
                 obList.add(id);
@@ -116,9 +124,10 @@ public class CondemnedFormController {
         ObservableList<CondemnedTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Condemned> condemnedList = CondemnedRepo.getAll();
 
-            for (Condemned condemned : condemnedList) {
+            List<CondemnedDTO> condemnedList = condemnedBO.getAllCondemn();
+
+            for (CondemnedDTO condemned : condemnedList) {
                 CondemnedTm tm = new CondemnedTm(
                         condemned.getC_id(),
                         condemned.getDetails(),
@@ -148,23 +157,22 @@ public class CondemnedFormController {
         String address = datetext.getText();
         String tel =comconid.getValue().toString();
 
-        Condemned condemned = new Condemned(id, name, address, tel);
+       // Condemned condemned = new Condemned(id, name, address, tel);
 
         try {
-            if (valid()) {
-                boolean isSaved = CondemnedRepo.save(condemned);
+
+                boolean isSaved = condemnedBO.saveCondemn(new CondemnedDTO(id,name,address,tel));
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "condemned saved!").show();
                     clearFields();
                     loadAllCustomers();
                     setCellValueFactory();
-                    String currentconId = CondemnedRepo.getCurrentId();
+
+                    String currentconId = condemnedBO.getCurrentCondemnId();
                     String nextempId = generateNextconId(currentconId);
                     context.setText(nextempId);
                 }
-            }else{
-                new Alert(Alert.AlertType.ERROR, "wrong inputs!").show();
-            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -184,16 +192,16 @@ public class CondemnedFormController {
         String address = datetext.getText();
         String tel = comconid.getValue().toString();
 
-        Condemned condemned = new Condemned(id, name, address, tel);
+       // Condemned condemned = new Condemned(id, name, address, tel);
 
         try {
-            boolean isUpdated = CondemnedRepo.update(condemned);
+            boolean isUpdated = condemnedBO.updateCondemn(new CondemnedDTO(id,name,address,tel));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "condemd updated!").show();
                 clearFields();
                 loadAllCustomers();
                 setCellValueFactory();
-                String   currentconId = CondemnedRepo.getCurrentId();
+                String   currentconId = condemnedBO.getCurrentCondemnId();
                 String nextempId = generateNextconId(currentconId);
                 context.setText(nextempId);
             }
@@ -206,13 +214,13 @@ public class CondemnedFormController {
         String id = context.getText();
 
         try {
-            boolean isDeleted = CondemnedRepo.delete(id);
+            boolean isDeleted = condemnedBO.deleteCondemn(id);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "condemn deleted!").show();
                 clearFields();
                 loadAllCustomers();
                 setCellValueFactory();
-                String   currentconId = CondemnedRepo.getCurrentId();
+                String   currentconId = condemnedBO.getCurrentCondemnId();
                 String nextempId = generateNextconId(currentconId);
                 context.setText(nextempId);
             }
@@ -223,7 +231,7 @@ public class CondemnedFormController {
 
     public void clearAction(ActionEvent actionEvent) throws SQLException {
         clearFields();
-        String   currentconId = CondemnedRepo.getCurrentId();
+        String   currentconId = condemnedBO.getCurrentCondemnId();
         String nextempId = generateNextconId(currentconId);
         context.setText(nextempId);
     }
@@ -231,7 +239,7 @@ public class CondemnedFormController {
     public void conOnActionsearch(ActionEvent actionEvent) throws SQLException {
         String id = context.getText();
 
-        Condemned condemned = CondemnedRepo.searchById(id);
+        CondemnedDTO condemned = condemnedBO.searchCondemn(id);
         if (condemned != null) {
             context.setText(condemned.getC_id());
             reasontext.setText(condemned.getDetails());

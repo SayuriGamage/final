@@ -1,5 +1,4 @@
 package lk.ijse.controller;
-
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -9,22 +8,21 @@ import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lk.ijse.DTO.PlaceOrderDTO;
+import lk.ijse.DTO.SparepartsDTO;
+import lk.ijse.DTO.SupplierDTO;
+import lk.ijse.bo.PlaceOrderBO;
+import lk.ijse.bo.impl.BOFactory;
+import lk.ijse.bo.impl.BOTypes;
+import lk.ijse.bo.impl.PlaceOrderBOImpl;
 import lk.ijse.db.DbConnection;
-import lk.ijse.model.*;
-import lk.ijse.model.tm.CartTm;
-import lk.ijse.repository.OrdersRepo;
-import lk.ijse.repository.PlaceOrderRepo;
-import lk.ijse.repository.SparepartsRepo;
-import lk.ijse.repository.SupplierRepo;
-import lk.ijse.util.Regex;
+import lk.ijse.entity.*;
+import lk.ijse.entity.tm.CartTm;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -55,6 +53,8 @@ public class  OrdersFormController {
     public TextField suppliertel;
 
 
+  PlaceOrderBO placeOrderBO= (PlaceOrderBO) BOFactory.getBoFactory().getBO(BOTypes.Orderbo);
+
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
 
     public void initialize() {
@@ -64,7 +64,7 @@ public class  OrdersFormController {
         getSparepartsCode();
         setCellValueFactory();
         try {
-            String currentOrderId = OrdersRepo.getCurrentId();
+            String currentOrderId = placeOrderBO.getCurrentOrderId();
             String nextOrderId = generateNextOrderId(currentOrderId);
             lblorid.setText(nextOrderId);
         } catch (SQLException e) {
@@ -102,7 +102,7 @@ public class  OrdersFormController {
     private void getSparepartsCode() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<String> codeList = SparepartsRepo.getCodes();
+            List<String> codeList = placeOrderBO.getSparepartsCodes();
 
             for (String code : codeList) {
                 obList.add(code);
@@ -119,7 +119,7 @@ public class  OrdersFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
         List<String> telList = null;
         try {
-            telList = SupplierRepo.getTells();
+            telList =placeOrderBO.getTellsSupplier();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -166,7 +166,7 @@ public class  OrdersFormController {
         String code = comspid.getValue();
 
         try {
-            Spareparts spareparts = SparepartsRepo.searchById(code);
+            SparepartsDTO spareparts = placeOrderBO.searchParts(code);
             if (spareparts != null) {
                 lblsparename.setText(spareparts.getName());
                 lblunitprice.setText(String.valueOf(spareparts.getCost()));
@@ -206,8 +206,9 @@ public class  OrdersFormController {
             odList.add(od);
         }
 
-        PlaceOrder po = new PlaceOrder(order, odList);
-        boolean isPlaced = PlaceOrderRepo.placeOrder(po);
+        PlaceOrderDTO po = new PlaceOrderDTO(order, odList);
+
+        boolean isPlaced =placeOrderBO.placeOrders(po);
         if (isPlaced) {
             new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
             lblcash.requestFocus();
@@ -216,6 +217,7 @@ public class  OrdersFormController {
             new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
         }
     }
+
 
     private void clearTextFields() {
         comsupid.getSelectionModel().clearSelection();
@@ -254,7 +256,7 @@ public class  OrdersFormController {
         obList.clear();
         tblorder.refresh();
         clearTextFields();
-        String currentOrderId = OrdersRepo.getCurrentId();
+        String currentOrderId = placeOrderBO.getCurrentOrderId();
         String nextOrderId = generateNextOrderId(currentOrderId);
         lblorid.setText(nextOrderId);
     }
@@ -309,7 +311,7 @@ public class  OrdersFormController {
     public void suptelAction(ActionEvent actionEvent) {
         String id = suppliertel.getText();
         try {
-            Supplier supplier = SupplierRepo.searchBytell(id);
+            SupplierDTO supplier = placeOrderBO.searchSuppliertell(id);
 
             lblsupnam.setText(supplier.getSup_id());
 

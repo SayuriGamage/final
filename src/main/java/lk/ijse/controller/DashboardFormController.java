@@ -10,7 +10,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.email.GmailSender;
+import lk.ijse.util.GmailSender;
 
 import java.io.IOException;
 import java.net.URL;

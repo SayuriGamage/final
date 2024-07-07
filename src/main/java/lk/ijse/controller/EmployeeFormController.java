@@ -10,18 +10,20 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
-import lk.ijse.model.Employee;
-import lk.ijse.model.tm.EmployeeTm;
-import lk.ijse.repository.EmployeeRepo;
-import lk.ijse.repository.OrdersRepo;
+import lk.ijse.DTO.EmployeeDTO;
+import lk.ijse.bo.EmployeeBO;
+import lk.ijse.bo.impl.BOFactory;
+import lk.ijse.bo.impl.BOTypes;
+import lk.ijse.bo.impl.EmployeeBOImpl;
+import lk.ijse.entity.Employee;
+import lk.ijse.entity.tm.EmployeeTm;
 import lk.ijse.util.Regex;
-
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class EmployeeFormController {
+public class  EmployeeFormController {
 
     public TextField empnametext;
     public TextField addresemptext;
@@ -44,6 +46,9 @@ public class EmployeeFormController {
     @FXML
     private TableColumn<?, ?> colTel;
 
+
+    EmployeeBO employeeBO= (EmployeeBO) BOFactory.getBoFactory().getBO(BOTypes.Employeebo);
+
     public void initialize() {
         setCellValueFactory();
         loadAllCustomers();
@@ -60,7 +65,8 @@ public class EmployeeFormController {
         });
         String currentempId = null;
         try {
-            currentempId = EmployeeRepo.getCurrentId();
+
+            currentempId = employeeBO.getCurrentEmployeeId();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -111,10 +117,11 @@ public class EmployeeFormController {
         ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<Employee> employeeList = EmployeeRepo.getAll();
+
+            List<EmployeeDTO> employeeList = employeeBO.getAllEmployee();
 
             for (int i = 0; i < employeeList.size(); i++) {
-                Employee employee = employeeList.get(i);
+                EmployeeDTO employee = employeeList.get(i);
                 EmployeeTm tm = new EmployeeTm(
                         employee.getId(),
                         employee.getName(),
@@ -137,11 +144,11 @@ public class EmployeeFormController {
         String address = addresemptext.getText();
         String tel = telemptext.getText();
 
-        Employee employee = new Employee(id, name, address, tel);
+     //   Employee employee = new Employee(id, name, address, tel);
 
         try {
-            if(isValied()) {
-                boolean isSaved = EmployeeRepo.save(employee);
+
+                boolean isSaved = employeeBO.saveEmployee(new EmployeeDTO(id,name,address,tel));
 
                 if (isSaved) {
 
@@ -150,13 +157,11 @@ public class EmployeeFormController {
                     clearFields();
                     loadAllCustomers();
                     setCellValueFactory();
-                  String   currentempId = EmployeeRepo.getCurrentId();
+                  String   currentempId = employeeBO.getCurrentEmployeeId();
                     String nextempId = generateNextempId(currentempId);
                lblempid.setText(nextempId);
                 }
-            }else{
-                new Alert(Alert.AlertType.ERROR, "wrong informations!").show();
-            }
+
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -174,13 +179,14 @@ public class EmployeeFormController {
         String id = lblempid.getText();
 
         try {
-            boolean isDeleted = EmployeeRepo.delete(id);
+
+            boolean isDeleted = employeeBO.deleteEmployee(id);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "employee deleted!").show();
                 clearFields();
                 loadAllCustomers();
                 setCellValueFactory();
-                String   currentempId = EmployeeRepo.getCurrentId();
+                String   currentempId = employeeBO.getCurrentEmployeeId();
                 String nextempId = generateNextempId(currentempId);
                 lblempid.setText(nextempId);
             }
@@ -196,16 +202,17 @@ public class EmployeeFormController {
         String address = addresemptext.getText();
         String tel = telemptext.getText();
 
-        Employee employee = new Employee(id, name, address, tel);
+      //  Employee employee = new Employee(id, name, address, tel);
 
         try {
-            boolean isUpdated = EmployeeRepo.update(employee);
+
+            boolean isUpdated = employeeBO.updateEmployee(new EmployeeDTO(id,name,address,tel));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "employee updated!").show();
                 clearFields();
                 loadAllCustomers();
                 setCellValueFactory();
-                String   currentempId = EmployeeRepo.getCurrentId();
+                String   currentempId =employeeBO.getCurrentEmployeeId();
                 String nextempId = generateNextempId(currentempId);
                lblempid.setText(nextempId);
             }
@@ -216,7 +223,8 @@ public class EmployeeFormController {
 
     public void clearempAction(ActionEvent actionEvent) throws SQLException {
         clearFields();
-        String   currentempId = EmployeeRepo.getCurrentId();
+
+        String   currentempId = employeeBO.getCurrentEmployeeId();
         String nextempId = generateNextempId(currentempId);
         lblempid.setText(nextempId);
     }
@@ -238,7 +246,8 @@ public class EmployeeFormController {
 
     public void telsearchAction(ActionEvent actionEvent) throws SQLException {
         String tel=telemptext.getText();
-        Employee employee=EmployeeRepo.searchBytel(tel);
+
+        EmployeeDTO employee= employeeBO.searchEmployee(tel);
         if (employee!=null){
             lblempid.setText(employee.getId());
             empnametext.setText(employee.getName());

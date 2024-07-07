@@ -11,6 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lk.ijse.bo.EmployeeBO;
+import lk.ijse.bo.EquipmentBO;
+import lk.ijse.bo.QueryBO;
+import lk.ijse.bo.SparepartsBO;
+import lk.ijse.bo.impl.*;
+import lk.ijse.dao.Impl.*;
+import lk.ijse.dao.QueryDAO;
 import lk.ijse.db.DbConnection;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -28,8 +35,6 @@ import java.util.Map;
 
 public class DashboardsecFormController {
 
-
-
     public AnchorPane rootNode;
     public TextField dashboardsearchtext;
     public TextField dateatext;
@@ -40,8 +45,12 @@ public class DashboardsecFormController {
     public BarChart barChart;
     private  int empCount;
     private int itemCount;
-
     private int equipmentCount;
+
+    EmployeeBO employeeBO= (EmployeeBO) BOFactory.getBoFactory().getBO(BOTypes.Employeebo);
+    SparepartsBO sparepartsBO= (SparepartsBO) BOFactory.getBoFactory().getBO(BOTypes.Sparepartsbo);
+    EquipmentBO equipmentBO= (EquipmentBO) BOFactory.getBoFactory().getBO(BOTypes.Equipmentbo);
+    QueryBO queryBO= (QueryBO) BOFactory.getBoFactory().getBO(BOTypes.Querybo);
 
     public void initialize() throws SQLException {
         setDate();
@@ -59,16 +68,7 @@ public class DashboardsecFormController {
     }
 
     private int getEquipmentCount() throws SQLException {
-        String sql = "SELECT COUNT(*) AS equipment_count FROM equipment;";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        ResultSet resultSet = pstm.executeQuery();
-
-        if(resultSet.next()) {
-            return resultSet.getInt("equipment_count");
-        }
-        return 0;
+        return equipmentBO.equipmentCount();
     }
 
     private void setEmpCount(int empCount) {
@@ -77,16 +77,7 @@ public class DashboardsecFormController {
 
 
     private int getEmployeeCount() throws SQLException {
-        String sql = "SELECT COUNT(*) AS employee_count FROM employee;";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        ResultSet resultSet = pstm.executeQuery();
-
-        if(resultSet.next()) {
-            return resultSet.getInt("employee_count");
-        }
-        return 0;
+        return employeeBO.employeeCount();
     }
 
     private void setDate() {
@@ -107,16 +98,8 @@ public class DashboardsecFormController {
     }
 
     private int getItemCount() throws SQLException {
-        String sql = "SELECT SUM(qty) AS total_qty FROM spareparts;";
 
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        ResultSet resultSet = pstm.executeQuery();
-
-        if(resultSet.next()) {
-            return resultSet.getInt("total_qty");
-        }
-        return 0;
+        return sparepartsBO.sparepartsCount();
     }
 
 
@@ -155,21 +138,7 @@ public class DashboardsecFormController {
 
         PreparedStatement stm = null;
         try {
-            stm = DbConnection.getInstance().getConnection().prepareStatement( "SELECT\n" +
-                    "    DATE_FORMAT(MIN(STR_TO_DATE(p.date, '%Y-%m-%d')), '%Y-%m-%d') AS WeekStartDate,\n" +
-                    "    DATE_FORMAT(MAX(STR_TO_DATE(p.date, '%Y-%m-%d')), '%Y-%m-%d') AS WeekEndDate,\n" +
-                    "    COUNT(*) AS WeeklyOrders,\n" +
-                    "    SUM(p.amount) AS TotalAmount\n" +
-                    "FROM\n" +
-                    "    orders o\n" +
-                    "    INNER JOIN payment p ON o.or_id = p.or_id\n" +
-                    "WHERE\n" +
-                    "    STR_TO_DATE(p.date, '%Y-%m-%d') BETWEEN (SELECT MIN(STR_TO_DATE(date, '%Y-%m-%d')) FROM payment) \n" +
-                    "    AND (SELECT MAX(STR_TO_DATE(date, '%Y-%m-%d')) FROM payment)\n" +
-                    "GROUP BY\n" +
-                    "    YEARWEEK(STR_TO_DATE(p.date, '%Y-%m-%d'), 1)\n" +
-                    "ORDER BY\n" +
-                    "    WeekStartDate;\n ");
+            stm= queryBO.getQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
